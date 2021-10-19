@@ -201,6 +201,9 @@
 	.wc-block-components-product-sale-badge {
 		line-height: 1;
 	}
+	.editor-styles-wrapper .wp-block-button .wp-block-button__link:not(.has-text-color) {
+		color: #fff;
+	}
 }
 
 .theme-twentytwenty {
@@ -263,14 +266,6 @@
 		letter-spacing: -0.02em;
 		line-height: 1.2;
 		text-transform: uppercase;
-	}
-
-	// These styles are not applied to the All Products atomic block, so it can be positioned normally.
-	.wc-block-grid__products .wc-block-grid__product-onsale {
-		position: absolute;
-		right: 4px;
-		top: 4px;
-		z-index: 1;
 	}
 
 	// Override style from WC Core that set its position to absolute.

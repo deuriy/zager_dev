@@ -12,7 +12,14 @@ import {
 	assertValidElementOrString,
 } from './assertions';
 
-import { canMakePaymentWithFeaturesCheck } from './payment-method-config-helper';
+import {
+	canMakePaymentWithFeaturesCheck,
+	canMakePaymentWithExtensions,
+} from './payment-method-config-helper';
+import { extensionsConfig } from './extensions-config';
+const NullComponent = () => {
+	return null;
+};
 
 export default class PaymentMethodConfig {
 	constructor( config ) {
@@ -23,6 +30,7 @@ export default class PaymentMethodConfig {
 		this.placeOrderButtonLabel = config.placeOrderButtonLabel;
 		this.ariaLabel = config.ariaLabel;
 		this.content = config.content;
+		this.savedTokenComponent = config.savedTokenComponent;
 		this.icons = config.icons;
 		this.edit = config.edit;
 		this.paymentMethodId = config.paymentMethodId || this.name;
@@ -34,13 +42,32 @@ export default class PaymentMethodConfig {
 			showSaveOption: config?.supports?.showSaveOption || false,
 			features: config?.supports?.features || [ 'products' ],
 		};
-		this.canMakePayment = canMakePaymentWithFeaturesCheck(
-			config.canMakePayment,
+		this.canMakePaymentFromConfig = config.canMakePayment;
+	}
+
+	// canMakePayment is calculated each time based on data that modifies outside of the class (eg: cart data).
+	get canMakePayment() {
+		const canPay = canMakePaymentWithFeaturesCheck(
+			this.canMakePaymentFromConfig,
 			this.supports.features
 		);
+		// Loop through all callbacks to check if there are any registered for this payment method.
+		return Object.values( extensionsConfig.canMakePayment ).some(
+			( callbacks ) => this.name in callbacks
+		)
+			? canMakePaymentWithExtensions(
+					canPay,
+					extensionsConfig.canMakePayment,
+					this.name
+			  )
+			: canPay;
 	}
 
 	static assertValidConfig = ( config ) => {
+		// set default for optional
+		config.savedTokenComponent = config.savedTokenComponent || (
+			<NullComponent />
+		);
 		assertConfigHasProperties( config, [
 			'name',
 			'label',
@@ -82,6 +109,7 @@ export default class PaymentMethodConfig {
 		assertValidElementOrString( config.label, 'label' );
 		assertValidElement( config.content, 'content' );
 		assertValidElement( config.edit, 'edit' );
+		assertValidElement( config.savedTokenComponent, 'savedTokenComponent' );
 		if ( typeof config.ariaLabel !== 'string' ) {
 			throw new TypeError(
 				'The ariaLabel property for the payment method must be a string'
