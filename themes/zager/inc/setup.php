@@ -94,5 +94,7 @@ if ( ! function_exists( 'understrap_setup' ) ) {
 		remove_theme_support( 'custom-header' );
 		remove_theme_support( 'custom-background' );
 
+		add_theme_support( 'custom-logo' );
+
 	}
 }
