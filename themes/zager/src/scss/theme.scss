@@ -1,0 +1,25 @@
+@import 'theme/theme-mixins';  // Add or update variables into this file
+@import 'theme/theme-variables';  // Add or update variables into this file
+@import 'vendor/bootstrap4/bootstrap';      // Loads Bootstrap4
+@import 'understrap/understrap';  // Loads the UnderStrap defaults. Just a few classes to incorporate BS in WP
+
+// Optional files
+//@import 'vendor/fontawesome/fontawesome';
+//@import 'vendor/fontawesome/brands';
+//@import 'vendor/fontawesome/regular';
+//@import 'vendor/fontawesome/solid';
+
+//@import "understrap/woocommerce'; // Loads WooCommerce style fixes. Comment out if you aren't using WooCommerce
+
+// Core Theme Styles
+@import 'theme/theme-core';
+@import 'theme/footer';
+@import 'theme/atoms';
+@import 'theme/molecules';
+@import 'theme/organisms';
+
+@import 'theme/blocks';
+
+// Any additional imported files //
+@import 'theme/theme'; // That's where you can add your own design. Thats your part!
+@import '../../page-blocks/**/*';

@@ -1,0 +1,27 @@
+
+@mixin admin-sticky-fix( $offset: 0 ) {
+    $narrow-offset: 46px;
+    $wide-offset: 32px;
+
+    @if $offset != 0 and type-of($offset) == "number" {
+        $narrow-offset: calc(#{$narrow-offset} + #{$offset});
+        $wide-offset: calc(#{$wide-offset} + #{$offset});
+    }
+
+    & {
+        position: sticky;
+        //top: #{$offset - 1px};
+        top: #{$offset};
+        z-index: $zindex-sticky;
+    }
+
+    .admin-bar & {
+        //top: calc(#{$narrow-offset} - 1px);
+        top: #{$narrow-offset};
+
+        @media screen and (min-width: 783px) {
+            //top: cal#{$wide-offset - 1px };
+            top: #{$wide-offset};
+        }
+    }
+}

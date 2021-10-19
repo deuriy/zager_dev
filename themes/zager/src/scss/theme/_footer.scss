@@ -1,0 +1,19 @@
+#wrapper-footer {
+
+    .site-info {
+
+        .menu {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+            }
+        }
+    }
+
+    .sep + .sep {
+        display: none;
+    }
+}

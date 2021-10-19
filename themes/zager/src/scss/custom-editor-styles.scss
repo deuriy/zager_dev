@@ -1,0 +1,87 @@
+
+
+@import 'theme/theme-variables';  // Add or update variables into this file
+
+.wp-block {
+
+    @import 'vendor/bootstrap4/bootstrap';      // Loads Bootstrap4
+    @import 'theme/theme'; // That's where you can add your own design. Thats your part!
+}
+
+
+/* Hide ACF Feilds inside the Block Editor Sidebar */
+.acf-block-component.acf-block-panel {
+    display: none;
+}
+
+// When using an ACF Repeater hide all items, except for the first.
+.acf-block-preview .carousel-wrap {
+
+    > * {
+        display: none;
+
+        &:first-child {
+            display: block;
+        }
+    }
+}
+
+/* Setup blocks to follow standards */
+
+.wp-block {
+    max-width: 1320px;
+
+    /* Width of "wide" blocks */
+    &[data-align='wide'] {
+        max-width: 1320px;
+    }
+
+    /* Width of "full-wide" blocks */
+    &[data-align='full'] {
+        margin-right: calc(-100vw / 2 + 100% / 2);
+        margin-left: calc(-100vw / 2 + 100% / 2);
+        max-width: none;
+    }
+
+    &[data-align='right'] {
+        > * {
+            max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
+            margin-left: 1.5rem;
+        }
+    }
+
+    &[data-align='left'] {
+        > * {
+            max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+.editor-styles-wrapper p.wp-block {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.acf-block-body {
+
+    .acf-block-fields.acf-fields {
+        border: none;
+        padding: 1rem 0;
+
+        .acf-field {
+            margin: 0 auto;
+            border-right: 1px solid #ADB2AD;
+            border-left: 1px solid #ADB2AD;
+            max-width: 1400px;
+
+            &:first-child {
+                border-top: 1px solid #ADB2AD;
+            }
+
+            &:last-child {
+                border-bottom: 1px solid #ADB2AD;
+            }
+        }
+    }
+}

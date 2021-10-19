@@ -1,0 +1,11 @@
+.post-card {
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    .card-action {
+        text-transform: uppercase;
+    }
+}

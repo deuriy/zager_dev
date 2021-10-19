@@ -1,0 +1,22 @@
+{
+	"browserSyncOptions": {
+		"proxy": "localhost/",
+		"notify": false,
+		"files": ["./css/*.min.css", "./js/*.min.js", "./**/*.php"]
+	},
+	"paths": {
+		"js": "./js",
+		"css": "./css",
+		"fonts": "./fonts",
+		"img": "./img",
+		"js_src": "./src/js",
+		"js_vendor": "./src/js/vendor",
+		"scss_src": "./src/scss",
+		"scss_vendor": "./src/scss/vendor",
+		"page_blocks": "./page-blocks",
+		"node": "./node_modules",
+		"composer": "./vendor",
+		"dev": "./src",
+		"dist": "./dist"
+	}
+}

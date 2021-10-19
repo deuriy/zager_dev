@@ -1,0 +1,34 @@
+.post-card {
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    .card-action {
+        background-color: $gray-300;
+        text-transform: uppercase;
+        color: $gray-900;
+    }
+}
+
+.banner-page {
+    display: flex;
+    position: relative;
+    align-content: center;
+    justify-content: center;
+    min-height: 350px;
+
+    img {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .caption {
+        margin: auto;
+        padding: 4rem 2rem;
+    }
+}

@@ -1,0 +1,37 @@
+.post-card {
+
+    img {
+        transform: scale(1);
+        transition: transform 300ms ease-in-out;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    .card-meta {
+        margin: auto -0.25rem 0;
+
+        > span {
+            display: inline-block;
+            padding: 0 0.25rem 0.25rem;
+        }
+    }
+
+    .card-action {
+        transition: background-color 300ms ease-in-out;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            background-color: $secondary;
+        }
+    }
+}
