@@ -1,152 +1,151 @@
+// $block-margin: 20px;
+// $highlight: #CCCCCC;
+// $border-color: #CCCCCC;
 
-$block-margin: 20px;
-$highlight: #CCCCCC;
-$border-color: #CCCCCC;
+// article.post {
 
-article.post {
+//     .entry-content {
+//         overflow: hidden;
 
-    .entry-content {
-        overflow: hidden;
+//         > * {
+//             max-width: 1320px;
+//             margin-left: auto;
+//             margin-right: auto;
 
-        > * {
-            max-width: 1320px;
-            margin-left: auto;
-            margin-right: auto;
+//             /* Width of "center" blocks */
+//             &[data-align='center'],
+//             &.aligncenter {
+//                 max-width: 960px;
+//             }
 
-            /* Width of "center" blocks */
-            &[data-align='center'],
-            &.aligncenter {
-                max-width: 960px;
-            }
+//             /* Width of "wide" blocks */
+//             &[data-align='wide'],
+//             &.alignwide {
+//                 max-width: 1320px;
+//             }
 
-            /* Width of "wide" blocks */
-            &[data-align='wide'],
-            &.alignwide {
-                max-width: 1320px;
-            }
+//             /* Width of "full-wide" blocks */
+//             &[data-align='full'],
+//             &.alignfull {
+//                 margin-right: calc(-100vw / 2 + 100% / 2);
+//                 margin-left: calc(-100vw / 2 + 100% / 2);
+//                 max-width: none;
+//             }
 
-            /* Width of "full-wide" blocks */
-            &[data-align='full'],
-            &.alignfull {
-                margin-right: calc(-100vw / 2 + 100% / 2);
-                margin-left: calc(-100vw / 2 + 100% / 2);
-                max-width: none;
-            }
+//             &[data-align='right'],
+//             &.alignright {
+//                 max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
+//                 margin-left: 1.5rem;
+//                 margin-right: calc(0.5 * (100vw - calc(1.5rem + 1320px)));
 
-            &[data-align='right'],
-            &.alignright {
-                max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
-                margin-left: 1.5rem;
-                margin-right: calc(0.5 * (100vw - calc(1.5rem + 1320px)));
+//                 &.wp-block-cover {
+//                     max-width: 420px;
+//                 }
+//             }
 
-                &.wp-block-cover {
-                    max-width: 420px;
-                }
-            }
+//             &[data-align='left'],
+//             &.alignleft {
+//                 max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
+//                 margin-right: 1.5rem;
+//                 margin-left: calc(0.5 * (100vw - calc(1.5rem + 1320px)));
 
-            &[data-align='left'],
-            &.alignleft {
-                max-width: calc(50% - calc(0.5 * (100vw - 1320px)));
-                margin-right: 1.5rem;
-                margin-left: calc(0.5 * (100vw - calc(1.5rem + 1320px)));
-
-                &.wp-block-cover {
-                    max-width: 420px;
-                }
-            }
-        }
-    }
-}
+//                 &.wp-block-cover {
+//                     max-width: 420px;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
-/* Blockquote
---------------------------------------------- */
+// /* Blockquote
+// --------------------------------------------- */
 
-blockquote,
-blockquote.wp-block-quote {
-    background: transparent;
-    text-align: left;
+// blockquote,
+// blockquote.wp-block-quote {
+//     background: transparent;
+//     text-align: left;
 
-    p {
-        font-size: 24px;
-        font-weight: 400;
-        font-style: normal;
-    }
+//     p {
+//         font-size: 24px;
+//         font-weight: 400;
+//         font-style: normal;
+//     }
 
-    cite,
-    .wp-block-quote__citation {
-        display: block;
-        margin-top: 12px;
-        text-transform: uppercase;
-        font-size: 16px;
-        font-weight: 700;
-    }
+//     cite,
+//     .wp-block-quote__citation {
+//         display: block;
+//         margin-top: 12px;
+//         text-transform: uppercase;
+//         font-size: 16px;
+//         font-weight: 700;
+//     }
 
-    p:last-of-type {
-        margin-bottom: 0;
-    }
+//     p:last-of-type {
+//         margin-bottom: 0;
+//     }
 
-    &.is-large,
-    &.is-style-large {
-        margin: calc( 2 * $block-margin ) auto;
-    }
-}
+//     &.is-large,
+//     &.is-style-large {
+//         margin: calc( 2 * $block-margin ) auto;
+//     }
+// }
 
-/* Pull Quote
---------------------------------------------- */
+// /* Pull Quote
+// --------------------------------------------- */
 
-.wp-block-pullquote {
-    border: none;
-    padding: 0;
+// .wp-block-pullquote {
+//     border: none;
+//     padding: 0;
 
-    blockquote {
-        margin: 0 auto;
-        border-left: 0;
-        padding: 16px 0;
-        max-width: 50%;
-        text-align: center;
-    }
+//     blockquote {
+//         margin: 0 auto;
+//         border-left: 0;
+//         padding: 16px 0;
+//         max-width: 50%;
+//         text-align: center;
+//     }
 
-    &.alignleft,
-    &.alignright {
+//     &.alignleft,
+//     &.alignright {
 
-        blockquote {
-            max-width: 100%;
-        }
-    }
-}
+//         blockquote {
+//             max-width: 100%;
+//         }
+//     }
+// }
 
-/* Separator
---------------------------------------------- */
+// /* Separator
+// --------------------------------------------- */
 
-.wp-block-separator,
-hr {
+// .wp-block-separator,
+// hr {
 
-    &:not(.is-style-dots) {
-        border: 0;
-        height: 1px;
-    }
+//     &:not(.is-style-dots) {
+//         border: 0;
+//         height: 1px;
+//     }
 
-    &:not(.is-style-wide):not(.is-style-dots) {
-        background: transparent;
-        width: 100%;
-        height: 4px;
-    }
+//     &:not(.is-style-wide):not(.is-style-dots) {
+//         background: transparent;
+//         width: 100%;
+//         height: 4px;
+//     }
 
-    &.is-style-dots:before {
-        padding-left: 12px;
-        letter-spacing: 12px;
-        font-size: 18px;
-    }
-}
+//     &.is-style-dots:before {
+//         padding-left: 12px;
+//         letter-spacing: 12px;
+//         font-size: 18px;
+//     }
+// }
 
-/* Button
---------------------------------------------- */
+// /* Button
+// --------------------------------------------- */
 
-.wp-block-button {
+// .wp-block-button {
 
-    .wp-block-button__link {
-        @extend .btn;
-        @extend .btn-primary;
-    }
-}
+//     .wp-block-button__link {
+//         @extend .btn;
+//         @extend .btn-primary;
+//     }
+// }

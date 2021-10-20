@@ -36,7 +36,10 @@ if ( ! function_exists( 'understrap_setup' ) ) {
 		register_nav_menus(
 			array(
 				'header' => __( 'Header Menu', 'understrap' ),
-				'footer' => __( 'Footer Menu', 'understrap' ),
+				'footer_first' => __( 'Footer Menu first', 'understrap' ),
+				'footer_second' => __( 'Footer Menu second', 'understrap' ),
+				'footer_third' => __( 'Footer Menu third', 'understrap' ),
+				'footer_fourth' => __( 'Footer Menu fourth', 'understrap' ),
 				'auxiliary' => __( 'Auxiliary Menu', 'understrap' ),
 			)
 		);

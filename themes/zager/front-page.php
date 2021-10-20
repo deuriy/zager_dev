@@ -18,38 +18,24 @@ get_header();
 get_template_part( 'partials/banner', 'front-page' );
 
 ?>
+	<main class="Main">
 
-<div class="wrapper py-4" id="page-wrapper">
+		<?php
+			$layouts = get_field('page_blocks');
 
-	<div class="container" id="content" tabindex="-1">
-
-		<div class="row primary-content-wrapper">
-
-			<div class="content-area" id="primary">
-
-				<main class="site-main" id="main">
-
-					<?php
-					while ( have_posts() ) {
-						the_post();
-						get_template_part( 'loop-templates/content', 'page' );
-
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) {
-							comments_template();
-						}
+			if ($layouts) {
+					foreach ($layouts as $layout) {
+							$layout_name = str_replace('_', '-', $layout['acf_fc_layout']);
+							$template = locate_template('page-blocks/'.$layout_name.'/template.php', false, false);
+							if ($template) {
+									$field = $layout; // Change layout to a friendly name.
+									include($template); // if locate_template returns false, include(false) will throw an error
+							}
 					}
-					?>
+			}
+		?>
 
-				</main><!-- #main -->
-
-			</div><!-- #primary -->
-
-		</div><!-- .row -->
-
-	</div><!-- #content -->
-
-</div><!-- #page-wrapper -->
+	</main><!-- #main -->
 
 <?php
 get_footer();
