@@ -7069,9 +7069,6 @@
     }, false);
   }
 })();
-// jQuery(document).ready(function () {
-// 	// console.log( "ready!" );
-// });
 let menuHamburger = document.querySelector('.MenuHamburger');
 let mobileNavigation = document.querySelector('.MobileNavigation');
 let mobileMainMenu = document.querySelector('.MobileNavigation .MainMenu');
