@@ -1808,6 +1808,209 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_6171c110124f6": {
+                    "key": "layout_6171c110124f6",
+                    "name": "cta_section",
+                    "label": "CTA Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6171c123124f7",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6171c12c124f8",
+                            "label": "Subtitle",
+                            "name": "subtitle",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6171c16d12500",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_6171c13f124fa",
+                            "label": "Display button",
+                            "name": "display_button",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "yes": "Yes",
+                                "no": "No"
+                            },
+                            "allow_null": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_6171c142124fb",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6171c13f124fa",
+                                        "operator": "==",
+                                        "value": "yes"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_6171c142124fc",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_6171c142124fd",
+                                    "label": "Text",
+                                    "name": "text",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_6171c142124fe",
+                                    "label": "Button style",
+                                    "name": "button_style",
+                                    "type": "button_group",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "filled": "Filled",
+                                        "outline": "Outline"
+                                    },
+                                    "allow_null": 0,
+                                    "default_value": "",
+                                    "layout": "horizontal",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "field_6171c142124ff",
+                                    "label": "Button icon",
+                                    "name": "button_icon",
+                                    "type": "button_group",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "no_icon": "No icon",
+                                        "guitar": "Guitar",
+                                        "video": "Video",
+                                        "more": "More"
+                                    },
+                                    "allow_null": 0,
+                                    "default_value": "",
+                                    "layout": "horizontal",
+                                    "return_format": "value"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_609ebe644aa68": {
                     "key": "layout_609ebe644aa68",
                     "name": "slider",
@@ -4798,7 +5001,7 @@
                     "max": ""
                 }
             },
-            "button_label": "Add Block",
+            "button_label": "Add Section",
             "min": "",
             "max": ""
         }
@@ -4827,5 +5030,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1634844387
+    "modified": 1634845093
 }
