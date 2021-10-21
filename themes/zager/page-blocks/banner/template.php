@@ -16,7 +16,7 @@ $style = $banner['background_image'] ? ' style="background-image: url(\''. $bann
 					<?php echo $banner['title'] ?>
 				</h2>
 			<?php endif ?>
-			<?php if ($banner['buttons'] && $banner['display_buttons'] === 'yes'): ?>
+			<?php if ($banner['buttons']): ?>
 				<div class="Banner_buttons">
 					<?php
 					foreach($banner['buttons'] as $button):
