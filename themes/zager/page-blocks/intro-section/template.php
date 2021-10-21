@@ -7,7 +7,7 @@
         </div>
       <?php endif ?>
       <?php
-      $quote_block = $field['quote_block_type'] === 'default_quoteblock' ? get_field('default_quote_block', 'option') : $field['quote_block'];
+      $quote_block = $field['quote_block_type'] === 'default' ? get_field('quote_block', 'option') : $field['quote_block'];
       $quote_text_css_class = $quote_block['text_background_style'] === 'dark' ? ' Quote_text-greyBg' : '';
       ?>
       <div class="QuoteBlock Intro_quoteBlock">
