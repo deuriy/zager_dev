@@ -1,7 +1,11 @@
 <div class="TextAndQuote">
   <div class="Container">
     <div class="TextAndQuote_wrapper">
-      <h2 class="SectionTitle TextAndQuote_title">You can try our guitars at your home, risk-free</h2>
+      <?php if ($field['title']): ?>
+        <h2 class="SectionTitle TextAndQuote_title">
+          <?php echo $field['title'] ?>
+        </h2>
+      <?php endif ?>
       <?php
       $quote_block = $field['quote_block_type'] === 'default' ? get_field('quote_block', 'option') : $field['quote_block'];
       $quote_css_class = $quote_block['text_background_style'] === 'dark' ? ' Quote-greyBg' : '';

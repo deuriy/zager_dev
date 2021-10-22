@@ -1,25 +1,24 @@
 <?php
-$banner = $field['banner_type'] === 'default_banner' ? get_field('default_page_banner', 'option') : $field;
-$style = $banner['background_image'] ? ' style="background-image: url(\''. $banner['background_image'] .'\');"' : '';
+$style = $field['background_image'] ? ' style="background-image: url(\''. $field['background_image'] .'\');"' : '';
 ?>
 
 <div class="Banner<?php echo $class ?>"<?php echo $style ?>>
 	<div class="Container">
 		<div class="Banner_textWrapper">
-			<?php if ($banner['intro_text']): ?>
+			<?php if ($field['intro_text']): ?>
 				<div class="Banner_intro">
-					<?php echo $banner['intro_text'] ?>
+					<?php echo $field['intro_text'] ?>
 				</div>
 			<?php endif ?>
-			<?php if ($banner['title']): ?>
+			<?php if ($field['title']): ?>
 				<h2 class="Banner_title">
-					<?php echo $banner['title'] ?>
+					<?php echo $field['title'] ?>
 				</h2>
 			<?php endif ?>
-			<?php if ($banner['buttons']): ?>
+			<?php if ($field['buttons']): ?>
 				<div class="Banner_buttons">
 					<?php
-					foreach($banner['buttons'] as $button):
+					foreach($field['buttons'] as $button):
 						$button_style_classes = [
 							'filled' => 'BtnYellow',
 							'outline' => 'BtnOutline',
