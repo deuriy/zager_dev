@@ -54,7 +54,9 @@ $textblocks_class = $field['background_color'] === 'lightbeige' ? ' TextBlocks-l
               $button_icon_class = $button_style_class . '-' . $button['button_icon'] . ' ';
               $button_classes = $button_style_class . ' ' . $button_text_class . $button_icon_class . $button_style_class . '-lightBeigeBg TextBlock_btn';
               ?>
-              <a class="<?php echo $button_classes ?>" href="<?php echo $text_block['button']['url'] ?>"><?php echo $text_block['button']['text'] ?></a>
+              <a class="<?php echo $button_classes ?>" href="<?php echo $text_block['button']['url'] ?>">
+                <?php echo $text_block['button']['text'] ?>
+              </a>
             <?php endif ?>
             <?php if ($text_block['image']): ?>
               <div class="TextBlock_imgWrapper">

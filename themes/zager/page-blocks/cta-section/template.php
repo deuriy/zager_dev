@@ -6,7 +6,7 @@
     <?php if ($field['subtitle']): ?>
       <h3 class="CTASection_subTitle">The guitar that you can pass onto your children</h3>
     <?php endif ?>
-    <?php if ($field['button'] && $field['display_button'] === 'yes' && $field['button']['url'] && $field['button']['text']): ?>
+    <?php if ($field['display_button'] === 'yes' && $field['button']['url'] && $field['button']['text']): ?>
       <?php
       $button_style_class = '';
 
