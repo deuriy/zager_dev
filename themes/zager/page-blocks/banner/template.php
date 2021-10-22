@@ -20,22 +20,15 @@ $style = $banner['background_image'] ? ' style="background-image: url(\''. $bann
 				<div class="Banner_buttons">
 					<?php
 					foreach($banner['buttons'] as $button):
-						$button_style_class = '';
+						$button_style_classes = [
+							'filled' => 'BtnYellow',
+							'outline' => 'BtnOutline',
+							'black' => 'BtnBlack',
+						];
 
-			      switch ($button['button_style']) {
-			        case 'filled':
-			        $button_style_class = 'BtnYellow';
-			        break;
-			        case 'outline':
-			        $button_style_class = 'BtnOutline';
-			        break;
-			        case 'black':
-			        $button_style_class = 'BtnBlack';
-			        break;
-			      }
-
-						$button_icon_class = $button_style_class . '-' . $button['button_icon'];
-						$button_classes = $button_style_class . ' ' . $button_icon_class;
+						$button_style_class = $button_style_classes[$button['button_style']];
+						$button_icon_class = ($button['button_icon'] !== 'no_icon') ? ' ' . $button_style_class . '-' . $button['button_icon'] . ' ' : ' ';
+						$button_classes = $button_style_class . $button_icon_class . 'Banner_btn';
 						?>
 						<a class="<?php echo $button_classes; ?>" href="<?php echo $button['url'] ?>">
 							<?php echo $button['text'] ?>
