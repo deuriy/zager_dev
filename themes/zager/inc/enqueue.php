@@ -33,6 +33,10 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
+		
+		if (is_product()) {
+			wp_enqueue_script( 'product', get_template_directory_uri() . '/js/product.js', array( 'jquery' ), $js_version, true );
+		}
 	}
 
 	function understrap_scripts_admin() {
