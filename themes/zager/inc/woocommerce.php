@@ -219,3 +219,5 @@ function woocommerce_get_product_thumbnail( $size = 'woocommerce_thumbnail', $de
 function woocommerce_template_loop_product_title() {
 	echo '<h2 class="ProductCard_title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
+
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
