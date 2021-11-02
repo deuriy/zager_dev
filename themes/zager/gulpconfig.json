@@ -1,6 +1,6 @@
 {
 	"browserSyncOptions": {
-		"proxy": "localhost/",
+		"proxy": "http://zager.local:8888/",
 		"notify": false,
 		"files": ["./css/*.min.css", "./js/*.min.js", "./**/*.php"]
 	},

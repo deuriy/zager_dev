@@ -5,3 +5,73 @@ body.admin-bar {
 		top: 46px;
 	}
 }
+
+// Checkout page
+.input-text {
+	width: 100%;
+	max-width: 100%;
+	height: 54px;
+	padding-right: 14px;
+	padding-left: 14px;
+	border: none;
+	border-radius: 4px;
+	background-color: #f4ede4;
+}
+
+.stages {
+	&__list {
+		list-style: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		font-weight: bold;
+		font-size: 12px;
+		line-height: 28px;
+		// font-family: 'PT Sans', sans-serif;
+		color: #6A4436;
+		
+		&::after {
+			content: "";
+			width: 14px;
+			height: 21px;
+			background: url("data:image/svg+xml,%3Csvg version='1.2' baseProfile='tiny-ps' xmlns='http://www.w3.org/2000/svg' width='14' height='21'%3E%3Cstyle%3E%3C/style%3E%3Cg id='Checkout - information'%3E%3Cg id='Group 290'%3E%3Cg id='Group 242'%3E%3Cpath id='Path 509' d='m3.5 3.5 7 7-7 7' style='opacity:.502;fill:none;stroke:%236a4436;stroke-width:2'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 no-repeat;
+		}
+
+		&--current {
+			color: #13141A;
+		}
+
+		&:last-child::after {
+			display: none;
+		}
+	}
+}
+
+.stage-block {
+	padding: 20px 15px;
+}
+
+.multistage-form {
+	padding: 11px 0;
+	
+	&__stages-list {
+		margin-bottom: 12px;
+	}
+}
+
+.checkout {
+	border-radius: 4px;
+	filter: drop-shadow(0px 3px 3.5px rgba(0,0,0,0.16));
+	background-color: #fffbf6;
+	
+	&__form-item {
+		margin-bottom: 10px;
+	}
+}
