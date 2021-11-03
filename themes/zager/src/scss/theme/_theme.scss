@@ -34,7 +34,6 @@ body.admin-bar {
 		font-weight: bold;
 		font-size: 12px;
 		line-height: 28px;
-		// font-family: 'PT Sans', sans-serif;
 		color: #6A4436;
 		
 		&::after {
@@ -73,5 +72,363 @@ body.admin-bar {
 	
 	&__form-item {
 		margin-bottom: 10px;
+	}
+}
+
+.Remark {
+	padding: 16px 40px;
+	border-radius: 4px;
+	background: #FEBD70;
+	font-weight: bold;
+	font-family: 'Roboto Slab', sans-serif;
+	font-size: 19px;
+	line-height: 24px;
+	text-align: center;
+	
+	@media (max-width: 767px) {
+		padding: 16px 20px;
+		font-size: 16px;
+		line-height: 20px;
+	}
+	
+	&-red {
+		background: #992B13;
+		color: #FFFBF6;
+	}
+}
+
+.Product {
+	&-cartPage {
+		.Product_content {
+			padding-bottom: 61px;
+			
+			@media (max-width: 767px) {
+				padding-bottom: 40px;
+			}
+		}
+
+		.Product_sidebar {
+			@media (max-width: 767px) {
+				margin-right: 20px;
+				margin-left: 20px;
+			}
+		}
+
+		.Product_title {
+			@media (min-width: 1024px) {
+				margin-bottom: 19px;
+			}
+		}
+
+		.Remark {
+			margin-bottom: 20px;
+		}
+
+		.woocommerce {
+			margin-bottom: 20px;
+		}
+
+		.ThesesSection {
+			margin-top: 60px;
+			
+			@media (max-width: 767px) {
+				margin-top: 40px;
+			}
+		}
+	}
+}
+
+.woocommerce-cart-form {
+	background: #FFFBF6;
+	border-radius: 4px;
+	
+	&__contents {
+		width: 100%;
+	}
+
+	&__cart-item {
+		display: grid;
+		grid-template-columns: repeat(4, auto);
+		align-items: center;
+		
+		@media (max-width: 767px) {
+			grid-template-columns: auto;
+		}
+	}
+
+	.product-thumbnail,
+	.product-subtotal{
+		padding: 20px;
+	}
+
+	.product-thumbnail {		
+		img {
+			display: block;
+			
+			@media (max-width: 767px) {
+				margin-right: auto;
+				margin-left: auto;
+			}
+		}
+	}
+
+	.product-name {
+		// width: 370px;
+		padding: 20px 28px;
+		
+		a {
+			display: block;
+			margin-bottom: 8px;
+			font-weight: bold;
+			font-size: 18px;
+			font-family: "Roboto Slab", sans-serif;
+			color: #000;
+			text-decoration: none;
+			
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.variation {
+			font-size: 16px;
+			line-height: 26px;
+			letter-spacing: 0.005em;
+		}
+	}
+
+	.product-remove {
+		position: relative;
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		align-self: stretch;
+		padding: 20px;
+		text-align: center;
+		
+		@media (max-width: 767px) {
+			padding-top: 15px;
+			padding-bottom: 10px;
+		}
+		
+		&::before {
+			content: "";
+			position: absolute;
+			top: 24px;
+			left: 0;
+			bottom: 24px;
+			width: 2px;
+			background: #F4EDE4;
+		}
+		
+		a.remove {
+			width: 40px;
+			height: 40px;
+			padding: 10px;
+			background: url("data:image/svg+xml,%3Csvg width='20' height='20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.169 16.667c0 .919.747 1.666 1.666 1.666h8.334c.919 0 1.666-.747 1.666-1.666v-10h1.667V5h-3.333V3.333c0-.919-.748-1.666-1.667-1.666h-5c-.92 0-1.667.747-1.667 1.666V5H2.502v1.667h1.667v10ZM7.502 3.333h5V5h-5V3.333Zm-.833 3.334h7.5v10H5.835v-10h.834Z' fill='%2313141A'/%3E%3Cpath d='M7.502 8.333h1.667V15H7.502V8.333Zm3.333 0h1.667V15h-1.667V8.333Z' fill='%2313141A'/%3E%3C/svg%3E") center center no-repeat;
+		}
+	}
+
+	.product-subtotal {
+		text-align: center;
+		
+		@media (max-width: 767px) {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		
+		.woocommerce-Price-amount {
+			font-weight: bold;
+			font-family: "Roboto Slab", sans-serif;
+			font-size: 19px;
+			line-height: 24px;
+			color: #992B13;
+		}
+	}
+}
+
+.ThesesSection {
+	.SectionTitle {
+		&-theses {
+			font-size: 28px;
+			line-height: 1.1428;
+		}
+	}
+
+	&_title {
+		margin-bottom: 40px;
+	}
+}
+
+.Thesis {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 16px 32px;
+	padding: 32px;
+	background: #FFFBF6;
+	border-radius: 4px;
+	
+	@media (max-width: 767px) {
+		grid-template-columns: auto;
+	}
+	
+	&_iconWrapper {
+		grid-row: 1 / 3;
+		margin-top: -11px;
+	}
+	
+	&_title {
+		font-weight: bold;
+		font-size: 23px;
+		line-height: 32px;
+		font-family: 'Roboto Slab', sans-serif;
+	}
+
+	&_text {
+		font-size: 18px;
+		line-height: 32px;
+		letter-spacing: -0.005em;
+		
+		@media (max-width: 767px) {
+			font-size: 16px;
+			line-height: 26px;
+		}
+	}
+}
+
+.Theses {
+	&_item:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}
+
+.Sidebar {
+	&.Sidebar-cartPage {
+		padding: 41px 76px 39px 25px;
+		
+		@media (max-width: 767px) {
+			padding: 25px 30px;
+		}
+	}
+
+	&_shipping {
+		margin-right: 4px;
+		margin-bottom: 27px;
+	}
+
+	&_subTotal {
+		margin-bottom: 21px;
+	}
+
+	&_checkoutBtnWrapper {
+		margin-bottom: 20px;
+	}
+
+	&_paymentMethods {
+		margin-bottom: 28px;
+	}
+}
+
+.Shipping {
+	display: grid;
+	grid-template-columns: auto auto;
+	align-items: baseline;
+	row-gap: 2px;
+	
+	&_title {
+		font-size: 18px;
+		line-height: 32px;
+		letter-spacing: -0.005em;
+	}
+
+	&_type {
+		justify-self: end;
+		font-family: "Roboto Slab", sans-serif;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 22px;
+		color: #992B13;
+	}
+
+	&_text {
+		grid-column: 1 / 3;
+		font-family: 'Work Sans', sans-serif;
+		font-size: 13px;
+		line-height: 15px;
+		letter-spacing: -0.02em;
+	}
+}
+
+.SubTotal {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 8px 0;
+	border-top: 2px dashed #E8E1D5;
+	border-bottom: 2px dashed #E8E1D5;
+	font-weight: bold;
+	font-family: "Roboto Slab", sans-serif;
+	font-size: 23px;
+	line-height: 32px;
+}
+
+.BtnYellow {
+	&.BtnYellow-cartSidebar {
+		width: 222px;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		font-size: 14px;
+		line-height: 20px;
+		
+		@media (max-width: 767px) {
+			width: 100%;
+		}
+	}
+}
+
+.PaymentMethods {
+	padding-bottom: 32px;
+	border-bottom: 2px dashed #E8E1D5;
+	text-align: center;
+	
+	&_img {
+		display: inline-block;
+		margin-bottom: 9px;
+	}
+	
+	&_text {
+		font-family: 'Work Sans', sans-serif;
+		font-size: 13px;
+		line-height: 15px;
+		letter-spacing: -0.02em;
+	}
+}
+
+.FinancingPurchase {
+	text-align: center;
+	font-size: 14px;
+	
+	&_text {
+		line-height: 16px;
+	}
+
+	&_textAndLogo {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 8px;
+		margin-bottom: 13px;
+		line-height: 22px;
+	}
+
+	&_prequalifyBtn {
+		margin-right: 10px;
+	}
+}
+
+.AccessoriesSection {
+	&-gradientBg {
+		background: linear-gradient(180deg, #ECE2D6 0%, #F4EDE4 100%);
 	}
 }

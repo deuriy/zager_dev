@@ -475,3 +475,13 @@ function woocommerce_form_field( $key, $args, $value = null ) {
 
 // 	return $field;
 // }
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
+
+// add this filter in functions.php file
+add_filter( 'woocommerce_get_item_data', 'wc_checkout_description', 10, 2 );
+function wc_checkout_description( $other_data, $cart_item )
+{
+    $post_data = get_post( $cart_item['product_id'] );
+    $other_data[] = array( 'name' =>  $post_data->post_excerpt );
+    return $other_data;
+}
