@@ -15,7 +15,7 @@ get_header();
 
 <main class="Main">
 
-  <?php get_template_part( 'partials/flexible_layouts' ); ?>
+  <?php render_page_layouts(get_field('page_blocks')); ?>
 
 </main><!-- #main -->
 

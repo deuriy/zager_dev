@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"theme-tablet.min.css","sourcesContent":[]}
+{"version":3,"sources":["theme-tablet.css"],"names":[],"mappings":"AAAA,0BACA,iCACE,cAAe","file":"theme-tablet.min.css","sourcesContent":["@media (min-width: 1024px){\n.Product-cartPage .Product_title {\n  margin-bottom: 19px;\n}\n}\n\n"]}
