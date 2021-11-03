@@ -176,6 +176,10 @@ body.admin-bar {
 		// width: 370px;
 		padding: 20px 28px;
 		
+		@media (max-width: 767px) {
+			padding-top: 5px;
+		}
+		
 		a {
 			display: block;
 			margin-bottom: 8px;
