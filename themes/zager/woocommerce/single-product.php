@@ -56,17 +56,24 @@ get_header( 'shop' ); ?>
 	?>
 	</div>
 	<?php
+		render_page_layouts(get_field('after_product_bottom'));
+
 		/**
 		 * woocommerce_after_main_content hook.
 		 *
 		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
-		do_action( 'woocommerce_after_main_content' );
+		// do_action( 'woocommerce_after_main_content' );
+		woocommerce_related_products(array(
+			'posts_per_page' => '3'
+		));
 	?>
 	</div>
 </main>
 
 <?php
+get_template_part('partials/compare-sizes-popup');
+get_template_part('partials/product-mobile-popup');
 get_footer( 'shop' );
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

@@ -6,30 +6,30 @@ function slideToggle(elem) {
   }
 }
 
-// const players = Plyr.setup('audio', {
-//   controls: ['play-large', 'play', 'progress', 'duration', 'captions', 'pip', 'airplay']
-// });
+const players = Plyr.setup('audio', {
+  controls: ['play-large', 'play', 'progress', 'duration', 'captions', 'pip', 'airplay']
+});
 
-// Fancybox.bind(`[data-fancybox="gallery"]`, {
-//   showClass: 'fancybox-fadeIn',
-//   placeFocusBack: false
-// });
+Fancybox.bind(`[data-fancybox="gallery"]`, {
+  showClass: 'fancybox-fadeIn',
+  placeFocusBack: false
+});
 
-// Fancybox.bind(`.FancyboxPopupLink`, {
-//   dragToClose: false,
-//   showClass: 'fancybox-fadeIn',
-//   mainClass: 'fancybox__container--popup'
-// });
+Fancybox.bind(`.FancyboxPopupLink`, {
+  dragToClose: false,
+  showClass: 'fancybox-fadeIn',
+  mainClass: 'fancybox__container--popup'
+});
 
-// let productThumbs = new Swiper(".ProductImgSwiper_thumbs", {
-//   loop: true,
-//   spaceBetween: 8,
-//   slidesPerView: 4,
-//   freeMode: true,
-//   watchSlidesProgress: true,
-// });
+let productThumbs = new Swiper(".ProductImgSwiper_thumbs", {
+  loop: true,
+  spaceBetween: 8,
+  slidesPerView: 4,
+  freeMode: true,
+  watchSlidesProgress: true,
+});
 
-// let productImgSwiperFullScreenBtn = document.querySelector('.ProductImgSwiper_fullScreenBtn');
+let productImgSwiperFullScreenBtn = document.querySelector('.ProductImgSwiper_fullScreenBtn');
 let productGallery = new Swiper(".ProductImgSwiper_gallery", {
   loop: true,
   spaceBetween: 20,
@@ -43,7 +43,7 @@ let productGallery = new Swiper(".ProductImgSwiper_gallery", {
   },
 
   thumbs: {
-    // swiper: productThumbs,
+    swiper: productThumbs,
     slideThumbActiveClass: 'ProductImgSwiper_thumbsSlide-active'
   },
 
@@ -53,14 +53,20 @@ let productGallery = new Swiper(".ProductImgSwiper_gallery", {
     },
   },
 
-  // on: {
-  //   init: function () {
-  //     let productImgActiveSlide = document.querySelector(`.ProductImgSwiper_gallery .swiper-slide-active`);
-  //     productImgSwiperFullScreenBtn.href = productImgActiveSlide.querySelector('img').src;
-  //   }
-  // }
+  on: {
+    init: function () {
+      let productImgActiveSlide = document.querySelector(`.ProductImgSwiper_gallery .swiper-slide-active`);
+      productImgSwiperFullScreenBtn.href = productImgActiveSlide.querySelector('img').src;
+    }
+  }
 });
 
+productGallery.on('slideChange', function () {
+  setTimeout(() => {
+    let productImgActiveSlide = document.querySelector(`.ProductImgSwiper_gallery .swiper-slide-active`);
+    productImgSwiperFullScreenBtn.href = productImgActiveSlide.querySelector('img').src;
+  }, 0);
+});
 
 new Swiper('.VideoSwiper', {
   slidesPerView: 'auto',

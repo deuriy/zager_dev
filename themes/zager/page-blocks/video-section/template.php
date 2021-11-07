@@ -1,9 +1,24 @@
 <?php
-$video_section = $field['video_section_type'] === 'default' ? get_field('video_section', 'option') : $field;
+switch ($field['video_section_type']) {
+  case 'default':
+    $video_section = get_field('video_section', 'option');
+    break;
+  
+  case 'default_product':
+    $video_section = get_field('product_video_section', 'option');
+    break;
+  
+  default:
+    $video_section = $field;
+    break;
+}
+
+$video_section_class = is_product() ? ' VideoSection-product' : '';
+$video_section_container_class = is_product() ? ' Container-videoSectionProduct' : '';
 ?>
 
-<div class="VideoSection">
-  <div class="Container">
+<div class="VideoSection<?php echo $video_section_class; ?>">
+  <div class="Container<?php echo $video_section_container_class; ?>">
     <?php if ($video_section['title']): ?>
       <h2 class="SectionTitle SectionTitle-lightBeige VideoSection_title">
         <?php echo $video_section['title'] ?>

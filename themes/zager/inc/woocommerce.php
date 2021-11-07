@@ -485,3 +485,60 @@ function wc_checkout_description( $other_data, $cart_item )
     $other_data[] = array( 'name' =>  $post_data->post_excerpt );
     return $other_data;
 }
+
+if ( ! function_exists( 'custom_print_attribute_radio' ) ) {
+	function custom_print_attribute_radio( $checked_value, $value, $label, $name ) {
+		global $product;
+
+		$input_name = 'attribute_' . esc_attr( $name ) ;
+		$esc_value = esc_attr( $value );
+		$id = esc_attr( $name . '_v_' . $value . $product->get_id() ); //added product ID at the end of the name to target single products
+		$checked = checked( $checked_value, $value, false );
+		$filtered_label = apply_filters( 'woocommerce_variation_option_name', $label, esc_attr( $name ) );
+
+		$attribute_term = get_term_by( 'slug', $value, $name );
+		$attribute_term_id = $attribute_term->term_id;
+
+		$attribute_icon_id = get_field('icon', $name . '_' . $attribute_term_id);
+		$show_icon = get_field('show_icon_in_variations_block', $name . '_' . $attribute_term_id) === 'yes';
+
+		$attribute_icon = $show_icon ? wp_get_attachment_image( $attribute_icon_id, 'full', false, array('class' => 'Variation_icon') ) : '';
+		$variation_classes = $show_icon ? ' Variation-hasIcon' : '';
+
+		printf( '<div class="Variation%7$s Variations_item"><input type="radio" name="%1$s" value="%2$s" id="%3$s" %4$s class="Variation_input"><label for="%3$s" class="Variation_label">%6$s%5$s</label></div>', $input_name, $esc_value, $id, $checked, $filtered_label, $attribute_icon, $variation_classes );
+	}
+}
+
+if ( ! function_exists( 'get_product_img_swiper' ) ) {
+	function get_product_img_swiper() {
+		global $product;
+
+		$attachment_ids = $product->get_gallery_image_ids();
+
+		if ( $attachment_ids && $product->get_image_id() ) {
+			echo '<div class="ProductImgSwiper Product_swiperWrapper"><div class="ProductImgSwiper_galleryWrapper"><div class="swiper ProductImgSwiper_gallery"><div class="swiper-wrapper">';
+
+			foreach ( $attachment_ids as $attachment_id ) {
+				$original_image_url = wp_get_attachment_url( $attachment_id );
+
+				echo '<div class="swiper-slide ProductImgSwiper_gallerySlide"><a class="ProductImgSwiper_galleryLink" href="' . $original_image_url . '" data-fancybox="gallery">';
+				echo wp_get_attachment_image( $attachment_id, 'full' );
+				echo '</a></div>';
+			}
+
+			echo '</div><button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductImgSwiper_prev hidden-smMinus" type="button"></button><button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductImgSwiper_next hidden-smMinus" type="button"></button><a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen ProductImgSwiper_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>';
+
+			echo '</div></div><div class="swiper ProductImgSwiper_thumbs hidden-smMinus"><div class="swiper-wrapper">';
+
+			foreach ( $attachment_ids as $attachment_id ) {
+				echo '<div class="swiper-slide ProductImgSwiper_thumbsSlide">';
+				echo wp_get_attachment_image( $attachment_id, 'full' );
+				echo '</div>';
+			}
+
+			echo '</div></div></div>';
+		}
+	}
+}
+
+

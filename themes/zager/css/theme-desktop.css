@@ -1,6 +1,57 @@
 @media (min-width: 1024px){
+.stage-block {
+  padding: 20px 32px;
+}
+
+.multistage-form {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto 1fr;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+  -moz-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  border-radius: 4px;
+  -webkit-filter: drop-shadow(0px 3px 3.5px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(0px 3px 3.5px rgba(0, 0, 0, 0.16));
+  background-color: #fffbf6;
+}
+
+.multistage-form__summary {
+  grid-area: 1 / 2 / 3 / 3;
+  background-color: #f4ede4;
+}
+
+.multistage-form__stages-list {
+  margin-top: 14px;
+}
+
+.multistage-form__buttons {
+  padding-right: 32px;
+  padding-left: 32px;
+}
+
+.woocommerce__multistage-form {
+  margin: 32px 0;
+}
+
+.woocommerce .woocommerce-checkout-review-order-table {
+  padding: 8px 22px;
+}
+
+.woocommerce .woocommerce-checkout-review-order-table__title {
+  opacity: 1;
+}
+
 .Product-cartPage .Product_title {
   margin-bottom: 19px;
+}
+}
+
+@media (min-width: 1200px){
+.multistage-form {
+  grid-template-columns: 1fr 363px;
 }
 }
 

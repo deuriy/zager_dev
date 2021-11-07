@@ -46,7 +46,17 @@ if ( $product->is_in_stock() ) : ?>
 		do_action( 'woocommerce_after_add_to_cart_quantity' );
 		?>
 
-		<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-outline-primary"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+		<div class="TotalPrice TotalPrice-productOptions">
+			<div class="TotalPrice_textWrapper">
+				<div class="TotalPrice_price"><?php echo $product->get_price_html(); ?></div>
+				<div class="TotalPrice_textAndBtn">
+					<div class="TotalPrice_text">Starting at <strong>$72/mo</strong> with <img class="TotalPrice_affirmLogo" src="<?php echo get_template_directory_uri(); ?>/img/affirm_logo.webp" alt="Affirm logo"></div><a class="BtnGrey BtnGrey-totalPrice TotalPrice_prequalifyBtn" href="#">Prequalify now</a>
+				</div>
+			</div>
+			<div class="TotalPrice_buttons">
+				<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-outline-primary BtnYellow BtnYellow-totalPrice TotalPrice_btn"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+			</div>
+		</div>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>

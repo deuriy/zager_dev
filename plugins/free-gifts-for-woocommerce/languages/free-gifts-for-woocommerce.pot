@@ -1,0 +1,1552 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: free-gifts-for-woocommerce\n"
+"POT-Creation-Date: 2021-10-27 14:07+0530\n"
+"PO-Revision-Date: 2018-04-27 12:20+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_TW\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_html_e;esc_attr_e;esc_html__;esc_attr__;esc_html_x;esc_attr_x\n"
+"X-Poedit-SearchPath-0: free-gifts-for-woocommerce.php\n"
+"X-Poedit-SearchPath-1: inc\n"
+"X-Poedit-SearchPath-2: templates\n"
+
+#: inc/abstracts/class-fgf-settings-page.php:188
+msgid "Your settings have been saved"
+msgstr ""
+
+#: inc/abstracts/class-fgf-settings-page.php:209
+msgid "Your settings have been reset"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:57
+msgid "No Products found"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:104
+msgid "No Customer found"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:145
+msgid "No Coupon found"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:177
+#: inc/admin/class-fgf-admin-ajax.php:211
+#: inc/admin/class-fgf-admin-ajax.php:247
+#: inc/admin/class-fgf-admin-ajax.php:274
+#: inc/admin/class-fgf-admin-ajax.php:309
+msgid "Invalid Request"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:181
+msgid "Please select a User"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:185 inc/admin/menu/tabs/rules.php:540
+msgid "Please select atleast one Product"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:195
+msgid "Free Gift has been sent successfully"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:317
+msgid "Order usage count reset successfully"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-ajax.php:331
+#: inc/admin/class-fgf-admin-ajax.php:339
+#: inc/admin/class-fgf-admin-ajax.php:344
+#: inc/admin/class-fgf-admin-ajax.php:349
+#: inc/admin/class-fgf-admin-ajax.php:354
+#: inc/admin/class-fgf-admin-ajax.php:359
+#: inc/admin/class-fgf-admin-ajax.php:367
+#: inc/admin/class-fgf-admin-ajax.php:372
+msgid "Cannot process action"
+msgstr ""
+
+#: inc/admin/class-fgf-admin-assets.php:87
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:19
+msgid "WooCommerce"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:73
+msgid "Processing"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:74
+msgid "Completed"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:140
+msgid "Guest"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:263 inc/admin/menu/tabs/settings.php:345
+#: inc/admin/menu/views/master-log-popup.php:44
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:263
+#: inc/class-fgf-register-post-status.php:103
+msgid "Manual"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:264 inc/admin/menu/tabs/settings.php:346
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:262
+#: inc/class-fgf-register-post-status.php:123
+msgid "Automatic"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:265
+msgid "Buy X Get Y"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:266
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:21
+msgid "Coupon based Free Gift"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:287
+msgid "Monday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:288
+msgid "Tuesday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:289
+msgid "Wednesday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:290
+msgid "Thursday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:291
+msgid "Friday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:292
+msgid "Saturday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:293
+msgid "Sunday"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:310
+msgid "Edit"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:313
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:220
+msgid "Activate"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:316
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:221
+msgid "Deactivate"
+msgstr ""
+
+#: inc/admin/fgf-admin-functions.php:319
+msgid "Delete Permanently"
+msgstr ""
+
+#: inc/admin/menu/class-fgf-menu-management.php:69
+msgid "Free Gifts"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:25
+msgid "Manual Gift"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:39
+msgid "Manual Gift Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:41
+msgid ""
+"You can manually send free gifts to any user on the site. \n"
+"To send a free gift, select a user, product(s) and click the Send Gift button. An order will be created on behalf of the user.\n"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:48
+#: inc/admin/menu/tabs/manual-gifts.php:54
+msgid "Select a user"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:59
+msgid "Product Selection"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:67
+msgid "You can also choose multiple products"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:68
+msgid "Select a Product"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:72
+msgid "Order Status"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:77
+msgid "This option controls the order status of the Manual order"
+msgstr ""
+
+#: inc/admin/menu/tabs/manual-gifts.php:81
+msgid "Send Gift"
+msgstr ""
+
+#: inc/admin/menu/tabs/master-logs.php:25
+#: inc/admin/menu/tabs/master-logs.php:39
+#: inc/class-fgf-register-post-types.php:93
+msgid "Master Log"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:25 inc/class-fgf-register-post-types.php:75
+msgid "Rules"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:57
+msgid "Please make sure the products you select as free gifts have been published and are currently In-stock."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:227
+msgid "Free Gift Rules"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:228
+msgid "Add New Rule"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:270 inc/admin/menu/tabs/settings.php:34
+msgid "General"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:276
+msgid "Restrictions"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:282
+msgid "Criteria"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:288
+msgid "Filters"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:293
+msgid "Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:334
+msgid "New Rule has been created successfuly"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:338
+msgid "Rule has been updated successfully"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:442
+msgid "Rule Name is mandatory"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:460
+msgid "Please select a coupon"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:464 inc/admin/menu/tabs/rules.php:508
+#: inc/admin/menu/tabs/rules.php:522
+msgid "Please select atleast one product"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:470 inc/admin/menu/tabs/rules.php:514
+msgid "Quantity for Selected Free Gift Product(s)cannot be empty"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:476
+msgid "Please select atleast one Product for buy product"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:478
+msgid "Please select atleast one Category for buy product"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:483
+msgid "Please select atleast one Product for get product"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:488
+msgid "Buy Product count cannot be empty."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:493
+msgid "Get Product count cannot be empty."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:498
+msgid "Repeat Limit field cannot be empty."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:520
+msgid "Please select atleast one category"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:535
+#, php-format
+msgid "The selected product(s) %s cannot be set as free gifts. Please make sure the products you select as free gifts have been published and are currently In-stock."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:542
+msgid "Please select atleast one Category"
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:548
+msgid "Product Count cannot be more than the number of selected products."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:550
+msgid "Product Count cannot be empty."
+msgstr ""
+
+#: inc/admin/menu/tabs/rules.php:556
+msgid "Minimum Quantity field cannot be empty."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:24 inc/class-fgf-install.php:43
+msgid "Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:35
+msgid "Display"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:36
+msgid "Advanced"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:37
+msgid "Notifications"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:38
+msgid "Localization"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:39
+msgid "Messages"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:54
+msgid "General Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:58
+msgid "Maximum Number of Gift Products in \"Manual Rule Type\" is decided based on"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:63
+msgid "Global Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:64
+msgid "Rule Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:67
+msgid "Global Settings - The Maximum Gifts Restriction applies for all rules. Rule Settings - The Maximum Gifts Restriction can be set on each rule."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:70
+msgid "Maximum Gifts in an Order"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:75
+msgid "The Maximum number of gift products which can be chosen for each order."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:79
+msgid "Allow Adding Multiple Quantities of Same Gift Product in an Order (Only for Manual Free Gifts)"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:83
+msgid "When enabled, a user can add the same product multiple times to the cart. Provided they are eligible to receive multiple gifts for a single purchase."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:87
+msgid "Restrict Free Gift if WooCommerce Coupon is used"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:91
+msgid "When enabled, the user will not be eligible for a free gift if they have used a WooCommerce Coupon in the order."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:95
+msgid "Allow Shipping Cost for Free Gift"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:99
+msgid "When enabled, the shipping cost will be consider for free gifts in the order."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:103
+msgid "Hide Free Gift Products on Shop and Category Pages"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:107 inc/admin/menu/tabs/settings.php:115
+msgid " When enabled, the products which are configured to be given as Free Gifts will be hidden in Shop and Category Pages."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:111
+msgid "Ajax Manual Gift Products Add To Cart"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:136
+msgid "Gift Product Display Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:140
+msgid "Free Gift(s) Eligibility Notice Will be Displayed On"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:145
+msgid "Cart & Checkout"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:146
+msgid "Cart"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:147
+msgid "Checkout"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:150
+msgid "Choose where you want to display the Free Gift(s) eligibility notice."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:153
+msgid "Free Gifts Notice Display Type"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:158
+msgid "Standard WooCommerce Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:159
+msgid "Plugin's Own Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:162
+msgid "By default, Free Gift messages will be displayed in WooCommerce Notices. You can switch to Plugin's Own Notice if your theme doesn't support WooCommerce Notices."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:165
+msgid "Free Gift(s) Cart Table Display Method"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:170
+msgid "Order in which they get added"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:171
+msgid "Group at Bottom of the Cart Table"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:175
+msgid "Price Display For Gift Products"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:180
+msgid "Don't display price"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:181
+msgid "Strike and display the Price"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:185
+msgid "Allow Users to Choose Free Gifts in Checkout Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:190
+msgid "No"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:191
+msgid "Yes"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:194
+msgid "Select whether to allow the Free Gifts selection in the checkout page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:197
+msgid "Free Gifts display mode in the Cart Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:202
+msgid "Inline"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:203
+msgid "Pop-Up"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:206 inc/admin/menu/tabs/settings.php:218
+msgid "Select Whether the Gift Products should be displayed Inline or Pop-up"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:209
+msgid "Free Gifts display position in the Cart Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:214
+msgid "After Cart Table"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:215
+msgid "Before Cart Table"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:221
+msgid "Gift Display Type"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:226
+msgid "Table"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:227
+msgid "Carousel"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:228
+msgid "Select Box(Dropdown)"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:231
+msgid "Select whether the Gift Products should be displayed in a Table or Carousel or Select Box"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:234
+msgid "Pagination Display"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:240
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:25
+msgid "Show"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:241
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:24
+msgid "Hide"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:244
+msgid "Select whether to Display/Hide the Pagination"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:247
+msgid "Pagination to Display Gift Products"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:255
+msgid "Gift Products Per Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:261
+msgid " Displaying more than 3 products per page in a Carousel can cause Display related issues. Do you want to save anyway?"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:264
+msgid "Note: More than 3 Gift Product(s) per page in the carousel may cause display conflict based on the Theme used in the site."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:267
+msgid "Space Between Products in Carousel in Pixels"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:275
+msgid "Number of Products to Slide During Navigation"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:283
+msgid "Display Pagination"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:290
+msgid "Display Controls"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:297
+msgid "Navigation Previous Text"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:304
+msgid "Navigation Next Text"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:311
+msgid "Auto Play"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:318
+msgid "Slide Speed in Milliseconds"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:326
+msgid "Gift Product Name Display Method"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:332
+msgid "Only Product Name"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:333
+msgid "Product Name with Hyperlink to Product Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:336
+msgid "Select whether to Display the Gift Product Name as Name Only/Name with Hyperlink to Product Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:339
+msgid "Gift Product Add to Cart Method"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:349
+msgid "Automatic: Gift Product will be added to cart automatically once the Gift Product is selected in the dropdown(select box). Manually: The Addd to Cart Button has to be clicked for adding the product to the cart."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:369
+msgid "Trobuleshoot"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:373
+msgid "Frontend Scripts Enqueued on"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:378
+msgid "Header"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:379
+msgid "Footer"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:382
+msgid "Choose whether the frontend scripts has to be loaded on Header/Footer"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:392 inc/admin/menu/tabs/settings.php:396
+msgid "Custom CSS"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:420
+msgid "Email Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:424
+msgid "Email Type"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:429
+msgid "HTML"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:430
+msgid "WooComerce Template"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:434
+msgid "From Name"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:440
+msgid "From Address"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:453
+msgid "Manual Gift Email"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:457
+msgid "Enable/Disable"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:463
+msgid "Subject"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:470
+msgid "Message"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:499
+msgid "Cart Page Localization"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:503
+msgid "Gift Product Heading"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:509
+msgid "Gift Product Add to Cart Button Label"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:515
+msgid "Gift Product Selection Label - Select Box(Dropdown)"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:521
+msgid "Cart Gift Type Label"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:527
+msgid "Cart Free Gift Label"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:550
+msgid "Message Settings"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:554
+msgid "Free Gift Cart Page - Inline Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:560
+msgid "Free Gift Notice in Cart/Checkout - Pop-Up Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:566
+msgid "Popup Link Shortcode Label"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:572
+msgid "Display Free Gifts Notice in Checkout Page"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:576
+msgid "When enabled, a notice will be displayed in checkout page asking the users to choose their free gifts. This notice will hidden if the user has already chosen their free gifts on cart page."
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:579
+msgid "Free Gift Checkout Page Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:586
+msgid "Cart Link Shortcode Notice"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:593
+msgid "Message when the criteria don't match to Gift the Product / the cart is empty"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:599
+msgid "Gift Product not selected in Select Box(Dropdown) Display Type Error Message"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:605
+msgid "Success Message - Manual"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:611
+msgid "Success Message - Automatic"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:617
+msgid "Success Message - Buy X Get Y"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:623
+msgid "Success Message - Coupon"
+msgstr ""
+
+#: inc/admin/menu/tabs/settings.php:629
+msgid "Error Message"
+msgstr ""
+
+#: inc/admin/menu/tabs/shortcodes.php:25 inc/admin/menu/tabs/shortcodes.php:42
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:45
+msgid "Shortcodes"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:11
+msgid "New Free Gift Rule"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:16
+#: inc/admin/menu/views/edit-rule.php:17
+msgid "Rule Status"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:17
+#: inc/admin/menu/views/edit-rule.php:18
+msgid "When set to Active, the products from this rule will be listed to the user. The user can choose their Free Gift from the available products."
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:22
+#: inc/admin/menu/views/edit-rule.php:23
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:238
+#: inc/class-fgf-register-post-status.php:63
+msgid "Active"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:23
+#: inc/admin/menu/views/edit-rule.php:24
+msgid "In-active"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:30
+#: inc/admin/menu/views/edit-rule.php:31
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:165
+msgid "Rule Name"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:39
+#: inc/admin/menu/views/edit-rule.php:40
+msgid "Description"
+msgstr ""
+
+#: inc/admin/menu/views/add-new-rule.php:52
+msgid "Add Rule"
+msgstr ""
+
+#: inc/admin/menu/views/edit-rule.php:11
+msgid "Edit Rule"
+msgstr ""
+
+#: inc/admin/menu/views/edit-rule.php:54
+msgid "Update Rule"
+msgstr ""
+
+#: inc/admin/menu/views/html-settings-buttons.php:10
+msgid "Save changes"
+msgstr ""
+
+#: inc/admin/menu/views/html-settings-buttons.php:20
+msgid "Reset"
+msgstr ""
+
+#: inc/admin/menu/views/html-shortcodes-info.php:17
+#: inc/admin/menu/views/html-shortcodes-info.php:23
+msgid "Syntax"
+msgstr ""
+
+#: inc/admin/menu/views/html-shortcodes-info.php:24
+msgid "[shortcode parameter1 = \"value\" parameter2 = \"value\" ]"
+msgstr ""
+
+#: inc/admin/menu/views/html-shortcodes-info.php:29
+msgid "Example"
+msgstr ""
+
+#: inc/admin/menu/views/html-shortcodes-info.php:37
+msgid "Parameters"
+msgstr ""
+
+#: inc/admin/menu/views/html-shortcodes-info.php:38
+msgid "Value"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:14
+#, php-format
+msgid "Free Gifts for Order #%s"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:27
+#: templates/email/gift-product-details.php:15
+#: templates/gift-products-layout.php:14 templates/gift-products.php:23
+msgid "Product Name"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:28
+#: templates/email/gift-product-details.php:17
+msgid "Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:29
+#: templates/email/gift-product-details.php:18
+msgid "Original Price"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:30
+msgid "Rule"
+msgstr ""
+
+#: inc/admin/menu/views/master-log-popup.php:42
+msgid "Rule not available"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:17
+msgid "Criteria Type"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:18
+msgid "AND – The user will be eligible only when they satisfy both the criteria. OR – The user will be eligible if they satisfy any one of the criteria"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:23
+msgid "AND"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:24
+msgid "OR"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:31
+msgid "Criteria Calculated based on"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:32
+msgid "Cart Subtotal - Sum of all Product Prices and Taxes if applicable. Order Total - Sum of all Product Prices, Shipping and Taxes. Category Total - Sum of all Product Prices plus applicable Taxes that belong to a particular category."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:37
+msgid "Cart Subtotal"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:38
+msgid "Order Total"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:39
+msgid "Category Total"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:46
+msgid "Select a Category"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:63
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:79
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:95
+msgid "Min"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:67
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:83
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:99
+msgid "Max"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:74
+msgid "Cart Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:75
+msgid "The user's cart quantity(sum of all product quantities) should be within the specified range"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:90
+msgid "Number of Products in the Cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-criteria.php:91
+msgid "Total number of products added in the user's cart should be within the specified range"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:19
+msgid "User Filter"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:20
+msgid "The selected users will be eligible for free gifts"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:25
+msgid "All User(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:26
+msgid "Include User(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:27
+msgid "Exclude User(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:28
+msgid "Include User Role(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:29
+msgid "Exclude User Role(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:36
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:55
+msgid "Select User(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:45
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:64
+msgid "Search a User"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:74
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:90
+msgid "Select User Role(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:106
+msgid "Product Filter"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:107
+msgid "The users will be eligible for free products when they purchase any of the products selected in this option."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:112
+msgid "All Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:113
+msgid "Include Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:114
+msgid "Exclude Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:115
+msgid "All Categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:116
+msgid "Include Categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:117
+msgid "Exclude Categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:124
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:189
+msgid "Applicable when"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:125
+msgid " This option provides additional control on when to award the Free Gifts."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:130
+msgid "Any one of the selected Product(s) must be in cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:131
+msgid "All the selected Product(s) must be in cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:132
+msgid "Only the selected Product(s) must be in cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:133
+msgid "User purchases the Specified Number of Products"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:140
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:159
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:31
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:250
+msgid "Select Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:149
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:168
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:43
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:118
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:168
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:262
+msgid "Search a Product"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:178
+msgid "Product Count"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:179
+msgid "The user must add the number of products mentioned in this option to their cart in order for them to be eligibile for a Free Gift."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:190
+msgid "This option provides additional control on when to award the Free Gifts."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:195
+msgid "Any one of the product(s) should be from the selected category"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:196
+msgid "One product from each category must be in cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:197
+msgid "Only products from the selected category should be in cart"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:198
+msgid "Total Quantity of the Product(s) from the selected categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:205
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:232
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:53
+msgid "Select Categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:221
+msgid "Minimum Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-filters.php:222
+msgid "The user's cart must contain the minimum quantity mentioned in this option which is the sum of the product(s) quantity that belongs to the selected categories."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:19
+msgid "Gift Product Selection Type"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:23
+msgid "Selected Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:24
+msgid "Products from Selected Categories"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:32
+msgid "The selected products will be displayed to the user"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:54
+msgid "The products from the selected categories will be displayed to the user"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:71
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:272
+msgid "Quantity for Selected Free Gift Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:80
+msgid "Gift Product Type"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:81
+msgid "When set to Same Product, the user will receive the specified quantities of the same product for free. When set to Different products, the user will receive the specified quantities of another product  for free."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:86
+msgid "Same Product"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:87
+msgid "Different Products"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:94
+msgid "Buy Product Type"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:95
+msgid "Products: The user will receive a Free Gift if they purchase the selected product. Categories: The user will receive a Free Gift if they purchase any one product from the selected category."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:100
+msgid "Product"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:101
+msgid "Category"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:108
+msgid "Buy Product"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:128
+msgid "Buy Quantity Calculated Based on"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:129
+msgid "Same Product's Quantity: Quantity must match for each product to receive a free gift. Total Quantity of the Selected Category's Products: Quantity must match either for each product or quantity of products which belong to the selected category should match to receive a free gift."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:134
+msgid "Same Product's Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:135
+msgid "Total Quantity of the Selected Category's Products"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:142
+msgid "Buy Category"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:158
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:478
+msgid "Get Product(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:178
+msgid "Buy Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:187
+msgid "Get Quantity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:196
+msgid "Repeat Gift"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:197
+msgid "When enabled, the user will keep receiving free gifts every time they add the multiples of the required quantity to the cart."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:207
+msgid "Repeat Gift Mode"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:208
+msgid "Unlimited: No restriction on receiving Free Gifts. Limited: Free Gift can be received till the Repeat Limit is reached."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:213
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:393
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:395
+msgid "Unlimited"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:214
+msgid "Limited"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:221
+msgid "Repeat Limit"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:230
+msgid "Select the Coupon"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:240
+msgid "Search a Coupon"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-general.php:251
+msgid "The selected Product(s) will be added to the user's cart once the coupon applied"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:18
+msgid "Display Free Gift Eligibility Notice in Cart for this Rule"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:19
+msgid "When set to \"Show\", a notice will be displayed to user in cart and checkout if they are eligible for receiving free gifts."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:32
+msgid "Free Gifts Eligibility Notice"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:49
+msgid "The minimum order total required to receive free gift(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:53
+msgid "The minimum cart subtotal required to receive free gift(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:57
+msgid "The minimum category subtotal required in the cart to receive free gift(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:61
+msgid "The minimum cart quantity required to receive free gift(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-notices.php:65
+msgid "The minimum no.of products which has to be purchased to receive free gift(s)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:13
+msgid "Free Gift Type"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:14
+msgid "When set to Manual Gifts, the users can choose their gift product(s). When set to Automatic Gifts, the gift product(s) set in this rule will be automatically added to the user's cart. When set to Buy X Get Y,  the user will get the specified quantities of the product for free if they purchase the specified quantities of the product."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:18
+msgid "Manual Gifts"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:19
+msgid "Automatic Gifts"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-panel.php:20
+msgid "Buy X Get Y(Buy One Get One)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:17
+msgid "Rule Validity"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:18
+msgid "If left empty, the rule will be valid on all days."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:22
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:398
+msgid "From"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:34
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:398
+msgid "To"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:49
+msgid "Week Day(s) Restrictions"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:50
+msgid "The rule will be valid for the selected Days. If left empty, the rule will be valid for all days of the week."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:66
+msgid "Maximum Gifts in an Order from this Rule"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:67
+msgid "If left empty / when the rule value is more the Global Restriction, the Global Restriction will apply."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:78
+msgid "Order Restrictions"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:79
+msgid "If left empty, the rule will be valid for unlimited orders"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:90
+#, php-format
+msgid "Orders (%1$s used %2$d remaining)"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:92
+msgid "Reset used count"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:99
+msgid "Order Restriction per User"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:100
+msgid "When set to Enable, registered users can be restricted to receive free gift(s) from this rule for a fixed number of times."
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:105
+msgid "Disable"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:106
+msgid "Enable - For Registered Users Only"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:113
+msgid "Number of Order(s) per User"
+msgstr ""
+
+#: inc/admin/menu/views/rule-panel/html-rule-data-restrictions.php:114
+msgid "The number of order(s) for which each registered users can receive gift product(s) from this rule."
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:146
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:147
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:152
+msgid "Search Master Log"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:164
+msgid "Order Id"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:165
+msgid "User Details"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:166
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:166
+msgid "Status"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:167
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:170
+msgid "Created Date"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:168
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:417
+msgid "Preview"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:201
+msgid "No master log to show."
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:211
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:222
+msgid "Delete"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:261
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:237
+msgid "All"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-master-log-list-table.php:353
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:328
+msgid "Sorry, you are not allowed to edit this item."
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:153
+msgid "Search Rule"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:167
+msgid "Validity"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:168
+#: inc/class-fgf-manual-gift-order-handler.php:54
+#: inc/class-fgf-order-handler.php:43
+#: inc/frontend/class-fgf-cart-handler.php:50
+msgid "Type"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:169
+msgid "Product(s) / Categories"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:171
+msgid "Last Modified Date"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:172
+msgid "Actions"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:176
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:441
+msgid "Sort"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:209
+msgid "No rule to show."
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:239
+msgid "In-Active"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:458
+msgid "Coupon Code to Apply"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:462
+msgid "Gift Product(s)"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:469
+msgid "Buy Product(s)"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:472
+msgid "Product(s) of"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:493
+msgid "Categories"
+msgstr ""
+
+#: inc/admin/menu/wp-list-table/class-fgf-rules-list-table.php:497
+msgid "Product(s)"
+msgstr ""
+
+#: inc/class-fgf-coupon.php:29
+msgid "Free Gift"
+msgstr ""
+
+#: inc/class-fgf-manual-gift-order-handler.php:54
+#: inc/class-fgf-order-handler.php:44
+#: inc/frontend/class-fgf-cart-handler.php:51
+msgid "Free Product"
+msgstr ""
+
+#: inc/class-fgf-register-post-status.php:83
+msgid "Inactive"
+msgstr ""
+
+#: inc/frontend/class-fgf-cart-handler.php:278
+#: templates/email/gift-product-details.php:30
+msgid "Free"
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:41
+msgid "Free Gifts for WooCommerce"
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:59
+msgid "This includes the basics of what personal data your store may collect, store & share. Depending on what settings are enabled furthermore which additional plugins used, the specific information shared by your store will vary."
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:60
+msgid "What the Plugin Does?"
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:61
+msgid "This plugin allows users to get Free Gifts for their purchase in the site based on the configuration(s)."
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:62
+msgid "What We Collect and Store?"
+msgstr ""
+
+#: inc/privacy/class-fgf-privacy.php:63
+msgid " This Plugin stores user name, user email Information from the user."
+msgstr ""
+
+#: templates/email/gift-product-details.php:16
+#: templates/gift-products-layout.php:15 templates/gift-products.php:24
+msgid "Product Image"
+msgstr ""
+
+#: templates/email/gift-product-details.php:19
+msgid "Your Price"
+msgstr ""
+
+#: templates/gift-products-layout.php:16 templates/gift-products.php:25
+msgid "Add to cart"
+msgstr ""

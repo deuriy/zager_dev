@@ -16,6 +16,123 @@
                 "id": ""
             },
             "layouts": {
+                "layout_61847d56d7080": {
+                    "key": "layout_61847d56d7080",
+                    "name": "quote",
+                    "label": "Quote",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61847e0ed708a",
+                            "label": "Quote block type",
+                            "name": "quote_block_type",
+                            "type": "button_group",
+                            "instructions": "Select where the content should be pulled from.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "product_default": "Product default",
+                                "custom": "Custom"
+                            },
+                            "allow_null": 0,
+                            "default_value": "default",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_61847db0d7083",
+                            "label": "Block position",
+                            "name": "block_position",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61847e0ed708a",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "before_content": "Before content",
+                                "after_content": "After content",
+                                "bottom": "Bottom (full width)"
+                            },
+                            "allow_null": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_61847d74d7081",
+                            "label": "Author",
+                            "name": "author",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61847e0ed708a",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_61847d98d7082",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61847e0ed708a",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_61814fe076fa6": {
                     "key": "layout_61814fe076fa6",
                     "name": "remark",
@@ -870,7 +987,7 @@
                                 "custom": "Custom"
                             },
                             "allow_null": 0,
-                            "default_value": "default_quoteblock",
+                            "default_value": "default",
                             "layout": "horizontal",
                             "return_format": "value"
                         },
@@ -5614,5 +5731,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1635921783
+    "modified": 1636284203
 }

@@ -55,18 +55,22 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 				<div class="stage-blocks multistage-form__stage-blocks">
 					<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-					<div class="stage-block" id="customer_details">
+					<div class="stage-block stage-block--current multistage-form__stage-block multistage-form__stage-block--current" id="customer_details">
 						<?php do_action( 'woocommerce_checkout_billing' ); ?>
 					</div>
 
-					<div class="stage-block" id="customer_details2">
+					<div class="stage-block multistage-form__stage-block" id="customer_details2">
 						<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 					</div>
 
 					<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
-				</div>				
+				</div>
 
 			<?php endif; ?>
+
+			<div class="multistage-form__buttons">
+				<a href="#" class="BtnYellow">Next</a>
+			</div>
 
 		</form>
 	</div>

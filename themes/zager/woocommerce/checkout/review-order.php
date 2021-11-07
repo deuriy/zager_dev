@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 <div class="shop_table woocommerce-checkout-review-order-table">
 	<div class="woocommerce-checkout-review-order-table__header">
 		<div class="woocommerce-checkout-review-order-table__title">Summary</div>
-		<div class="woocommerce-checkout-review-order-table__price">$2595</div>
+		<div class="woocommerce-checkout-review-order-table__price hidden-mdPlus">$2595</div>
 	</div>
 	<div class="woocommerce-checkout-review-order-table__cart-content">
 		<div class="woocommerce-checkout-review-order-table__cart-items">
