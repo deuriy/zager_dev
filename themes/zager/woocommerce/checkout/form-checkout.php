@@ -32,10 +32,10 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 <div class="Container">
 	<div class="multistage-form woocommerce__multistage-form">
 		<ul class="stages__list multistage-form__stages-list">
-			<li class="stages__item">Cart</li>
-			<li class="stages__item stages__item--current">Information</li>
-			<li class="stages__item">Shipping</li>
-			<li class="stages__item">Payment</li>
+			<li class="stages__item stages__item--disabled">Cart</li>
+			<li class="stages__item stages__item--current" data-stage-index="0">Information</li>
+			<li class="stages__item stages__item--disabled" data-stage-index="1">Shipping</li>
+			<li class="stages__item stages__item--disabled" data-stage-index="2">Payment</li>
 		</ul>
 		<div class="multistage-form__summary">
 			<div id="order_review" class="woocommerce-checkout-review-order">
@@ -44,22 +44,42 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 		</div>
 		<form name="checkout" method="post" class="checkout woocommerce-checkout multistage-form__checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
+			<div class="express-checkout">
+				<h4 class="express-checkout__label">Express checkout</h4>
+				<div class="express-checkout__payment-methods">
+					<div class="express-checkout__payment-method">
+						<div class="express-checkout__payment-method-img-wrapper">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/paypal.svg" alt="">
+						</div>
+					</div>
+					<div class="express-checkout__payment-method">
+						<div class="express-checkout__payment-method-img-wrapper">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/affirm.svg" alt="">
+						</div>
+						<div class="express-checkout__payment-method-description">
+							Starting at $91/mo with Affirm. <a href="#">Learn more</a>
+						</div>
+					</div>
+				</div>
+				<div class="express-checkout__text">or</div>
+			</div>
+
 			<!-- <h3 id="order_review_heading"><?php //esc_html_e( 'Your order', 'understrap' ); ?></h3> -->
 
 			<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-			<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+			<?php //do_action( 'woocommerce_checkout_after_order_review' ); ?>
 
 			<?php if ( $checkout->get_checkout_fields() ) : ?>
 
 				<div class="stage-blocks multistage-form__stage-blocks">
 					<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-					<div class="stage-block stage-block--current multistage-form__stage-block multistage-form__stage-block--current" id="customer_details">
+					<div class="stage-block stage-block--current multistage-form__stage-block multistage-form__stage-block--current" id="customer_details" data-stage-index="1">
 						<?php do_action( 'woocommerce_checkout_billing' ); ?>
 					</div>
 
-					<div class="stage-block multistage-form__stage-block" id="customer_details2">
+					<div class="stage-block multistage-form__stage-block" id="customer_details2" data-stage-index="2">
 						<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 					</div>
 
@@ -69,7 +89,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 			<?php endif; ?>
 
 			<div class="multistage-form__buttons">
-				<a href="#" class="BtnYellow">Next</a>
+				<a href="#" class="BtnYellow multistage-form__next">Next</a>
 			</div>
 
 		</form>
@@ -77,4 +97,4 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 </div>
 
 <?php
-do_action( 'woocommerce_after_checkout_form', $checkout );
+// do_action( 'woocommerce_after_checkout_form', $checkout );

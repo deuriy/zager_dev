@@ -541,4 +541,6 @@ if ( ! function_exists( 'get_product_img_swiper' ) ) {
 	}
 }
 
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form' );
+
 

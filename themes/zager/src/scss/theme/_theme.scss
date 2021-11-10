@@ -25,6 +25,28 @@ body.admin-bar {
 	}
 }
 
+.select2-container .select2-selection--single {
+	height: 54px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	padding-left: 14px;
+	line-height: 54px;
+}
+.select2-container--default .select2-selection--single {
+	border: none;
+	background-color: #f4ede4;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	top: 15px;
+	right: 10px;
+}
+
+// .select2-container--default .select2-selection--single {
+	// background-image: url("data:image/svg+xml,%3Csvg version='1.2' baseProfile='tiny-ps' xmlns='http://www.w3.org/2000/svg' width='20' height='14'%3E%3Cstyle%3E%3C/style%3E%3Cg id='Checkout - information'%3E%3Cg id='Group 311'%3E%3Cg id='Group 246'%3E%3Cpath id='Path 511' d='m17 3.5-7 7-7-7' style='fill:none;stroke:%2313141a;stroke-width:2'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+	// border-radius: 4px;
+	// background-color: #f4ede4;
+// }
+
 .stages {
 	&__list {
 		list-style: none;
@@ -38,10 +60,10 @@ body.admin-bar {
 		display: flex;
 		align-items: center;
 		gap: 5px;
-		font-weight: bold;
 		font-size: 12px;
 		line-height: 28px;
 		color: #6A4436;
+		cursor: pointer;
 		
 		&::after {
 			content: "";
@@ -51,6 +73,7 @@ body.admin-bar {
 		}
 
 		&--current {
+			font-weight: 700;
 			color: #13141A;
 		}
 
@@ -116,6 +139,8 @@ body.admin-bar {
 
 	&__buttons {
 		@media (min-width: 1024px) {
+			display: grid;
+			justify-content: end;
 			padding-right: 32px;
 			padding-left: 32px;
 		}
@@ -149,6 +174,11 @@ body.admin-bar {
 			align-items: center;
 			margin-bottom: 20px;
 			padding-right: 52px;
+			cursor: pointer;
+			
+			@media (max-width: 767px) {
+				padding-right: 59px;
+			}
 			
 			@media (max-width: 1023px) {
 				&::after {
@@ -263,9 +293,14 @@ body.admin-bar {
 		}
 
 		&--collapsed {
-			.woocommerce-checkout-review-order-table__header::after {
-				transform: rotate(180deg);
+			.woocommerce-checkout-review-order-table__header {
+				margin-bottom: 0;
+				
+				&::after {
+					transform: rotate(180deg);
+				}
 			}
+
 			.woocommerce-checkout-review-order-table__cart-content {
 				display: none;
 			}
@@ -289,6 +324,40 @@ body.admin-bar {
 	
 	&__form-item {
 		margin-bottom: 10px;
+	}
+}
+
+.express-checkout {
+	padding-right: 20px;
+	padding-left: 20px;
+	
+	&__label,
+	&__payment-method-description {
+		font-size: 12px;
+		line-height: 32px;
+		color: #181818;
+		font-weight: 700;
+		text-align: center;
+	}
+
+	&__payment-methods {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+	}
+
+	&__payment-method-img-wrapper {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		min-height: 55px;
+		border-radius: 3px;
+		background-color: #ffffff;
+		border: 1px solid #f4ede4;
+	}
+
+	&__payment-method-description {
+		line-height: normal;
 	}
 }
 

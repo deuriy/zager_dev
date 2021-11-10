@@ -28,6 +28,12 @@
 }
 
 .multistage-form__buttons {
+  display: grid;
+  -webkit-box-pack: end;
+  -webkit-justify-content: end;
+  -moz-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: end;
   padding-right: 32px;
   padding-left: 32px;
 }

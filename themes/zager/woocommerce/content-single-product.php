@@ -55,9 +55,9 @@ if ( post_password_required() ) {
 		<!-- </div> -->
 
 		<div class="Product_info">
-			<div class="Tag Tag-product Product_tag">on sale</div>
+			<?php woocommerce_show_product_sale_flash(); ?>
 			<div class="Product_recommendation">#1 Recommended Guitar</div>
-			<h1 class="Product_title"><?php woocommerce_template_single_title(); ?></h1>
+			<?php woocommerce_template_single_title(); ?>
 			<div class="Product_ratingWrapper">
 				<div class="RatingStars">
 					<ul class="RatingStars_list">
