@@ -26,6 +26,8 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/css/styles.css', array(), $theme_version );
 
 		$js_version = $theme_version . '.' . filemtime( get_stylesheet_directory() . '/js/theme.min.js' );
+		wp_enqueue_script( 'jquery.maskedinput', get_template_directory_uri() . '/src/js/vendor/maskedinput/jquery.maskedinput.min.js', array( 'jquery' ), $js_version, true );
+		wp_enqueue_script( 'perfect-scrollbar', get_template_directory_uri() . '/src/js/vendor/perfect-scrollbar/perfect-scrollbar.min.js', array( 'jquery' ), $js_version, true );
 		wp_enqueue_script( 'swiper-bundle', get_template_directory_uri() . '/src/js/vendor/swiper/swiper-bundle.min.js', array( 'jquery' ), $js_version, true );
 		wp_enqueue_script( 'plyr', get_template_directory_uri() . '/src/js/vendor/plyr/plyr.min.js', array( 'jquery' ), $js_version, true );
 		wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/src/js/vendor/fancybox/fancybox.umd.js', array( 'jquery' ), $js_version, true );

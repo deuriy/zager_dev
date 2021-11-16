@@ -2,7 +2,7 @@
 $style = $field['background_image'] ? ' style="background-image: url(\''. $field['background_image'] .'\');"' : '';
 ?>
 
-<div class="Banner<?php echo $class ?>"<?php echo $style ?>>
+<div class="Banner"<?php echo $style ?>>
 	<div class="Container">
 		<div class="Banner_textWrapper">
 			<?php if ($field['intro_text']): ?>

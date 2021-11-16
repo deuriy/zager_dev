@@ -1,16 +1,8 @@
-function slideToggle(elem) {
-  if (elem.offsetHeight < elem.scrollHeight) {
-    elem.style.maxHeight = `${elem.scrollHeight}px`;
-  } else {
-    elem.style.maxHeight = '';
-  }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
 	document.addEventListener('click', function (e) {
 		let orderTableHeader = e.target.closest('.woocommerce-checkout-review-order-table__header');
 
-		if (!orderTableHeader) return;
+		if (!orderTableHeader || document.documentElement.clientWidth > 767) return;
 
 		let orderTable = orderTableHeader.closest('.woocommerce-checkout-review-order-table');
 		let orderTableCartContent = orderTable.querySelector('.woocommerce-checkout-review-order-table__cart-content');
@@ -21,9 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.addEventListener('click', function (e) {
 		let orderTableCloseBtn = e.target.closest('.woocommerce-checkout-review-order-table__close-btn');
 
-		if (!orderTableCloseBtn) return;
-
-		console.log('Click!');
+		if (!orderTableCloseBtn || document.documentElement.clientWidth > 767) return;
 
 		let orderTable = orderTableCloseBtn.closest('.woocommerce-checkout-review-order-table');
 		orderTable.classList.add('woocommerce-checkout-review-order-table--collapsed');
@@ -32,41 +22,127 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	document.addEventListener('click', function (e) {
-		e.preventDefault();
+		let multistageFormStepBtn = e.target.closest('.multistage-form__step-btn');
 
-		let nextCheckoutStep = e.target.closest('.multistage-form__buttons');
+		if (!multistageFormStepBtn) return;
 
-		if (!nextCheckoutStep) return;
-
-		let multistageForm = nextCheckoutStep.closest('.multistage-form');
-
+		let multistageForm = multistageFormStepBtn.closest('.multistage-form');
 		let currentStageBlock = multistageForm.querySelector('.multistage-form__stage-block--current');
-		currentStageBlock.classList.remove('multistage-form__stage-block--current', 'stage-block--current');
-		currentStageBlock.nextElementSibling.classList.add('multistage-form__stage-block--current', 'stage-block--current');
-
 		let stageCurrentItem = multistageForm.querySelector('.stages__item--current');
-		stageCurrentItem.classList.remove('stages__item--current', 'stages__item--disabled');
-		stageCurrentItem.nextElementSibling.classList.add('stages__item--current');
+
+		currentStageBlock.classList.remove('multistage-form__stage-block--current');
+		stageCurrentItem.classList.remove('stages__item--current');
+
+		if (multistageFormStepBtn.dataset.action === 'prevStep') {
+			let prevStageBlock = currentStageBlock.previousElementSibling;
+			let prevStageItem = stageCurrentItem.previousElementSibling;
+
+			prevStageBlock.classList.add('multistage-form__stage-block--current');
+			prevStageItem.classList.add('stages__item--current');
+		} else if(multistageFormStepBtn.dataset.action === 'nextStep') {
+			let nextStageBlock = currentStageBlock.nextElementSibling;
+			let nextStageItem = stageCurrentItem.nextElementSibling;
+
+			nextStageBlock.classList.add('multistage-form__stage-block--current');
+			nextStageItem.classList.add('stages__item--current');
+		}
+
+		let currentStageIndex = multistageForm.querySelector('.stages__item--current').dataset.stageIndex;
+		let multistageFormButtonsWrapper = multistageForm.querySelector('.multistage-form__buttons');
+		let checkoutPaymentBtnWrapper = multistageForm.querySelector('.woocommerce-checkout-payment__btn-wrapper');
+		let multistageFormPrevBtn = multistageFormButtonsWrapper.querySelector('[data-action="prevStep"]');
+
+		// console.log(currentStageIndex);
+
+		if (currentStageIndex == 2) {
+			multistageFormButtonsWrapper.classList.add('hidden');
+			checkoutPaymentBtnWrapper.classList.remove('hidden');
+		} else {
+			multistageFormButtonsWrapper.classList.remove('hidden');
+			checkoutPaymentBtnWrapper.classList.add('hidden');
+		}
+
+		if (currentStageIndex != 0) {
+			multistageFormButtonsWrapper.classList.remove('multistage-form__buttons--justify-end');
+			multistageFormPrevBtn.classList.remove('hidden');
+		} else {
+			multistageFormButtonsWrapper.classList.add('multistage-form__buttons--justify-end');
+			multistageFormPrevBtn.classList.add('hidden');
+		}
+
+		e.preventDefault();
 	});
 
 	document.addEventListener('click', function (e) {
-		let stagesItem = e.target.closest('.stages__item');
+		let checkoutPaymentPrevBtn = e.target.closest('.woocommerce-checkout-payment__prev-btn');
 
-		if (!stagesItem || stagesItem.classList.contains('stages__item--disabled')) return;
+		if (!checkoutPaymentPrevBtn) return;
 
-		let multistageForm = stagesItem.closest('.multistage-form');
-		let currentStagesItem = multistageForm.querySelector('.stages__item--current');
+		let multistageForm = checkoutPaymentPrevBtn.closest('.multistage-form');
+		let currentStageBlock = multistageForm.querySelector('.multistage-form__stage-block--current');
+		let stageCurrentItem = multistageForm.querySelector('.stages__item--current');
 
-		if (stagesItem != currentStagesItem) {
-			currentStagesItem.classList.remove('stages__item--current');
-			stagesItem.classList.add('stages__item--current');
-			let stageIndex = stagesItem.dataset.stageIndex;
+		currentStageBlock.classList.remove('multistage-form__stage-block--current');
+		stageCurrentItem.classList.remove('stages__item--current');
 
-			let currentStageBlock = multistageForm.querySelector('.multistage-form__stage-block--current');
-			let stageBlock = multistageForm.querySelector(`.multistage-form__stage-block[data-stage-index="${stageIndex}"]`);
+		let multistageFormButtonsWrapper = multistageForm.querySelector('.multistage-form__buttons');
+		let prevStageBlock = currentStageBlock.previousElementSibling;
+		let prevStageItem = stageCurrentItem.previousElementSibling;
 
-			currentStageBlock.classList.remove('multistage-form__stage-block--current', 'stage-block--current');
-			stageBlock.classList.add('multistage-form__stage-block--current', 'stage-block--current');
-		}
+		prevStageBlock.classList.add('multistage-form__stage-block--current');
+		prevStageItem.classList.add('stages__item--current');
+
+		let checkoutPaymentBtnWrapper = multistageForm.querySelector('.woocommerce-checkout-payment__btn-wrapper');
+
+		checkoutPaymentBtnWrapper.classList.add('hidden');
+		multistageFormButtonsWrapper.classList.remove('hidden');
+
+		e.preventDefault();
 	});
+
+	document.addEventListener('change', function(e) {
+		let checkbox = e.target.closest('label.checkbox input[type="checkbox"]');
+
+		if (!checkbox) return;
+
+		let checkboxLabel = checkbox.parentNode;
+		checkboxLabel.classList.toggle('checkbox--checked');
+	});
+
+	// document.addEventListener('change', function(e) {
+	// 	let radio = e.target.closest('input[type="radio"]');
+
+	// 	if (!radio || radio.name != 'same_as_billing_address') return;
+
+	// 	console.log(document.getElementById('billing_address_no').checked);
+
+	// 	document.getElementById('ship-to-different-address-checkbox').click();
+
+	// 	// if (document.getElementById('billing_address_no').checked) {
+	// 	// 	document.getElementById('ship-to-different-address-checkbox').checked = true;
+	// 	// } else {
+	// 	// 	document.getElementById('ship-to-different-address-checkbox').checked = false;
+	// 	// }
+
+	// 	console.log();
+	// 	console.log(document.getElementById('ship-to-different-address-checkbox').checked);
+	// });
 });
+
+(function($) {
+
+	$('[data-action="nextStep"]').click(function() {
+		let ajaxurl = '/wp-admin/admin-ajax.php';
+		let data = {
+			action: 'check_save_user_info',
+			check: $('#save_user_info').prop('checked')
+		}
+
+		jQuery.post( ajaxurl, data, function( response ){
+			// console.log( response );
+		} );
+	});
+
+	$("#billing_phone").mask("(999) 999-9999");
+	
+})( jQuery );

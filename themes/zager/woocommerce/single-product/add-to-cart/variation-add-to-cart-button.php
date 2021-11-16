@@ -32,9 +32,9 @@ global $product;
 		<button type="submit" class="single_add_to_cart_button BtnYellow BtnYellow-totalPrice TotalPrice_btn">
 			Try this guitar now!
 		</button>
-		<button type="submit" class="single_add_to_cart_button BtnOutline BtnOutline-totalPrice BtnOutline-darkText BtnOutline-lightBeigeBg TotalPrice_btn">
+		<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="BtnOutline BtnOutline-totalPrice BtnOutline-darkText BtnOutline-lightBeigeBg TotalPrice_btn">
 			View total with shipping
-		</button>
+		</a>
 	</div>
 	
 

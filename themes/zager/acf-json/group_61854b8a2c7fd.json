@@ -155,12 +155,7 @@
                 "faq": "FAQ"
             },
             "allow_custom": 0,
-            "default_value": [
-                "features",
-                "specifications",
-                "finance",
-                "faq"
-            ],
+            "default_value": [],
             "layout": "horizontal",
             "toggle": 1,
             "return_format": "value",
@@ -174,13 +169,6 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": [
-                [
-                    {
-                        "field": "field_6185a056c3f43",
-                        "operator": "==",
-                        "value": "all"
-                    }
-                ],
                 [
                     {
                         "field": "field_6185a056c3f43",
@@ -508,13 +496,6 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": [
-                [
-                    {
-                        "field": "field_6185a056c3f43",
-                        "operator": "==",
-                        "value": "all"
-                    }
-                ],
                 [
                     {
                         "field": "field_6185a056c3f43",
@@ -899,13 +880,6 @@
                     {
                         "field": "field_6185a056c3f43",
                         "operator": "==",
-                        "value": "all"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_6185a056c3f43",
-                        "operator": "==",
                         "value": "finance"
                     }
                 ]
@@ -1249,13 +1223,6 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": [
-                [
-                    {
-                        "field": "field_6185a056c3f43",
-                        "operator": "==",
-                        "value": "features"
-                    }
-                ],
                 [
                     {
                         "field": "field_6185a056c3f43",
@@ -2257,5 +2224,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636318182
+    "modified": 1637011670
 }

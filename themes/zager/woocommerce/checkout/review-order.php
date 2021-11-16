@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="shop_table woocommerce-checkout-review-order-table woocommerce-checkout-review-order-table--collapsed">
+<div class="shop_table woocommerce-checkout-review-order-table">
 	<div class="woocommerce-checkout-review-order-table__header">
 		<div class="woocommerce-checkout-review-order-table__title">Summary</div>
 		<div class="woocommerce-checkout-review-order-table__price hidden-mdPlus">$2595</div>
@@ -35,16 +35,17 @@ defined( 'ABSPATH' ) || exit;
 					<div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 						<div class="product-thumb">
 							<?php
-							// $thumb = get_the_post_thumbnail_url($_product->id, 'shop_catalog');
-							$thumb = get_the_post_thumbnail_url($_product->id, 'full');
+							$url = get_the_permalink($cart_item['product_id']);
+							$thumb = get_the_post_thumbnail_url($cart_item['product_id'], 'full');
+
 							if(!empty($thumb)) {
-								echo "<img src='{$thumb}'/>";
+								echo "<a href=\"" . $url . "\"><img src='{$thumb}'/></a>";
 							}
 							?>
 						</div>
 						<div class="product-name-and-total">
 							<div class="product-name">
-								<?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ) . '&nbsp;'; ?>
+								<?php echo '<a href="' . $url . '">' . wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ) . '&nbsp;</a>'; ?>
 								<?php //echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times;&nbsp;%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								<?php //echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</div>
@@ -77,7 +78,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
 
-		<?php wc_cart_totals_shipping_html(); ?>
+		<?php //wc_cart_totals_shipping_html(); ?>
 
 		<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
 
@@ -114,7 +115,7 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 
 	<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
-	<a href="#" class="BtnOutline BtnOutline-orderTable woocommerce-checkout-review-order-table__close-btn">Close Summary</a>
+	<a href="#" class="BtnOutline BtnOutline-orderTable woocommerce-checkout-review-order-table__close-btn hidden-mdPlus">Close Summary</a>
 </div>
 
 

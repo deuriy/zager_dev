@@ -21,25 +21,105 @@ defined( 'ABSPATH' ) || exit;
 <div class="woocommerce-billing-fields">
 	<?php if ( wc_ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
 
-		<h3 class="woocommerce-billing-fields__title"><?php esc_html_e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
+		<!-- <h3 class="woocommerce-billing-fields__title"><?php //esc_html_e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3> -->
 
 	<?php else : ?>
 
-		<h3 class="woocommerce-billing-fields__title"><?php esc_html_e( 'Billing details', 'woocommerce' ); ?></h3>
+		<!-- <h3 class="woocommerce-billing-fields__title"><?php //esc_html_e( 'Billing details', 'woocommerce' ); ?></h3> -->
 
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-	<div class="woocommerce-billing-fields__field-wrapper">
+	<div class="woocommerce-billing-fields__field-wrapper checkout-fields">
 		<?php
 		$fields = $checkout->get_checkout_fields( 'billing' );
 
-		foreach ( $fields as $key => $field ) {
-			// print_r($field);
-			woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
-		}
+		// print '<pre>';
+		// print_r($fields);
+		// print '</pre>';
+
+		// foreach ( $fields as $key => $field ) {
+		// 	print '<pre>';
+		// 	print_r($field);
+		// 	print '</pre>';
+
+		// 	woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+		// }
 		?>
+
+		<div class="checkout-fieldgroup checkout-fields__group">
+			<div class="checkout-fieldgroup__header">
+				<h3 class="checkout-fieldgroup__title">Contact Information</h3>
+				<?php if (!is_user_logged_in()): ?>
+					<div class="checkout-fieldgroup__description">
+						<p>Already  &nbsp;have an account? <a href="<?php echo wp_login_url(); ?>">Log in</a></p>
+					</div>
+				<?php endif ?>
+			</div>
+			<div class="checkout-fieldgroup__fields">
+				<div class="checkout-fieldgroup__fields-row">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_email', $fields['billing_email'], $checkout->get_value( 'billing_email' ) ); ?>
+					</div>
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_phone', $fields['billing_phone'], $checkout->get_value( 'billing_phone' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row checkout-fieldgroup__fields-row--single checkout-fieldgroup__fields-row--checkbox">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'kl_newsletter_checkbox', $fields['kl_newsletter_checkbox'], $checkout->get_value( 'kl_newsletter_checkbox' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_first_name', $fields['billing_first_name'], $checkout->get_value( 'billing_first_name' ) ); ?>
+					</div>
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_last_name', $fields['billing_last_name'], $checkout->get_value( 'billing_last_name' ) ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="checkout-fieldgroup checkout-fieldgroup--shipping checkout-fields__group">
+			<div class="checkout-fieldgroup__header">
+				<h3 class="checkout-fieldgroup__title">Shipping Information</h3>
+			</div>
+			<div class="checkout-fieldgroup__fields">
+				<div class="checkout-fieldgroup__fields-row checkout-fieldgroup__fields-row--single">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_address_1', $fields['billing_address_1'], $checkout->get_value( 'billing_address_1' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_address_2', $fields['billing_address_2'], $checkout->get_value( 'billing_address_2' ) ); ?>
+					</div>
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_city', $fields['billing_city'], $checkout->get_value( 'billing_city' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_country', $fields['billing_country'], $checkout->get_value( 'billing_country' ) ); ?>
+					</div>
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_state', $fields['billing_state'], $checkout->get_value( 'billing_state' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'billing_postcode', $fields['billing_postcode'], $checkout->get_value( 'billing_postcode' ) ); ?>
+					</div>
+				</div>
+				<div class="checkout-fieldgroup__fields-row checkout-fieldgroup__fields-row--single checkout-fieldgroup__fields-row--checkbox">
+					<div class="checkout-fieldgroup__field">
+						<?php woocommerce_form_field( 'save_user_info', $fields['save_user_info'], $checkout->get_value( 'save_user_info' ) ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<?php do_action( 'woocommerce_after_checkout_billing_form', $checkout ); ?>

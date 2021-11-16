@@ -63,10 +63,10 @@ if ( ! function_exists( 'understrap_woocommerce_support' ) ) {
 	// 		case 'country':
 	// 			$args['class'][] = 'form-group single-country';
 	// 			break;
-			
+
 	// 		 * By default WooCommerce will populate a select with state names - $args defined
 	// 		 * for this specific input type targets only the country select element.
-			 
+
 	// 		case 'state':
 	// 			$args['class'][] = 'form-group';
 	// 			$args['custom_attributes'] = array(
@@ -104,7 +104,7 @@ if ( ! function_exists( 'understrap_woocommerce_support' ) ) {
 	// }
 // }
 
-if ( ! is_admin() && ! function_exists( 'wc_review_ratings_enabled' ) ) {
+	if ( ! is_admin() && ! function_exists( 'wc_review_ratings_enabled' ) ) {
 	/**
 	 * Check if reviews are enabled.
 	 *
@@ -234,220 +234,220 @@ function remove_label_from_fields( $fields ){
 }
 
 function woocommerce_form_field( $key, $args, $value = null ) {
-		$defaults = array(
-			'type'              => 'text',
-			'label'             => '',
-			'description'       => '',
-			'placeholder'       => '',
-			'maxlength'         => false,
-			'required'          => false,
-			'autocomplete'      => false,
-			'id'                => $key,
-			'class'             => array(),
-			'label_class'       => array(),
-			'input_class'       => array(),
-			'return'            => false,
-			'options'           => array(),
-			'custom_attributes' => array(),
-			'validate'          => array(),
-			'default'           => '',
-			'autofocus'         => '',
-			'priority'          => '',
-		);
+	$defaults = array(
+		'type'              => 'text',
+		'label'             => '',
+		'description'       => '',
+		'placeholder'       => '',
+		'maxlength'         => false,
+		'required'          => false,
+		'autocomplete'      => false,
+		'id'                => $key,
+		'class'             => array(),
+		'label_class'       => array(),
+		'input_class'       => array(),
+		'return'            => false,
+		'options'           => array(),
+		'custom_attributes' => array(),
+		'validate'          => array(),
+		'default'           => '',
+		'autofocus'         => '',
+		'priority'          => '',
+	);
 
-		$args = wp_parse_args( $args, $defaults );
-		$args = apply_filters( 'woocommerce_form_field_args', $args, $key, $value );
+	$args = wp_parse_args( $args, $defaults );
+	$args = apply_filters( 'woocommerce_form_field_args', $args, $key, $value );
 
-		if ( $args['required'] ) {
-			$args['class'][] = 'validate-required';
-			$required        = '&nbsp;<abbr class="required" title="' . esc_attr__( 'required', 'woocommerce' ) . '">*</abbr>';
-		} else {
-			$required = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce' ) . ')</span>';
-		}
+	if ( $args['required'] ) {
+		$args['class'][] = 'validate-required';
+		$required        = '&nbsp;<abbr class="required" title="' . esc_attr__( 'required', 'woocommerce' ) . '">*</abbr>';
+	} else {
+		$required = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce' ) . ')</span>';
+	}
 
-		if ( is_string( $args['label_class'] ) ) {
-			$args['label_class'] = array( $args['label_class'] );
-		}
+	if ( is_string( $args['label_class'] ) ) {
+		$args['label_class'] = array( $args['label_class'] );
+	}
 
-		if ( is_null( $value ) ) {
-			$value = $args['default'];
-		}
+	if ( is_null( $value ) ) {
+		$value = $args['default'];
+	}
 
 		// Custom attribute handling.
-		$custom_attributes         = array();
-		$args['custom_attributes'] = array_filter( (array) $args['custom_attributes'], 'strlen' );
+	$custom_attributes         = array();
+	$args['custom_attributes'] = array_filter( (array) $args['custom_attributes'], 'strlen' );
 
-		if ( $args['maxlength'] ) {
-			$args['custom_attributes']['maxlength'] = absint( $args['maxlength'] );
+	if ( $args['maxlength'] ) {
+		$args['custom_attributes']['maxlength'] = absint( $args['maxlength'] );
+	}
+
+	if ( ! empty( $args['autocomplete'] ) ) {
+		$args['custom_attributes']['autocomplete'] = $args['autocomplete'];
+	}
+
+	if ( true === $args['autofocus'] ) {
+		$args['custom_attributes']['autofocus'] = 'autofocus';
+	}
+
+	if ( $args['description'] ) {
+		$args['custom_attributes']['aria-describedby'] = $args['id'] . '-description';
+	}
+
+	if ( ! empty( $args['custom_attributes'] ) && is_array( $args['custom_attributes'] ) ) {
+		foreach ( $args['custom_attributes'] as $attribute => $attribute_value ) {
+			$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
+		}
+	}
+
+	if ( ! empty( $args['validate'] ) ) {
+		foreach ( $args['validate'] as $validate ) {
+			$args['class'][] = 'validate-' . $validate;
+		}
+	}
+
+	$field           = '';
+	$label_id        = $args['id'];
+	$sort            = $args['priority'] ? $args['priority'] : '';
+	$field_container = '<div class="checkout__form-item %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</div>';
+
+	switch ( $args['type'] ) {
+		case 'country':
+		$countries = 'shipping_country' === $key ? WC()->countries->get_shipping_countries() : WC()->countries->get_allowed_countries();
+
+		if ( 1 === count( $countries ) ) {
+
+			$field .= '<strong>' . current( array_values( $countries ) ) . '</strong>';
+
+			$field .= '<input type="hidden" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . current( array_keys( $countries ) ) . '" ' . implode( ' ', $custom_attributes ) . ' class="country_to_state" readonly="readonly" />';
+
+		} else {
+			$data_label = ! empty( $args['label'] ) ? 'data-label="' . esc_attr( $args['label'] ) . '"' : '';
+
+			$field = '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="country_to_state country_select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ? $args['placeholder'] : esc_attr__( 'Select a country / region&hellip;', 'woocommerce' ) ) . '" ' . $data_label . '><option value="">' . esc_html__( 'Select a country / region&hellip;', 'woocommerce' ) . '</option>';
+
+			foreach ( $countries as $ckey => $cvalue ) {
+				$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
+			}
+
+			$field .= '</select>';
+
+			$field .= '<noscript><button type="submit" name="woocommerce_checkout_update_totals" value="' . esc_attr__( 'Update country / region', 'woocommerce' ) . '">' . esc_html__( 'Update country / region', 'woocommerce' ) . '</button></noscript>';
+
 		}
 
-		if ( ! empty( $args['autocomplete'] ) ) {
-			$args['custom_attributes']['autocomplete'] = $args['autocomplete'];
+		break;
+		case 'state':
+		/* Get country this state field is representing */
+		$for_country = isset( $args['country'] ) ? $args['country'] : WC()->checkout->get_value( 'billing_state' === $key ? 'billing_country' : 'shipping_country' );
+		$states      = WC()->countries->get_states( $for_country );
+
+		if ( is_array( $states ) && empty( $states ) ) {
+
+			$field_container = '<div class="checkout__form-item %1$s" id="%2$s" style="display: none">%3$s</div>';
+
+			$field .= '<input type="hidden" class="hidden" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="" ' . implode( ' ', $custom_attributes ) . ' placeholder="' . esc_attr( $args['placeholder'] ) . '" readonly="readonly" data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
+
+		} elseif ( ! is_null( $for_country ) && is_array( $states ) ) {
+			$data_label = ! empty( $args['label'] ) ? 'data-label="' . esc_attr( $args['label'] ) . '"' : '';
+
+			$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="state_select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ? $args['placeholder'] : esc_html__( 'Select an option&hellip;', 'woocommerce' ) ) . '"  data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . $data_label . '>
+			<option value="">' . esc_html__( 'Select an option&hellip;', 'woocommerce' ) . '</option>';
+
+			foreach ( $states as $ckey => $cvalue ) {
+				$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
+			}
+
+			$field .= '</select>';
+
+		} else {
+
+			$field .= '<input type="text" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $value ) . '"  placeholder="' . esc_attr( $args['placeholder'] ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" ' . implode( ' ', $custom_attributes ) . ' data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
+
 		}
 
-		if ( true === $args['autofocus'] ) {
-			$args['custom_attributes']['autofocus'] = 'autofocus';
+		break;
+		case 'textarea':
+		$field .= '<textarea name="' . esc_attr( $key ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '" ' . ( empty( $args['custom_attributes']['rows'] ) ? ' rows="2"' : '' ) . ( empty( $args['custom_attributes']['cols'] ) ? ' cols="5"' : '' ) . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $value ) . '</textarea>';
+
+		break;
+		case 'checkbox':
+		$field = '<label class="checkbox ' . implode( ' ', $args['label_class'] ) . '" ' . implode( ' ', $custom_attributes ) . '>
+		<input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
+
+		break;
+		case 'text':
+		case 'password':
+		case 'datetime':
+		case 'datetime-local':
+		case 'date':
+		case 'month':
+		case 'time':
+		case 'week':
+		case 'number':
+		case 'email':
+		case 'url':
+		case 'tel':
+		$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
+
+		break;
+		case 'hidden':
+		$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-hidden ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
+
+		break;
+		case 'select':
+		$field   = '';
+		$options = '';
+
+		if ( ! empty( $args['options'] ) ) {
+			foreach ( $args['options'] as $option_key => $option_text ) {
+				if ( '' === $option_key ) {
+							// If we have a blank option, select2 needs a placeholder.
+					if ( empty( $args['placeholder'] ) ) {
+						$args['placeholder'] = $option_text ? $option_text : __( 'Choose an option', 'woocommerce' );
+					}
+					$custom_attributes[] = 'data-allow_clear="true"';
+				}
+				$options .= '<option value="' . esc_attr( $option_key ) . '" ' . selected( $value, $option_key, false ) . '>' . esc_html( $option_text ) . '</option>';
+			}
+
+			$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ) . '">
+			' . $options . '
+			</select>';
 		}
+
+		break;
+		case 'radio':
+		$label_id .= '_' . current( array_keys( $args['options'] ) );
+
+		if ( ! empty( $args['options'] ) ) {
+			foreach ( $args['options'] as $option_key => $option_text ) {
+				$field .= '<input type="radio" class="input-radio ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $option_key ) . '" name="' . esc_attr( $key ) . '" ' . implode( ' ', $custom_attributes ) . ' id="' . esc_attr( $args['id'] ) . '_' . esc_attr( $option_key ) . '"' . checked( $value, $option_key, false ) . ' />';
+				$field .= '<label for="' . esc_attr( $args['id'] ) . '_' . esc_attr( $option_key ) . '" class="radio ' . implode( ' ', $args['label_class'] ) . '">' . esc_html( $option_text ) . '</label>';
+			}
+		}
+
+		break;
+	}
+
+	if ( ! empty( $field ) ) {
+		$field_html = '';
+
+		if ( $args['label'] && 'checkbox' !== $args['type'] ) {
+			$field_html .= '<label for="' . esc_attr( $label_id ) . '" class="' . esc_attr( implode( ' ', $args['label_class'] ) ) . '">' . wp_kses_post( $args['label'] ) . $required . '</label>';
+		}
+
+		$field_html .= '<span class="woocommerce-input-wrapper">' . $field;
 
 		if ( $args['description'] ) {
-			$args['custom_attributes']['aria-describedby'] = $args['id'] . '-description';
+			$field_html .= '<span class="description" id="' . esc_attr( $args['id'] ) . '-description" aria-hidden="true">' . wp_kses_post( $args['description'] ) . '</span>';
 		}
 
-		if ( ! empty( $args['custom_attributes'] ) && is_array( $args['custom_attributes'] ) ) {
-			foreach ( $args['custom_attributes'] as $attribute => $attribute_value ) {
-				$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
-			}
-		}
+		$field_html .= '</span>';
 
-		if ( ! empty( $args['validate'] ) ) {
-			foreach ( $args['validate'] as $validate ) {
-				$args['class'][] = 'validate-' . $validate;
-			}
-		}
-
-		$field           = '';
-		$label_id        = $args['id'];
-		$sort            = $args['priority'] ? $args['priority'] : '';
-		$field_container = '<div class="checkout__form-item %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</div>';
-
-		switch ( $args['type'] ) {
-			case 'country':
-				$countries = 'shipping_country' === $key ? WC()->countries->get_shipping_countries() : WC()->countries->get_allowed_countries();
-
-				if ( 1 === count( $countries ) ) {
-
-					$field .= '<strong>' . current( array_values( $countries ) ) . '</strong>';
-
-					$field .= '<input type="hidden" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . current( array_keys( $countries ) ) . '" ' . implode( ' ', $custom_attributes ) . ' class="country_to_state" readonly="readonly" />';
-
-				} else {
-					$data_label = ! empty( $args['label'] ) ? 'data-label="' . esc_attr( $args['label'] ) . '"' : '';
-
-					$field = '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="country_to_state country_select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ? $args['placeholder'] : esc_attr__( 'Select a country / region&hellip;', 'woocommerce' ) ) . '" ' . $data_label . '><option value="">' . esc_html__( 'Select a country / region&hellip;', 'woocommerce' ) . '</option>';
-
-					foreach ( $countries as $ckey => $cvalue ) {
-						$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
-					}
-
-					$field .= '</select>';
-
-					$field .= '<noscript><button type="submit" name="woocommerce_checkout_update_totals" value="' . esc_attr__( 'Update country / region', 'woocommerce' ) . '">' . esc_html__( 'Update country / region', 'woocommerce' ) . '</button></noscript>';
-
-				}
-
-				break;
-			case 'state':
-				/* Get country this state field is representing */
-				$for_country = isset( $args['country'] ) ? $args['country'] : WC()->checkout->get_value( 'billing_state' === $key ? 'billing_country' : 'shipping_country' );
-				$states      = WC()->countries->get_states( $for_country );
-
-				if ( is_array( $states ) && empty( $states ) ) {
-
-					$field_container = '<div class="checkout__form-item %1$s" id="%2$s" style="display: none">%3$s</div>';
-
-					$field .= '<input type="hidden" class="hidden" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="" ' . implode( ' ', $custom_attributes ) . ' placeholder="' . esc_attr( $args['placeholder'] ) . '" readonly="readonly" data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
-
-				} elseif ( ! is_null( $for_country ) && is_array( $states ) ) {
-					$data_label = ! empty( $args['label'] ) ? 'data-label="' . esc_attr( $args['label'] ) . '"' : '';
-
-					$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="state_select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ? $args['placeholder'] : esc_html__( 'Select an option&hellip;', 'woocommerce' ) ) . '"  data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . $data_label . '>
-						<option value="">' . esc_html__( 'Select an option&hellip;', 'woocommerce' ) . '</option>';
-
-					foreach ( $states as $ckey => $cvalue ) {
-						$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
-					}
-
-					$field .= '</select>';
-
-				} else {
-
-					$field .= '<input type="text" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $value ) . '"  placeholder="' . esc_attr( $args['placeholder'] ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" ' . implode( ' ', $custom_attributes ) . ' data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
-
-				}
-
-				break;
-			case 'textarea':
-				$field .= '<textarea name="' . esc_attr( $key ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '" ' . ( empty( $args['custom_attributes']['rows'] ) ? ' rows="2"' : '' ) . ( empty( $args['custom_attributes']['cols'] ) ? ' cols="5"' : '' ) . implode( ' ', $custom_attributes ) . '>' . esc_textarea( $value ) . '</textarea>';
-
-				break;
-			case 'checkbox':
-				$field = '<label class="checkbox ' . implode( ' ', $args['label_class'] ) . '" ' . implode( ' ', $custom_attributes ) . '>
-						<input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
-
-				break;
-			case 'text':
-			case 'password':
-			case 'datetime':
-			case 'datetime-local':
-			case 'date':
-			case 'month':
-			case 'time':
-			case 'week':
-			case 'number':
-			case 'email':
-			case 'url':
-			case 'tel':
-				$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '"  value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
-
-				break;
-			case 'hidden':
-				$field .= '<input type="' . esc_attr( $args['type'] ) . '" class="input-hidden ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' />';
-
-				break;
-			case 'select':
-				$field   = '';
-				$options = '';
-
-				if ( ! empty( $args['options'] ) ) {
-					foreach ( $args['options'] as $option_key => $option_text ) {
-						if ( '' === $option_key ) {
-							// If we have a blank option, select2 needs a placeholder.
-							if ( empty( $args['placeholder'] ) ) {
-								$args['placeholder'] = $option_text ? $option_text : __( 'Choose an option', 'woocommerce' );
-							}
-							$custom_attributes[] = 'data-allow_clear="true"';
-						}
-						$options .= '<option value="' . esc_attr( $option_key ) . '" ' . selected( $value, $option_key, false ) . '>' . esc_html( $option_text ) . '</option>';
-					}
-
-					$field .= '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ) . '">
-							' . $options . '
-						</select>';
-				}
-
-				break;
-			case 'radio':
-				$label_id .= '_' . current( array_keys( $args['options'] ) );
-
-				if ( ! empty( $args['options'] ) ) {
-					foreach ( $args['options'] as $option_key => $option_text ) {
-						$field .= '<input type="radio" class="input-radio ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $option_key ) . '" name="' . esc_attr( $key ) . '" ' . implode( ' ', $custom_attributes ) . ' id="' . esc_attr( $args['id'] ) . '_' . esc_attr( $option_key ) . '"' . checked( $value, $option_key, false ) . ' />';
-						$field .= '<label for="' . esc_attr( $args['id'] ) . '_' . esc_attr( $option_key ) . '" class="radio ' . implode( ' ', $args['label_class'] ) . '">' . esc_html( $option_text ) . '</label>';
-					}
-				}
-
-				break;
-		}
-
-		if ( ! empty( $field ) ) {
-			$field_html = '';
-
-			if ( $args['label'] && 'checkbox' !== $args['type'] ) {
-				$field_html .= '<label for="' . esc_attr( $label_id ) . '" class="' . esc_attr( implode( ' ', $args['label_class'] ) ) . '">' . wp_kses_post( $args['label'] ) . $required . '</label>';
-			}
-
-			$field_html .= '<span class="woocommerce-input-wrapper">' . $field;
-
-			if ( $args['description'] ) {
-				$field_html .= '<span class="description" id="' . esc_attr( $args['id'] ) . '-description" aria-hidden="true">' . wp_kses_post( $args['description'] ) . '</span>';
-			}
-
-			$field_html .= '</span>';
-
-			$container_class = esc_attr( implode( ' ', $args['class'] ) );
-			$container_id    = esc_attr( $args['id'] ) . '_field';
-			$field           = sprintf( $field_container, $container_class, $container_id, $field_html );
-		}
+		$container_class = esc_attr( implode( ' ', $args['class'] ) );
+		$container_id    = esc_attr( $args['id'] ) . '_field';
+		$field           = sprintf( $field_container, $container_class, $container_id, $field_html );
+	}
 
 		/**
 		 * Filter by type.
@@ -475,23 +475,23 @@ function woocommerce_form_field( $key, $args, $value = null ) {
 
 // 	return $field;
 // }
-remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
+	remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
 
 // add this filter in functions.php file
-add_filter( 'woocommerce_get_item_data', 'wc_checkout_description', 10, 2 );
-function wc_checkout_description( $other_data, $cart_item )
-{
-    $post_data = get_post( $cart_item['product_id'] );
-    $other_data[] = array( 'name' =>  $post_data->post_excerpt );
-    return $other_data;
-}
+	add_filter( 'woocommerce_get_item_data', 'wc_checkout_description', 10, 2 );
+	function wc_checkout_description( $other_data, $cart_item )
+	{
+		$post_data = get_post( $cart_item['product_id'] );
+		$other_data[] = array( 'name' =>  $post_data->post_excerpt );
+		return $other_data;
+	}
 
-if ( ! function_exists( 'custom_print_attribute_radio' ) ) {
-	function custom_print_attribute_radio( $checked_value, $value, $label, $name ) {
-		global $product;
+	if ( ! function_exists( 'custom_print_attribute_radio' ) ) {
+		function custom_print_attribute_radio( $checked_value, $value, $label, $name ) {
+			global $product;
 
-		$input_name = 'attribute_' . esc_attr( $name ) ;
-		$esc_value = esc_attr( $value );
+			$input_name = 'attribute_' . esc_attr( $name ) ;
+			$esc_value = esc_attr( $value );
 		$id = esc_attr( $name . '_v_' . $value . $product->get_id() ); //added product ID at the end of the name to target single products
 		$checked = checked( $checked_value, $value, false );
 		$filtered_label = apply_filters( 'woocommerce_variation_option_name', $label, esc_attr( $name ) );
@@ -543,4 +543,92 @@ if ( ! function_exists( 'get_product_img_swiper' ) ) {
 
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form' );
 
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_checkout_coupon_form', 10 );
 
+add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' ); 
+
+function woo_custom_order_button_text() {
+	return __( 'Pay now', 'woocommerce' ); 
+}
+
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+	$fields['billing']['save_user_info'] = array(
+		'type'      => 'checkbox',
+		'label'     => __('Save this information for later', 'woocommerce'),
+		'required'  => false,
+	);
+
+	return $fields;
+}
+
+// add_filter('woocommerce_checkout_update_customer_data', '__return_false' );
+add_filter('woocommerce_checkout_update_customer_data', 'remove_default_saving_user_info' );
+function remove_default_saving_user_info () {
+	session_start();
+	if ($_SESSION['save_user_info_check'] === 'false') {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+add_action( 'wp_ajax_check_save_user_info', 'check_save_user_info' );
+add_action( 'wp_ajax_nopriv_check_save_user_info', 'check_save_user_info' );
+function check_save_user_info () {
+	session_start();
+	$_SESSION['save_user_info_check'] = $_POST['check'];
+	if ($_SESSION['save_user_info_check'] === 'true') {
+		echo $_SESSION['save_user_info_check'];
+	}
+
+	wp_die();
+}
+
+
+add_filter( 'woocommerce_available_payment_gateways', 'gateway_disable_postcode' );
+function gateway_disable_postcode( $available_gateways ) {
+
+   if ( ! is_admin() ) {
+
+      // $shipping_packages =  WC()->cart->get_shipping_packages();
+      // Get the WC_Shipping_Zones instance object for the first package
+      // $shipping_zone = wc_get_shipping_zone( reset( $shipping_packages ) );
+      // $zone_name = $shipping_zone->get_zone_name(); // Get the zone name
+
+      // if ( isset( $available_gateways['cod'] ) && ( 0 === strpos( $zone_name, 'Calgary' ) || 0 === strpos( $zone_name, 'Red Deer' ) ) ) {
+         // unset( $available_gateways['cod'] );
+      // }
+
+   		$available_gateways['paypal']->title = '<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" width="91" height="22"><style>.shp0{fill:#253b80}.shp1{fill:#179bd7}</style><g id="Checkout shipping – 1"><g id="Group 252"><path id="Path 512" fill-rule="evenodd" class="shp0" d="M38.18 6.19c.64.76.86 1.84.64 3.22-.5 3.15-2.4 4.74-5.68 4.74h-1.58c-.34 0-.63.25-.68.59l-.55 3.44c-.05.34-.34.59-.68.59h-2.38c-.26 0-.45-.23-.41-.48L28.88 5.5c.05-.33.34-.58.68-.58h4.99c1.66 0 2.92.44 3.63 1.27Zm-3.3 2.01c-.44-.51-1.29-.51-2.19-.51h-.34c-.21 0-.38.15-.42.35l-.52 3.34h.75c1.32 0 2.69 0 2.96-1.79.1-.63.02-1.08-.24-1.39Z"/><path id="Path 513" fill-rule="evenodd" class="shp0" d="m49.86 10.01-1.29 8.17c-.06.34-.35.59-.69.59h-2.15c-.25 0-.45-.23-.41-.48l.11-.67s-1.18 1.37-3.31 1.37c-1.23 0-2.28-.36-3-1.21-.8-.94-1.12-2.27-.89-3.67.44-2.8 2.69-4.8 5.33-4.8 1.15 0 2.3.25 2.82 1l.16.24.11-.67c.03-.2.21-.35.41-.35h2.39c.25 0 .45.23.41.48Zm-4.14 2.48c-.37-.43-.92-.65-1.6-.65-1.36 0-2.46.94-2.67 2.3-.11.66.02 1.26.37 1.67.36.43.91.65 1.61.65 1.38 0 2.46-.92 2.69-2.28.1-.66-.04-1.26-.4-1.69Z"/><path id="Path 514" class="shp0" d="M62.51 10.18 54.53 21.7c-.13.19-.35.3-.57.3h-2.4c-.34 0-.53-.38-.34-.66l2.48-3.5-2.64-7.76c-.09-.27.11-.55.4-.55h2.35c.31 0 .58.2.67.5l1.4 4.68 3.31-4.87c.13-.19.35-.31.57-.31h2.4c.34 0 .54.38.35.65Z"/><path id="Path 515" fill-rule="evenodd" class="shp1" d="M73.74 6.19c.65.76.86 1.84.64 3.22-.5 3.15-2.39 4.74-5.68 4.74h-1.58c-.34 0-.63.25-.68.59l-.57 3.62c-.04.24-.24.41-.48.41h-2.56c-.25 0-.45-.23-.41-.48L64.44 5.5c.05-.33.34-.58.68-.58h4.99c1.67 0 2.92.44 3.63 1.27Zm-3.3 2.01c-.44-.51-1.29-.51-2.19-.51h-.34a.41.41 0 0 0-.41.35l-.53 3.34h.75c1.32 0 2.69 0 2.96-1.79.1-.63.02-1.08-.24-1.39Z"/><path id="Path 516" fill-rule="evenodd" class="shp1" d="m85.42 10.01-1.29 8.17c-.05.34-.34.59-.68.59H81.3c-.26 0-.45-.23-.41-.48l.1-.67s-1.18 1.37-3.3 1.37c-1.24 0-2.28-.36-3.01-1.21-.79-.94-1.12-2.27-.89-3.67.44-2.8 2.69-4.8 5.33-4.8 1.15 0 2.3.25 2.82 1l.17.24.1-.67c.03-.2.21-.35.41-.35h2.39c.26 0 .45.23.41.48Zm-4.14 2.48c-.37-.43-.92-.65-1.59-.65-1.36 0-2.46.94-2.68 2.3-.11.66.02 1.26.37 1.67.36.43.92.65 1.61.65 1.38 0 2.46-.92 2.69-2.28.11-.66-.04-1.26-.4-1.69Z"/><path id="Path 517" class="shp1" d="M88.23 4.92h2.31c.25 0 .45.23.41.48l-2.02 12.78c-.05.34-.34.59-.69.59h-2.05c-.26 0-.45-.23-.41-.48l2.04-13.02c.04-.2.21-.35.41-.35Z"/><path id="Path 518" class="shp0" d="m6.15 21.25.39-2.42-.85-.02H1.63L4.45.94c.01-.05.04-.1.08-.14.04-.03.09-.05.15-.05h6.84c2.27 0 3.83.47 4.65 1.4.38.44.63.9.75 1.4.12.53.12 1.16 0 1.93l-.01.05v.5l.39.21c.32.17.58.37.77.59.33.38.54.85.63 1.42.1.58.06 1.27-.09 2.05-.17.9-.46 1.68-.84 2.32-.35.59-.8 1.08-1.33 1.46-.5.36-1.11.63-1.79.8-.66.18-1.41.26-2.24.26h-.53c-.38 0-.75.14-1.04.39-.29.25-.48.59-.54.96l-.04.22-.68 4.27-.03.16c-.01.05-.02.07-.04.09-.02.01-.04.02-.07.02H6.15Z"/><path id="Path 519" class="shp1" d="M18.63 6.34c.88.99 1.05 2.41.72 4.1-.79 4.05-3.49 5.45-6.94 5.45h-.53c-.42 0-.78.3-.85.72l-.04.23-.67 4.26-.03.18c-.07.41-.43.72-.85.72H5.88c-.31 0-.55-.28-.51-.59l.3-1.85 1.02-6.52a.98.98 0 0 1 .97-.82h2c3.94 0 7.03-1.6 7.93-6.23.03-.14.05-.27.07-.4.38.2.71.45.97.75Z"/><path id="Path 520" d="M16.92 5.28c.26.08.51.19.74.31-.02.13-.04.26-.07.4-.9 4.63-3.99 6.23-7.93 6.23h-2a.98.98 0 0 0-.97.82l.04-.21 1.14-7.22c.04-.28.22-.52.47-.64a.91.91 0 0 1 .37-.08h5.36c.64 0 1.23.04 1.77.13.15.02.3.05.45.08.15.04.29.07.43.11.06.02.13.04.2.07Z" style="fill:#222d65"/><path id="Path 521" class="shp0" d="m6.73 12.83-1.06 6.73H1.44a.59.59 0 0 1-.58-.68L3.71.83C3.79.35 4.2 0 4.68 0h6.84c2.35 0 4.19.5 5.21 1.66.93 1.05 1.2 2.22.93 3.93-.23-.12-.48-.23-.74-.31-.07-.02-.14-.05-.2-.07-.14-.04-.28-.07-.43-.11-.15-.03-.3-.06-.45-.08-.54-.09-1.13-.13-1.77-.13H8.71a.91.91 0 0 0-.37.08c-.25.12-.43.36-.47.64l-1.14 7.22Z"/></g></g></svg>';
+
+   		// print '<pre>';
+     //  var_dump($available_gateways);
+     //  print '</pre>';
+
+   }
+
+   return $available_gateways;
+
+}
+
+if ( ! function_exists( 'yith_wcwl_fix_flatsome_checkout' ) ) {
+	function yith_wcwl_fix_flatsome_checkout() {
+		wp_add_inline_script(
+			'wc-checkout',
+			"
+			jQuery( function( $ ) {
+				$('form.checkout').on( 'change', '#ship-to-different-address input', function() {
+					$( 'select.country_select:visible, select.state_select:visible' ).selectWoo();
+				} );
+			} );
+			"
+		);
+	}
+
+	add_action( 'wp_enqueue_scripts', 'yith_wcwl_fix_flatsome_checkout' );
+}

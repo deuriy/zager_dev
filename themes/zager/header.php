@@ -69,7 +69,7 @@ defined('ABSPATH') || exit;
               <?php endif ?>
               <div class="Header_buttons">
                 <?php if ($display_cart_button === 'yes'): ?>
-                  <a class="CartBtn" href="/cart"><span class="CartBtn_text hidden-xs">cart</span></a>
+                  <a class="CartBtn" href="<?php echo esc_url( wc_get_cart_url() ); ?>"><span class="CartBtn_text hidden-xs">cart</span></a>
                 <?php endif ?>
                 <a class="MenuHamburger hidden-mdPlus" href="#"><span class="MenuHamburger_text hidden-xs">menu</span></a>
                 <div class="MobileNavigation Header_mobileNavigation hidden-mdPlus">
