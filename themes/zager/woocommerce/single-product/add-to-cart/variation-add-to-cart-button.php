@@ -28,6 +28,12 @@ global $product;
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 
+	<div class="TotalPrice_textWrapper">
+		<div class="TotalPrice_textAndBtn">
+			<div class="TotalPrice_text">Starting at <strong>$72/mo</strong> with <img class="TotalPrice_affirmLogo" src="<?php echo get_template_directory_uri(); ?>/img/affirm_logo.webp" alt="Affirm logo"></div><a class="BtnGrey BtnGrey-totalPrice TotalPrice_prequalifyBtn" href="#">Prequalify now</a>
+		</div>
+	</div>
+
 	<div class="TotalPrice_buttons">
 		<button type="submit" class="single_add_to_cart_button BtnYellow BtnYellow-totalPrice TotalPrice_btn">
 			Try this guitar now!

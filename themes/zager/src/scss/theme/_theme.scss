@@ -16,6 +16,54 @@ body.admin-bar {
 	}
 }
 
+.ProductOptions_variationsBlock:not(:last-child) {
+	.Variations {
+		margin-bottom: 10px;
+	}
+}
+
+.woocommerce-Price-amount {
+	font-family: "Roboto Slab", sans-serif;
+	font-weight: bold;
+	font-size: 36px;
+	line-height: 48px;
+}
+
+.price del,
+.price ins {
+	.woocommerce-Price-amount {
+		font-size: 28px;
+		line-height: 32px;
+	}
+}
+
+.price del {
+	.woocommerce-Price-amount {
+		opacity: 0.3;
+	}
+}
+
+.price ins {
+	text-decoration: none;
+	
+	.woocommerce-Price-amount {
+		color: #992B13;
+	}
+}
+
+.woocommerce-variation-price .price {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	
+	del,
+	ins {
+		.woocommerce-Price-amount {
+			font-size: 24px;
+		}
+	}
+}
+
 .checkout-fieldgroup {
 	&__header {
 		display: grid;
