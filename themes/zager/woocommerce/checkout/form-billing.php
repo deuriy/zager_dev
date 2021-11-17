@@ -51,11 +51,11 @@ defined( 'ABSPATH' ) || exit;
 		<div class="checkout-fieldgroup checkout-fields__group">
 			<div class="checkout-fieldgroup__header">
 				<h3 class="checkout-fieldgroup__title">Contact Information</h3>
-				<?php if (!is_user_logged_in()): ?>
+				<!-- <?php //if (!is_user_logged_in()): ?>
 					<div class="checkout-fieldgroup__description">
-						<p>Already  &nbsp;have an account? <a href="<?php echo wp_login_url(); ?>">Log in</a></p>
+						<p>Already  &nbsp;have an account? <a href="<?php //echo wp_login_url(); ?>">Log in</a></p>
 					</div>
-				<?php endif ?>
+				<?php //endif ?> -->
 			</div>
 			<div class="checkout-fieldgroup__fields">
 				<div class="checkout-fieldgroup__fields-row">
@@ -84,7 +84,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<div class="checkout-fieldgroup checkout-fieldgroup--shipping checkout-fields__group">
 			<div class="checkout-fieldgroup__header">
-				<h3 class="checkout-fieldgroup__title">Shipping Information</h3>
+				<h3 class="checkout-fieldgroup__title">Billing Information</h3>
 			</div>
 			<div class="checkout-fieldgroup__fields">
 				<div class="checkout-fieldgroup__fields-row checkout-fieldgroup__fields-row--single">

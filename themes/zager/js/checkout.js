@@ -109,6 +109,67 @@ document.addEventListener('DOMContentLoaded', function () {
 		checkboxLabel.classList.toggle('checkbox--checked');
 	});
 
+	document.addEventListener('click', function (e) {
+		let nextStepBtn = e.target.closest('[data-action="nextStep"]');
+
+		if (!nextStepBtn) return;
+
+		let multistageForm = nextStepBtn.closest('.multistage-form');
+		let currentStageBlock = multistageForm.querySelector('.multistage-form__stage-block--current');
+		let stageCurrentItem = multistageForm.querySelector('.stages__item--current');
+		let currentStageIndex = stageCurrentItem.dataset.stageIndex;
+
+		if(currentStageIndex == 1) {
+			let shippingLocationText = multistageForm.querySelector('.shipping-location__text');
+			let billingAddress1 = document.getElementById('billing_address_1').value;
+			let billingAddress2 = document.getElementById('billing_address_2').value;
+			let billingCity = document.getElementById('billing_city').value;
+			let billingPostCode = document.getElementById('billing_postcode').value;
+			let billingState = document.getElementById('select2-billing_state-container') && document.getElementById('select2-billing_state-container').title ? document.getElementById('select2-billing_state-container').title : document.getElementById('billing_state').value;
+			let billingCountry = document.getElementById('select2-billing_country-container') && document.getElementById('select2-billing_country-container').title;
+
+			let locationArr = [billingAddress1, billingAddress2, billingCity, billingPostCode, billingState, billingCountry];
+			console.log(locationArr);
+
+			shippingLocationText.textContent = locationArr.join(', ');
+		}
+
+		e.preventDefault();
+	});
+
+	function checkFillingInputs (inputs) {
+		for (const input of inputs) {
+			if (input.value == '') {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// function updateLocationField (input) {
+
+	// }
+
+	let billingInputs = document.querySelectorAll('.woocommerce-billing-fields .input-text:not([name="billing_state"])');
+	console.log(billingInputs);
+	let shippingInputs = document.querySelectorAll('.shipping_address .input-text');
+	let nextStepBtn = document.querySelector('.multistage-form [data-action="nextStep"]');
+
+	nextStepBtn.disabled = !checkFillingInputs(billingInputs);
+
+	billingInputs.forEach(function (input) {
+		input.addEventListener('input', function (e) {
+			nextStepBtn.disabled = !checkFillingInputs(billingInputs);
+		});
+	});
+
+	// shippingInputs.forEach(function (input) {
+	// 	input.addEventListener('input', function (e) {
+	// 		updateLocationField(input);
+	// 	});
+	// });
+
 	// document.addEventListener('change', function(e) {
 	// 	let radio = e.target.closest('input[type="radio"]');
 
@@ -144,5 +205,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	$("#billing_phone").mask("(999) 999-9999");
+
+	// setTimeout(() => {
+	// 	$('#select2-billing_country-results [data-selected="true"]').click();
+	// 	console.log('Yes!');
+	// });
+	
 	
 })( jQuery );

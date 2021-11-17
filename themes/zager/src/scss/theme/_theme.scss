@@ -145,7 +145,7 @@ body.admin-bar {
 
 .radio {
 	position: relative;
-	display: flex;
+	// display: flex;
 
 	input {
 		position: absolute;
@@ -196,6 +196,7 @@ body.admin-bar {
 
 .ship-to-different-address {
 	label span {
+		font-weight: normal;
 		font-size: 16px;
 		font-family: "Roboto Slab", sans-serif;
 	}
@@ -242,17 +243,86 @@ body.admin-bar {
 	}
 }
 
-.wc_payment_method label {
-	cursor: pointer;
-	font-weight: 700;
-	font-size: 16px;
-	color: #181818;
+.wc_payment_methods {
+	display: grid;
+	row-gap: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #f4ede4;
+}
+
+.wc_payment_method {
+	list-style: none;
+	
+	label {
+		cursor: pointer;
+		font-weight: 700;
+		font-size: 16px;
+		color: #181818;
+		
+		img,
+		.about_paypal {
+			display: none;
+		}
+	}
+
+	.payment_box {
+		margin-top: 15px;
+		margin-left: 32px;
+		font-size: 15px;
+		font-family: "Roboto Slab", sans-serif;
+	}
+
+	a {
+		color: #FEBD70;
+		text-decoration: none;
+	}
+}
+
+.payment-method {
+	&__wrapper {
+		width: 342px;
+		margin-right: auto;
+		margin-left: auto;
+		padding: 30px;
+		border-radius: 2px;
+		filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.16));
+		background-color: #fff;
+		text-align: center;
+	}
+	
+	&__img-wrapper {
+		margin-right: 13px;
+		margin-bottom: 21px;
+	}
+	
+	&__description {
+		font-size: 16px;
+		line-height: 22px;
+		color: #181818;
+	}
+
+	&__note {
+		margin-top: 3px;
+		font-size: 13px;
+		line-height: 22px;
+		color: #181818;
+		text-align: center;
+	}
 }
 
 textarea.input-text {
 	height: 163px;
 	padding: 10px 20px;
 	resize: none;
+}
+
+button:disabled {
+	opacity: 0.6;
+	cursor: default;
+	
+	&:hover {
+		background-color: #FEBD70;
+	}
 }
 
 .shipping-location {
@@ -444,7 +514,7 @@ textarea.input-text {
 	}
 
 	.woocommerce-shipping-fields {
-		margin: 40px 0 20px;
+		margin: 25px 0;
 	}
 
 	.ship-to-different-address {
@@ -1057,6 +1127,90 @@ textarea.input-text {
 	}
 }
 
+.woocommerce-order {
+	padding: 42px 0;
+	
+	.woocommerce-notice--success {
+		margin-bottom: 20px;
+		font-weight: bold;
+		font-size: 26px;
+		font-family: "Roboto Slab", sans-serif;
+	}
+
+	.woocommerce-thankyou-order-details {
+		list-style: none;
+		padding: 10px 0;
+		background: #fffbf6;
+		
+		li {
+			padding: 8px 24px;
+		}
+
+		& + p {
+			margin: 30px 0;
+			font-weight: bold;
+			font-size: 20px;
+			font-family: "Roboto Slab", sans-serif;
+		}
+	}
+
+	.woocommerce-order-details {
+		margin-bottom: 30px;
+		
+		&__title {
+			margin-bottom: 16px;
+			font-family: "Roboto Slab", sans-serif;
+		}
+	}
+
+	.woocommerce-table--order-details {
+		width: 100%;
+		padding: 12px 0;
+		border-radius: 6px;
+		background: #FFFBF6;
+		text-align: left;
+		font-family: "Roboto Slab", sans-serif;
+		
+		th,
+		td {
+			width: 50%;
+			padding: 7px 22px;
+			
+			a {
+				color: #13141A;
+				text-decoration: none;
+			}
+		}
+
+		.woocommerce-table__product-name {
+			font-weight: bold;
+			font-size: 18px;
+		}
+	}
+
+	.woocommerce-columns--addresses {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		justify-content: space-between;
+		gap: 30px;
+	}
+		
+	.woocommerce-column--billing-address,
+	.woocommerce-column--shipping-address {
+		padding: 22px 26px;
+		border-radius: 6px;
+		background: #fffbf6;
+		
+		.woocommerce-column__title {
+			margin-bottom: 16px;
+		}
+
+		address {
+			line-height: 26px;
+		}
+	}
+}
+
 .ThesesSection {
 	.SectionTitle {
 		&-theses {
@@ -1232,6 +1386,17 @@ textarea.input-text {
 		font-size: 14px;
 		line-height: 20px;
 		letter-spacing: 0;
+	}
+
+	&.BtnOutline-multistepForm {
+		@media (min-width: 1024px) {
+			width: 200px;
+			max-width: 100%;
+			padding-top: 23px;
+			padding-bottom: 23px;
+			font-size: 15px;
+			letter-spacing: 0;
+		}
 	}
 }
 

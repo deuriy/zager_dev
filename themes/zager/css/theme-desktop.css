@@ -118,6 +118,15 @@
   font-size: 15px;
   letter-spacing: 0;
 }
+
+.BtnOutline.BtnOutline-multistepForm {
+  width: 200px;
+  max-width: 100%;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  font-size: 15px;
+  letter-spacing: 0;
+}
 }
 
 @media (min-width: 1200px){

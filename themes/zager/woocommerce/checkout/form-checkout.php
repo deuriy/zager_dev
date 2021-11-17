@@ -100,7 +100,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 			<?php endif; ?>
 
 			<div class="multistage-form__buttons multistage-form__buttons--justify-end">
-				<button type="button" class="BtnYellow BtnYellow-multistepForm multistage-form__step-btn hidden" data-action="prevStep">Prev</button>
+				<button type="button" class="BtnOutline BtnOutline-lightBeigeBg BtnOutline-multistepForm multistage-form__step-btn hidden" data-action="prevStep">Prev</button>
 				<button type="button" class="BtnYellow BtnYellow-multistepForm multistage-form__step-btn" data-action="nextStep">Next</button>
 			</div>
 
