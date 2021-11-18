@@ -259,7 +259,7 @@
                             "key": "field_61822d8d713bc",
                             "label": "Accessory Cards",
                             "name": "accessory_cards",
-                            "type": "repeater",
+                            "type": "post_object",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -268,37 +268,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "collapsed": "",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "block",
-                            "button_label": "Add accessory card",
-                            "sub_fields": [
-                                {
-                                    "key": "field_61822db4713bd",
-                                    "label": "Accessory Card",
-                                    "name": "accessory_card",
-                                    "type": "post_object",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "post_type": [
-                                        "product"
-                                    ],
-                                    "taxonomy": [
-                                        "product_cat:accessories"
-                                    ],
-                                    "allow_null": 0,
-                                    "multiple": 0,
-                                    "return_format": "object",
-                                    "ui": 1
-                                }
-                            ]
+                            "post_type": [
+                                "product"
+                            ],
+                            "taxonomy": [
+                                "product_cat:accessories"
+                            ],
+                            "allow_null": 0,
+                            "multiple": 1,
+                            "return_format": "object",
+                            "ui": 1
                         },
                         {
                             "key": "field_61822e70713c4",
@@ -5731,5 +5710,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1636284203
+    "modified": 1637167899
 }

@@ -526,7 +526,7 @@ if ( ! function_exists( 'get_product_img_swiper' ) ) {
 				echo '</a></div>';
 			}
 
-			echo '</div><button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductImgSwiper_prev hidden-smMinus" type="button"></button><button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductImgSwiper_next hidden-smMinus" type="button"></button><a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen ProductImgSwiper_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>';
+			echo '</div><button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductImgSwiper_prev hidden-smMinus" type="button"></button><button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductImgSwiper_next hidden-smMinus" type="button"></button><a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen BtnBlack-fullScreenProduct ProductImgSwiper_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>';
 
 			echo '</div></div><div class="swiper ProductImgSwiper_thumbs hidden-smMinus"><div class="swiper-wrapper">';
 

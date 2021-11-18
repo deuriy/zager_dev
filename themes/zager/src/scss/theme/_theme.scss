@@ -64,6 +64,26 @@ body.admin-bar {
 	}
 }
 
+.out-of-stock {
+	color: #992B13;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.Sidebar-product .out-of-stock {
+	margin: 36px 42px 16px 32px;
+}
+
+.SubTotal_cost .woocommerce-Price-amount {
+	font-size: 23px;
+	line-height: 32px;
+}
+
+.ProductCard .woocommerce-Price-amount {
+	font-size: 19px;
+	line-height: 24px;
+}
+
 .checkout-fieldgroup {
 	&__header {
 		display: grid;
@@ -1048,7 +1068,8 @@ button:disabled {
 
 .Tabs {
 	&-product {
-		.InfoBlocks {
+		.InfoBlocks,
+		.Specifications {
 			margin-bottom: 40px;
 			
 			&:last-child {
