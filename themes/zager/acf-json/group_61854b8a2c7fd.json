@@ -3,6 +3,59 @@
     "title": "Product Page Blocks",
     "fields": [
         {
+            "key": "field_619783aa9e948",
+            "label": "Additional labels",
+            "name": "additional_labels",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "60",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "special_addition": "Special addition",
+                "save": "Save"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "horizontal",
+            "toggle": 0,
+            "return_format": "array",
+            "save_custom": 0
+        },
+        {
+            "key": "field_619785559e949",
+            "label": "Discount",
+            "name": "discount",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_619783aa9e948",
+                        "operator": "==",
+                        "value": "save"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "placeholder": "",
+            "prepend": "",
+            "append": "%",
+            "min": 5,
+            "max": 70,
+            "step": ""
+        },
+        {
             "key": "field_618690a38cbc5",
             "label": "Quote",
             "name": "product_quote",
@@ -2224,5 +2277,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637011670
+    "modified": 1637353705
 }

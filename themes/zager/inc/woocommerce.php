@@ -633,3 +633,12 @@ if ( ! function_exists( 'yith_wcwl_fix_flatsome_checkout' ) ) {
 
 	add_action( 'wp_enqueue_scripts', 'yith_wcwl_fix_flatsome_checkout' );
 }
+
+add_filter( 'woocommerce_variable_price_html', 'zager_variation_price_format_min', 9999, 2 );
+
+function zager_variation_price_format_min( $price, $product ) {
+   $prices = $product->get_variation_prices( true );
+   $min_price = current( $prices['price'] );
+   $price = sprintf( __( 'From: %1$s', 'woocommerce' ), wc_price( $min_price ) );
+   return $price;
+}

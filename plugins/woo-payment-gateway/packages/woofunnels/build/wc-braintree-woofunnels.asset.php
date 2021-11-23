@@ -1,0 +1,1 @@
+<?php return array('dependencies' => array('braintree-web-data-collector', 'braintree-web-three-d-secure', 'jquery', 'wp-api-fetch'), 'version' => 'dcf6ec4d2baf183cb05067c6a96f4f70');

@@ -6,12 +6,6 @@ function slideToggle(elem) {
   }
 }
 
-// const ps = new PerfectScrollbar('#container', {
-//   wheelSpeed: 2,
-//   wheelPropagation: true,
-//   minScrollbarLength: 20
-// });
-
 const players = Plyr.setup('audio', {
   controls: ['play-large', 'play', 'progress', 'duration', 'captions', 'pip', 'airplay']
 });

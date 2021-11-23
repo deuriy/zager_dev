@@ -89,7 +89,7 @@ if ( post_password_required() ) {
 			<a class="BtnYellow BtnYellow-priceCard PriceCard_btn" href="#ProductSizesMobilePopup" data-action="openMobilePopup">See options</a>
 		</div>
 
-		<?php get_template_part('partials/blocks/product_quote'); ?>		
+		<?php get_template_part('partials/blocks/product-quote'); ?>		
 
 		<!-- <div class="Accordion Product_accordion hidden-smPlus">
 			<div class="AccordionPanel Accordion_item">
