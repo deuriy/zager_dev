@@ -571,6 +571,28 @@
                     "maxlength": ""
                 },
                 {
+                    "key": "field_619e7b67146fd",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "grey": "Grey",
+                        "lightbeige": "Light beige"
+                    },
+                    "allow_null": 0,
+                    "default_value": "grey",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
                     "key": "field_617184d621986",
                     "label": "Series blocks",
                     "name": "series_blocks",
@@ -2444,5 +2466,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636229834
+    "modified": 1637776264
 }

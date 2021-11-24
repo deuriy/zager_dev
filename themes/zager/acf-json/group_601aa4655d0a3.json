@@ -16,6 +16,127 @@
                 "id": ""
             },
             "layouts": {
+                "layout_619dcd7dcd071": {
+                    "key": "layout_619dcd7dcd071",
+                    "name": "artist_reviews",
+                    "label": "Artist Reviews",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_619dcd86cd072",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "More Artists Reviews",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_619dcdcacd073",
+                            "label": "Artist Reviews",
+                            "name": "artist_reviews",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "artist_review"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 1,
+                            "return_format": "id",
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_619dccdecd06d": {
+                    "key": "layout_619dccdecd06d",
+                    "name": "featured_artist_review",
+                    "label": "Featured Artist Review",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_619dcd34cd06f",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_619dcd4acd070",
+                            "label": "Label",
+                            "name": "label",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Lastest Review",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_619dccefcd06e",
+                            "label": "Artist Review",
+                            "name": "artist_review",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "artist_review"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
                 "layout_6197b1089a049": {
                     "key": "layout_6197b1089a049",
                     "name": "feedback_section",
@@ -54,7 +175,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "taxonomy": "artist_reviews_category",
+                            "taxonomy": "customer_reviews_category",
                             "field_type": "checkbox",
                             "add_term": 0,
                             "save_terms": 0,
@@ -84,8 +205,8 @@
                         },
                         {
                             "key": "field_6197b2059a04d",
-                            "label": "Artist Reviews",
-                            "name": "artist_reviews",
+                            "label": "Customer Reviews",
+                            "name": "customer_reviews",
                             "type": "post_object",
                             "instructions": "",
                             "required": 0,
@@ -96,7 +217,7 @@
                                 "id": ""
                             },
                             "post_type": [
-                                "artist_review"
+                                "customer_review"
                             ],
                             "taxonomy": "",
                             "allow_null": 0,
@@ -1204,6 +1325,28 @@
                             "maxlength": ""
                         },
                         {
+                            "key": "field_619d57281a8e2",
+                            "label": "Title size",
+                            "name": "title_size",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "normal": "Normal",
+                                "smaller": "Smaller"
+                            },
+                            "allow_null": 0,
+                            "default_value": "normal",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
                             "key": "field_6196cb18f132f",
                             "label": "Show breadcrumbs",
                             "name": "show_breadcrumbs",
@@ -1212,7 +1355,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
@@ -2180,6 +2323,36 @@
                             "return_format": "value"
                         },
                         {
+                            "key": "field_619e7afdaab0c",
+                            "label": "Style",
+                            "name": "style",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61718412aac2a",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "grey": "Grey",
+                                "lightbeige": "Light beige"
+                            },
+                            "allow_null": 0,
+                            "default_value": "grey",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
                             "key": "field_617182fcaac24",
                             "label": "Title",
                             "name": "title",
@@ -2196,7 +2369,7 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
@@ -5026,6 +5199,25 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_619d596d250de",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
                             "key": "field_60a420eb2d955",
                             "label": "Logos",
                             "name": "logos",
@@ -5034,11 +5226,11 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
+                            "return_format": "id",
                             "preview_size": "medium",
                             "insert": "append",
                             "library": "all",
@@ -6458,5 +6650,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1637610681
+    "modified": 1637776224
 }

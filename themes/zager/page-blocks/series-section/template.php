@@ -1,20 +1,25 @@
 <?php
 $series_section = $field['type'] === 'default' ? get_field('series_section', 'option') : $field;
+$series_section_classes = $series_section['style'] == 'lightbeige' ? ' SeriesSection-lightBeige' : '';
+$series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' SeriesBlock_textWrapper-greyBgMob' : '';
 ?>
 
-<div class="SeriesSection">
+<div class="SeriesSection<?php echo $series_section_classes ?>">
   <div class="Container">
     <?php if ($series_section['title']): ?>
       <h2 class="SectionTitle SectionTitle-center SectionTitle-seriesSection SeriesSection_title">
         <?php echo $series_section['title'] ?>
       </h2>
     <?php endif ?>
+
     <?php if ($series_section['series_blocks']): ?>
       <div class="SeriesSection_items">
         <?php foreach ($series_section['series_blocks'] as $series_block): ?>
           <div class="SeriesBlock SeriesSection_item">
             <?php if ($series_block['label']): ?>
-              <div class="Label Label-seriesBlock SeriesBlock_label"><?php echo $series_block['label'] ?></div>
+              <div class="Label Label-seriesBlock SeriesBlock_label">
+                <?php echo $series_block['label'] ?>
+              </div>
             <?php endif ?>
             <?php if ($series_block['title']): ?>
               <h3 class="SeriesBlock_title">
@@ -27,8 +32,10 @@ $series_section = $field['type'] === 'default' ? get_field('series_section', 'op
               </div>
             <?php endif ?>
             <?php if ($series_block['description']): ?>
-              <div class="SeriesBlock_textWrapper">
-                <div class="SeriesBlock_description"><?php echo $series_block['description'] ?></div>
+              <div class="SeriesBlock_textWrapper<?php echo $series_block_text_classes ?>">
+                <div class="SeriesBlock_description">
+                  <?php echo $series_block['description'] ?>
+                </div>
               </div>
             <?php endif ?>
           </div>

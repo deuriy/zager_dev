@@ -19,7 +19,7 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
 				</div>
 			<?php endif ?>
 			<?php if ($field['title']): ?>
-				<h2 class="Banner_title">
+				<h2 class="Banner_title Banner_title-<?php echo $field['title_size'] ?>">
 					<?php echo $field['title'] ?>
 				</h2>
 			<?php endif ?>

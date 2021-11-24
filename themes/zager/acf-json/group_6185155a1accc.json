@@ -1,6 +1,6 @@
 {
     "key": "group_6185155a1accc",
-    "title": "Artist Review",
+    "title": "Customer Review",
     "fields": [
         {
             "key": "field_6185182a09a77",
@@ -182,7 +182,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "artist_review"
+                "value": "customer_review"
             }
         ]
     ],
@@ -194,5 +194,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636294428
+    "modified": 1637720643
 }

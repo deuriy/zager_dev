@@ -2082,7 +2082,7 @@
                                         "id": ""
                                     },
                                     "post_type": [
-                                        "artist_review"
+                                        "customer_review"
                                     ],
                                     "taxonomy": "",
                                     "allow_null": 0,
@@ -2277,5 +2277,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637353705
+    "modified": 1637722707
 }

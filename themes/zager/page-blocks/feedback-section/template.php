@@ -55,16 +55,16 @@
         </div>
       <?php endif ?>
 
-      <?php if ($field['artist_reviews']): ?>
+      <?php if ($field['customer_reviews']): ?>
         <div class="Reviews FilterTabs_items">
-          <?php foreach ($field['artist_reviews'] as $review_id): ?>
+          <?php foreach ($field['customer_reviews'] as $review_id): ?>
             <?php
             $review = get_post($review_id);
             $author = get_field('author', $review_id);
             $author_photo = wp_get_attachment_image( $author['photo'], 'full', false, array('class' => 'Author_photoImg') );
             $answer_on_questions = get_field('answer_on_questions', $review_id);
 
-            $product_series = wp_get_post_terms( $review_id, 'artist_reviews_category', array('hide_empty' => false) );
+            $product_series = wp_get_post_terms( $review_id, 'customer_reviews_category', array('hide_empty' => false) );
 
             $product_series_data = implode(', ', array_map(function($item) {
               return $item->slug;

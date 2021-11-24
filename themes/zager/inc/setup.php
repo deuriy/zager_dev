@@ -127,6 +127,30 @@ function create_faq_category_taxonomies(){
 	));
 }
 
+add_action( 'init', 'create_customer_reviews_category_taxonomies' );
+function create_customer_reviews_category_taxonomies(){
+
+	register_taxonomy('customer_reviews_category', array('customer_review'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => _x( 'Customer Reviews Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Customer Reviews Category', 'taxonomy singular name' ),
+			'search_items'      =>  __( 'Search Customer Reviews Categories' ),
+			'all_items'         => __( 'All Customer Reviews Categories' ),
+			'parent_item'       => __( 'Parent Customer Reviews Category' ),
+			'parent_item_colon' => __( 'Parent Customer Reviews Category:' ),
+			'edit_item'         => __( 'Edit Customer Reviews Category' ),
+			'update_item'       => __( 'Update Customer Reviews Category' ),
+			'add_new_item'      => __( 'Add Category' ),
+			'new_item_name'     => __( 'New Customer Reviews Category Name' ),
+			'menu_name'         => __( 'Customer Reviews Categories' ),
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		//'rewrite'       => array( 'slug' => 'the_faq_category' ),
+	));
+}
+
 add_action( 'init', 'create_artist_reviews_category_taxonomies' );
 function create_artist_reviews_category_taxonomies(){
 
@@ -180,6 +204,38 @@ function create_faq_post_type(){
 		'hierarchical'       => false,
 		'menu_position'      => null,
 		'supports'           => array('title','editor')
+	) );
+}
+
+add_action('init', 'create_customer_review_post_type');
+function create_customer_review_post_type(){
+	register_post_type('customer_review', array(
+		'labels'             => array(
+			'name'               => 'Customer Reviews',
+			'singular_name'      => 'Customer Review',
+			'add_new'            => 'Add Customer Review',
+			'add_new_item'       => 'Add new Customer Review',
+			'edit_item'          => 'Edit Customer Review',
+			'new_item'           => 'New Customer Review',
+			'view_item'          => 'View Customer Review',
+			'search_items'       => 'Find Customer Reviews',
+			'not_found'          => 'Customer Reviews not found',
+			'not_found_in_trash' => 'Customer Reviews not found in trash',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Customer Reviews'
+
+		  ),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'supports'           => array('title')
 	) );
 }
 

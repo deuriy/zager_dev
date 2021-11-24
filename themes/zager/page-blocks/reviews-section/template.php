@@ -74,14 +74,24 @@ $ratings_arr = [
 
       <?php if ($field['customer_reviews']['customer_reviews']): ?>
         <div class="Reviews ReviewsSectionGroup_reviews">
-          <?php foreach ($field['customer_reviews']['customer_reviews'] as $customer_review_id): ?>
+          <?php foreach ($field['customer_reviews']['customer_reviews'] as $review_id): ?>
             <div class="Review Review-customer Reviews_item">
               <?php
-              $customer_review = get_post($customer_review_id);
+              $customer_review = get_post($review_id);
 
-              $author = get_field('author', $customer_review_id);
+              $author = get_field('author', $review_id);
               $author_photo = wp_get_attachment_image( $author['photo'], 'full', false, array('class' => 'Author_photoImg') );
-              $answer_on_questions = get_field('answer_on_questions', $customer_review_id);
+              $answer_on_questions = get_field('answer_on_questions', $review_id);
+
+              $product_series = wp_get_post_terms( $review_id, 'customer_reviews_category', array('hide_empty' => false) );
+
+              $product_series_data = implode(', ', array_map(function($item) {
+                return $item->slug;
+              }, $product_series));
+
+              $product_series_str = implode(', ', array_map(function($item) {
+                return $item->name;
+              }, $product_series));
               ?>
 
               <div class="Author Author-customerReview Review_author">
@@ -94,6 +104,12 @@ $ratings_arr = [
                 <?php if ($author['info']['name']): ?>
                   <div class="Author_name">
                     <?php echo $author['info']['name']; ?>
+                  </div>
+                <?php endif ?>
+
+                <?php if ($product_series_str): ?>
+                  <div class="Author_productSeries hidden-smPlus">
+                    <?php echo $product_series_str ?>
                   </div>
                 <?php endif ?>
 
@@ -110,8 +126,6 @@ $ratings_arr = [
                     </div>
                   </div>
                 <?php endif ?>
-
-                <!-- <div class="Author_productSeries hidden-smPlus"></div> -->
 
                 <?php if ($author['audio_file']): ?>
                   <div class="Author_audio">

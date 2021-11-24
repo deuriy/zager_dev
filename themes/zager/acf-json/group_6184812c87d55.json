@@ -113,7 +113,7 @@
             {
                 "param": "taxonomy",
                 "operator": "==",
-                "value": "all"
+                "value": "pa_sound_box"
             }
         ],
         [
@@ -132,5 +132,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636299098
+    "modified": 1637750258
 }
