@@ -10,9 +10,9 @@
 					<?php endif ?>
 
 					<?php if ($infoblock['text']): ?>
-					<div class="InfoBlock_text">
-						<?php echo $infoblock['text'] ?>
-					</div>
+						<div class="InfoBlock_text">
+							<?php echo $infoblock['text'] ?>
+						</div>
 					<?php endif ?>
 
 					<?php

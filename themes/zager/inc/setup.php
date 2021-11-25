@@ -49,6 +49,7 @@ if ( ! function_exists( 'understrap_setup' ) ) {
 		add_image_size( 'banner-front-page', 2048, 1152, true );
 		add_image_size( 'banner-page', 2048, 580, true );
 		add_image_size( 'product-card', 344, 260 );
+		add_image_size( 'product-section', 735, 447 );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );

@@ -72,7 +72,7 @@ if ( post_password_required() ) {
 			</div>
 		</div>
 
-		<?php get_product_img_swiper(); ?>
+		<?php get_product_image_slider($product->get_id()); ?>
 
 		<div class="Product_descriptionWrapper">
 			<div class="Product_description Product_description-truncated">

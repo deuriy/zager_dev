@@ -605,7 +605,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "",
+                    "collapsed": "field_617184eb21988",
                     "min": 0,
                     "max": 0,
                     "layout": "block",
@@ -1027,7 +1027,7 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
+            "collapsed": "field_6172e6ecd52ca",
             "min": 0,
             "max": 0,
             "layout": "block",
@@ -2466,5 +2466,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637776264
+    "modified": 1637779692
 }

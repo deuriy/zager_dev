@@ -18,11 +18,19 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
 					<?php echo $field['intro_text'] ?>
 				</div>
 			<?php endif ?>
+
 			<?php if ($field['title']): ?>
 				<h2 class="Banner_title Banner_title-<?php echo $field['title_size'] ?>">
 					<?php echo $field['title'] ?>
 				</h2>
 			<?php endif ?>
+
+			<?php if ($field['text']): ?>
+				<div class="Banner_text">
+					<?php echo $field['text'] ?>
+				</div>
+			<?php endif ?>
+
 			<?php if ($field['buttons']): ?>
 				<div class="Banner_buttons">
 					<?php
