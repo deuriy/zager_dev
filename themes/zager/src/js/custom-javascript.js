@@ -56,31 +56,3 @@ document.addEventListener('click', function (e) {
   secondaryMenu.classList.toggle('SecondaryMenu-expanded');
   slideToggle(secondaryMenu);
 });
-
-new Swiper('.VideoSwiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 20,
-
-  pagination: {
-    el: '.SwiperControls_pagination',
-    clickable: true,
-    bulletClass: 'SwiperPagination_bullet',
-    bulletActiveClass: 'SwiperPagination_bullet-active',
-  },
-
-  navigation: {
-    nextEl: '.VideoSection_next',
-  },
-
-  breakpoints: {
-    768: {
-      spaceBetween: 48
-    },
-  },
-});
-
-new Swiper('.TestimonialsSwiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 20,
-  autoHeight: true,
-});

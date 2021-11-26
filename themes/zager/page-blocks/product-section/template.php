@@ -1,5 +1,5 @@
 <?php
-opcache_reset();
+// opcache_reset();
 // print '<pre>';
 // print_r($field);
 // print '</pre>';
@@ -17,11 +17,10 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
   $product_attributes = $product->get_attributes();
   $product_url = get_permalink($field['product']);
   $additional_labels = get_field('additional_labels', $field['product']);
-  $additional_classes = $product->get_type() == 'variable' ? ' ProductCard-extended' : '';
 
-  print '<pre>';
-  print_r($product_images_ids);
-  print '</pre>';
+  // print '<pre>';
+  // print_r($product_images_ids);
+  // print '</pre>';
 ?>
 <div class="ProductSection">
   <div class="Container">
@@ -160,47 +159,3 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
   </div>
 </div>
 <?php endif ?>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let productSectionImgFullScreenBtn = document.querySelector('.ProductSectionImg_fullScreenBtn');
-    let productSectionImgSwiper = new Swiper('.ProductSectionImgSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: true,
-      // autoHeight: true,
-
-      pagination: {
-        el: '.ProductSectionImgSwiper_pagination',
-        clickable: true,
-        bulletClass: 'SwiperPagination_bullet',
-        bulletActiveClass: 'SwiperPagination_bullet-active',
-      },
-
-      navigation: {
-        prevEl: '.ProductSectionImg_prev',
-        nextEl: '.ProductSectionImg_next',
-      },
-
-      on: {
-        init: function () {
-          let productImgActiveSlide = document.querySelector(`.ProductSectionImgSwiper .swiper-slide-active`);
-          productSectionImgFullScreenBtn.href = productImgActiveSlide.querySelector('img').src;
-        }
-      }
-    });
-
-    productSectionImgSwiper.on('slideChange', function () {
-      setTimeout(() => {
-        let productImgActiveSlide = document.querySelector(`.ProductSectionImgSwiper .swiper-slide-active`);
-        productSectionImgFullScreenBtn.href = productImgActiveSlide.querySelector('img').src;
-      }, 0);
-    });
-
-    new Swiper('.TestimonialsSwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      autoHeight: true,
-    });
-  });
-</script>

@@ -169,13 +169,3 @@
     </div>
   </div>
 </div>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		new Swiper('.ProductCardsSwiper', {
-		  slidesPerView: 'auto',
-		  spaceBetween: 20,
-		  autoHeight: true,
-		});
-	})
-</script>	

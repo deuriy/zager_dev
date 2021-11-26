@@ -127,6 +127,10 @@
   font-size: 15px;
   letter-spacing: 0;
 }
+
+.nf-form-cont {
+  padding: 40px 60px 26px;
+}
 }
 
 @media (min-width: 1200px){

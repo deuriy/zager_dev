@@ -2,6 +2,8 @@
 	$style = $field['background_color'] === 'red' ? ' Remark-red' : '';
 ?>
 
-<div class="Remark<?php echo $style ?>">
-	<?php echo $field['text'] ?>
-</div>
+<?php if ($field['text']): ?>
+	<div class="Remark<?php echo $style ?>">
+		<?php echo $field['text'] ?>
+	</div>
+<?php endif ?>

@@ -114,13 +114,3 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
   	</div>
   <?php endif ?>
 </div>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function(e) {
-    new Swiper('.IconsAndTextsSwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      autoHeight: true,
-    });
-  });
-</script>

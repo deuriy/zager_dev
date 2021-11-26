@@ -127,11 +127,27 @@
   font-size: 15px;
   letter-spacing: 0;
 }
+
+.nf-form-cont {
+  padding: 40px 60px 26px;
+}
 }
 
 @media (min-width: 1200px){
 .multistage-form {
   grid-template-columns: 1fr 363px;
+}
+}
+
+@media (min-width: 768px){
+.nf-form-cont .nf-form-title h3 {
+  margin-bottom: 24px;
+  font-size: 32px;
+  line-height: 1.44;
+}
+
+.nf-form-cont .nf-form-content .nf-field-container {
+  margin-bottom: 16px;
 }
 }
 

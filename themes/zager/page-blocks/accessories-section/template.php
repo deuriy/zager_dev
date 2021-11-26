@@ -1,9 +1,3 @@
-<?php
-	// print '<pre>';
-	// print_r($field);
-	// print '</pre>';
-?>
-
 <?php if ($field['accessory_cards'] || $field['title']): ?>
 	<div class="AccessoriesSection AccessoriesSection-gradientBg">
 		<div class="Container">

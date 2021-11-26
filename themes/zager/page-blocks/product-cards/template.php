@@ -181,13 +181,3 @@
     </div>
   </div>
 <?php endif ?>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function(e) {
-    new Swiper('.ProductCardsSwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      autoHeight: true,
-    });
-  });
-</script>
