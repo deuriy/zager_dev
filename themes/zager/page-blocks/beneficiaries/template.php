@@ -57,7 +57,7 @@
 								        $button_icon_class = ($beneficiary['button']['button_icon'] !== 'no_icon') ? $button_style_class . '-' . $beneficiary['button']['button_icon'] : '';
 								        $button_classes = $button_style_class . $button_additional_class . $button_icon_class;
 							      ?>
-							      	<a class="<?php echo $button_classes ?> Beneficiary_btn" href="<?php echo $beneficiary['button']['url'] ?>">
+							      	<a class="<?php echo $button_classes ?> Beneficiary_btn" href="<?php echo $beneficiary['button']['url'] ?>"<?php echo $beneficiary['button']['open_in_fancybox'] === 'yes' ? 'data-fancybox' : '' ?>>
 							      		<span class="hidden-mdPlus"><?php echo $beneficiary['button']['mobile_text'] ?></span>
 			              		<span class="hidden-smMinus"><?php echo $beneficiary['button']['text'] ?></span>
 							        </a>
@@ -83,10 +83,11 @@
 
 			        $button_style_class = $button_style_classes[$field['button']['button_style']];
 			        $button_additional_class = $button_style_class === 'BtnOutline' ? ' BtnOutline-lightBeigeBg BtnOutline-darkText ' : ' ';
+			        $button_additional_class .= $button_style_class === 'BtnYellow' ? ' BtnYellow-beneficiaries ' : ' ';
 			        $button_icon_class = ($field['button']['button_icon'] !== 'no_icon') ? $button_style_class . '-' . $field['button']['button_icon'] : '';
 			        $button_classes = $button_style_class . $button_additional_class . $button_icon_class;
 		      ?>
-		      	<a class="<?php echo $button_classes ?> BtnYellow-beneficiaries" href="<?php echo $field['button']['url'] ?>">
+		      	<a class="<?php echo $button_classes ?>" href="<?php echo $field['button']['url'] ?>"<?php echo $field['button']['open_in_fancybox'] === 'yes' ? 'data-fancybox' : '' ?>>
 		          <?php echo $field['button']['text'] ?>
 		        </a>
 			    <?php endif ?>

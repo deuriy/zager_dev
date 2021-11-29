@@ -176,6 +176,30 @@ function create_artist_reviews_category_taxonomies(){
 	));
 }
 
+add_action( 'init', 'create_student_reviews_category_taxonomies' );
+function create_student_reviews_category_taxonomies(){
+
+	register_taxonomy('student_reviews_category', array('student_review'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => _x( 'Student Reviews Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Student Reviews Category', 'taxonomy singular name' ),
+			'search_items'      =>  __( 'Search Student Reviews Categories' ),
+			'all_items'         => __( 'All Student Reviews Categories' ),
+			'parent_item'       => __( 'Parent Student Reviews Category' ),
+			'parent_item_colon' => __( 'Parent Student Reviews Category:' ),
+			'edit_item'         => __( 'Edit Student Reviews Category' ),
+			'update_item'       => __( 'Update Student Reviews Category' ),
+			'add_new_item'      => __( 'Add Category' ),
+			'new_item_name'     => __( 'New Student Reviews Category Name' ),
+			'menu_name'         => __( 'Student Reviews Categories' ),
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		//'rewrite'       => array( 'slug' => 'the_faq_category' ),
+	));
+}
+
 add_action( 'init', 'create_video_category_taxonomies' );
 function create_video_category_taxonomies(){
 
@@ -299,6 +323,39 @@ function create_artist_review_post_type(){
 	) );
 }
 
+add_action('init', 'create_student_review_post_type');
+function create_student_review_post_type(){
+	register_post_type('student_review', array(
+		'labels'             => array(
+			'name'               => 'Student Reviews',
+			'singular_name'      => 'Student Review',
+			'add_new'            => 'Add Student Review',
+			'add_new_item'       => 'Add new Student Review',
+			'edit_item'          => 'Edit Student Review',
+			'new_item'           => 'New Student Review',
+			'view_item'          => 'View Student Review',
+			'search_items'       => 'Find Student Reviews',
+			'not_found'          => 'Student Reviews not found',
+			'not_found_in_trash' => 'Student Reviews not found in trash',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Student Reviews'
+
+		  ),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'					 => 'dashicons-format-quote',
+		'supports'           => array('title', 'editor', 'excerpt')
+	) );
+}
+
 add_action('init', 'create_video_post_type');
 function create_video_post_type(){
 	register_post_type('video', array(
@@ -330,6 +387,66 @@ function create_video_post_type(){
 		'menu_icon'					 => 'dashicons-video-alt3',
 		'supports'           => array('title')
 	) );
+}
+
+function lb_editor_remove_meta_box() {
+    global $post_type;
+/**
+ *  Check to see if the global $post_type variable exists
+ *  and then check to see if the current post_type supports
+ *  excerpts. If so, remove the default excerpt meta box
+ *  provided by the WordPress core. If you would like to only
+ *  change the excerpt meta box for certain post types replace
+ *  $post_type with the post_type identifier.
+ */
+    if (isset($post_type) && post_type_supports($post_type, 'excerpt')){
+        remove_meta_box('postexcerpt', $post_type, 'normal');
+    } 
+}
+add_action('admin_menu', 'lb_editor_remove_meta_box');
+ 
+function lb_editor_add_custom_meta_box() {
+    global $post_type;
+    /**
+     *  Again, check to see if the global $post_type variable
+     *  exists and then if the current post_type supports excerpts.
+     *  If so, add the new custom excerpt meta box. If you would
+     *  like to only change the excerpt meta box for certain post
+     *  types replace $post_type with the post_type identifier.
+     */
+    if (isset($post_type) && post_type_supports($post_type, 'excerpt')){
+        add_meta_box('postexcerpt', __('Excerpt'), 'lb_editor_custom_post_excerpt_meta_box', $post_type, 'normal', 'high');
+    }
+}
+add_action( 'add_meta_boxes', 'lb_editor_add_custom_meta_box' );
+ 
+function lb_editor_custom_post_excerpt_meta_box( $post ) {
+
+    /**
+     *  Adjust the settings for the new wp_editor. For all
+     *  available settings view the wp_editor reference
+     *  http://codex.wordpress.org/Function_Reference/wp_editor
+     */
+    $settings = array( 'textarea_rows' => '12', 'quicktags' => false, 'tinymce' => true);
+
+    /**
+     *  Create the new meta box editor and decode the current
+     *  post_excerpt value so the TinyMCE editor can display
+     *  the content as it is styled.
+     */
+    wp_editor(html_entity_decode(stripcslashes($post->post_excerpt)), 'excerpt', $settings);
+ 
+    // The meta box description - adjust as necessary
+    echo '&lt;p&gt;&lt;em&gt;Excerpts are optional, hand-crafted, summaries of your content.&lt;/em&gt;&lt;/p&gt;';
+}
+
+add_action('admin_head', 'excerpt_textarea_height');
+function excerpt_textarea_height() { 
+    echo'
+    <style type="text/css">
+        #excerpt{ height:250px; }
+    </style>
+    ';
 }
 
 // Add the duplicate link to action list for post_row_actions
