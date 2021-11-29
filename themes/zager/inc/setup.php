@@ -176,6 +176,30 @@ function create_artist_reviews_category_taxonomies(){
 	));
 }
 
+add_action( 'init', 'create_video_category_taxonomies' );
+function create_video_category_taxonomies(){
+
+	register_taxonomy('video_category', array('video'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => _x( 'Video Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Video Category', 'taxonomy singular name' ),
+			'search_items'      =>  __( 'Search Video Categories' ),
+			'all_items'         => __( 'All Video Categories' ),
+			'parent_item'       => __( 'Parent Video Category' ),
+			'parent_item_colon' => __( 'Parent Video Category:' ),
+			'edit_item'         => __( 'Edit Video Category' ),
+			'update_item'       => __( 'Update Video Category' ),
+			'add_new_item'      => __( 'Add Category' ),
+			'new_item_name'     => __( 'New Video Category Name' ),
+			'menu_name'         => __( 'Video Categories' ),
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		//'rewrite'       => array( 'slug' => 'the_faq_category' ),
+	));
+}
+
 add_action('init', 'create_faq_post_type');
 function create_faq_post_type(){
 	register_post_type('faq', array(
@@ -204,6 +228,7 @@ function create_faq_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
+		'menu_icon'					 => 'dashicons-book',
 		'supports'           => array('title','editor')
 	) );
 }
@@ -236,6 +261,7 @@ function create_customer_review_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
+		'menu_icon'					 => 'dashicons-format-quote',
 		'supports'           => array('title')
 	) );
 }
@@ -268,6 +294,40 @@ function create_artist_review_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
+		'menu_icon'					 => 'dashicons-format-quote',
+		'supports'           => array('title')
+	) );
+}
+
+add_action('init', 'create_video_post_type');
+function create_video_post_type(){
+	register_post_type('video', array(
+		'labels'             => array(
+			'name'               => 'Videos',
+			'singular_name'      => 'Video',
+			'add_new'            => 'Add Video',
+			'add_new_item'       => 'Add new Video',
+			'edit_item'          => 'Edit Video',
+			'new_item'           => 'New Video',
+			'view_item'          => 'View Video',
+			'search_items'       => 'Find Videos',
+			'not_found'          => 'Videos not found',
+			'not_found_in_trash' => 'Videos not found in trash',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Videos'
+
+		  ),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'					 => 'dashicons-video-alt3',
 		'supports'           => array('title')
 	) );
 }
