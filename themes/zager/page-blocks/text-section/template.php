@@ -1,7 +1,10 @@
 <?php
+opcache_reset();
 $textsection_class = $field['background_color'] === 'lightbeige' ? ' TextSection-lightBeigeBg' : '';
 $textsection_class .= $field['block_type'] === 'reverse' ? ' TextSection-reverse' : '';
+$textsection_class .= $field['title_position'] === 'top' ? ' TextSection-titleTop' : '';
 $title_class = $field['dekstop_title_size'] != 'large' ? ' SectionTitle-' . $field['dekstop_title_size'] . 'Desktop' : '';
+$title_class .= $field['title_position'] == 'top' ? ' SectionTitle-center SectionTitle-alignLeftXS' : '';
 ?>
 
 <div class="TextSection<?php echo $textsection_class ?>">
