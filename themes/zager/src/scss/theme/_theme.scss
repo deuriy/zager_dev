@@ -54,8 +54,10 @@ ins {
 .woocommerce-variation-price .price {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
-	
+	gap: 6px;	
+}
+
+.TotalPrice {
 	del,
 	ins {
 		.woocommerce-Price-amount {
@@ -64,14 +66,22 @@ ins {
 	}
 }
 
+// .AccessoryCard_price {
+// 	// display: flex;
+// 	// gap: 6px;
+	
+// 	del,
+// 	ins {
+// 		.woocommerce-Price-amount {
+// 			font-size: 19px;
+// 		}
+// 	}
+// }
+
 .out-of-stock {
 	color: #992B13;
 	font-weight: bold;
 	font-size: 17px;
-}
-
-.Sidebar-product .out-of-stock {
-	margin: 36px 42px 16px 32px;
 }
 
 .SubTotal_cost .woocommerce-Price-amount {

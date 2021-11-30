@@ -1,10 +1,3 @@
-<?php
-	opcache_reset();
-	// print '<pre>';
-	// print_r($field);
-	// print '</pre>';
-?>
-
 <?php if ($field['price_card'] || $field['title']): ?>
 	<div class="PriceSection">
 	  <div class="Container">

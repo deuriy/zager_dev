@@ -15,12 +15,13 @@ defined( 'ABSPATH' ) || exit;
 global $product;
 global $woocommerce;
 
-$attribute_keys = array_keys( $attributes );
-
-do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+$attribute_keys = array_keys( $attributes ); ?>
 
 <div class="ProductOptions Sidebar_productOptions">
 	<div class="ProductOptions_inner">
+		
+		<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+
 		<a class="Offer ProductOptions_offer" href="#">Try this guitar for 30 days. Includes free shipping both ways.
 		</a>
 		<form class="variations_form cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $available_variations ) ) ?>">

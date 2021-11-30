@@ -1,5 +1,4 @@
 <?php
-opcache_reset();
 $textsection_class = $field['background_color'] === 'lightbeige' ? ' TextSection-lightBeigeBg' : '';
 $textsection_class .= $field['block_type'] === 'reverse' ? ' TextSection-reverse' : '';
 $textsection_class .= $field['title_position'] === 'top' ? ' TextSection-titleTop' : '';

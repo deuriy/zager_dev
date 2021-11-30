@@ -1,11 +1,4 @@
 <?php
-// opcache_reset();
-// print '<pre>';
-// print_r($field);
-// print '</pre>';
-?>
-
-<?php
 $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimonials', 'option') : $field['testimonials'];
 ?>
 

@@ -16,6 +16,400 @@
                 "id": ""
             },
             "layouts": {
+                "layout_61a4f3bcc310b": {
+                    "key": "layout_61a4f3bcc310b",
+                    "name": "expandable_tables",
+                    "label": "Expandable Tables",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a61567e72f5",
+                            "label": "Headings",
+                            "name": "headings",
+                            "type": "repeater",
+                            "instructions": "These headers will appear as tabs on mobile devices.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "field_61a61595e72f6",
+                            "min": 0,
+                            "max": 5,
+                            "layout": "block",
+                            "button_label": "Add Heading",
+                            "sub_fields": [
+                                {
+                                    "key": "field_61a63d600871d",
+                                    "label": "Mobile image",
+                                    "name": "mobile_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": ""
+                                },
+                                {
+                                    "key": "field_61a61595e72f6",
+                                    "label": "Heading",
+                                    "name": "heading",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_61a4fc6da0a47",
+                            "label": "Table",
+                            "name": "table",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "field_61a50eaaadb70",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "block",
+                            "button_label": "Add Table",
+                            "sub_fields": [
+                                {
+                                    "key": "field_61a50fcd7e59f",
+                                    "label": "Edit mode",
+                                    "name": "edit_mode",
+                                    "type": "button_group",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "single_line": "Single line",
+                                        "multiline_text": "Multiline text"
+                                    },
+                                    "allow_null": 0,
+                                    "default_value": "normal",
+                                    "layout": "horizontal",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "field_61a50eaaadb70",
+                                    "label": "Heading",
+                                    "name": "heading",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_61a50fcd7e59f",
+                                                "operator": "==",
+                                                "value": "normal"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_61a50fcd7e59f",
+                                                "operator": "==",
+                                                "value": "descriptions"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_61a50e6cadb6f",
+                                    "label": "Rows",
+                                    "name": "rows",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "collapsed": "field_61a50c28a0a4a",
+                                    "min": 0,
+                                    "max": 0,
+                                    "layout": "block",
+                                    "button_label": "Add Row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_61a510eab200d",
+                                            "label": "Display label",
+                                            "name": "display_label",
+                                            "type": "button_group",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "yes": "Yes",
+                                                "no": "No"
+                                            },
+                                            "allow_null": 0,
+                                            "default_value": "yes",
+                                            "layout": "horizontal",
+                                            "return_format": "value"
+                                        },
+                                        {
+                                            "key": "field_61a50c28a0a4a",
+                                            "label": "Row label",
+                                            "name": "row_label",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61a510eab200d",
+                                                        "operator": "==",
+                                                        "value": "yes"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        },
+                                        {
+                                            "key": "field_61a50c74a0a4b",
+                                            "label": "Display label hint",
+                                            "name": "display_label_hint",
+                                            "type": "button_group",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61a510eab200d",
+                                                        "operator": "==",
+                                                        "value": "yes"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "no": "No",
+                                                "yes": "Yes"
+                                            },
+                                            "allow_null": 0,
+                                            "default_value": "no",
+                                            "layout": "horizontal",
+                                            "return_format": "value"
+                                        },
+                                        {
+                                            "key": "field_61a50c92a0a4c",
+                                            "label": "Hint",
+                                            "name": "hint",
+                                            "type": "group",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61a50c74a0a4b",
+                                                        "operator": "==",
+                                                        "value": "yes"
+                                                    },
+                                                    {
+                                                        "field": "field_61a510eab200d",
+                                                        "operator": "==",
+                                                        "value": "yes"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "layout": "block",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_61a50c99a0a4d",
+                                                    "label": "Title",
+                                                    "name": "title",
+                                                    "type": "text",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": 0,
+                                                    "wrapper": {
+                                                        "width": "50",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "placeholder": "",
+                                                    "prepend": "",
+                                                    "append": "",
+                                                    "maxlength": ""
+                                                },
+                                                {
+                                                    "key": "field_61a50ca7a0a4e",
+                                                    "label": "Text",
+                                                    "name": "text",
+                                                    "type": "wysiwyg",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": 0,
+                                                    "wrapper": {
+                                                        "width": "50",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "tabs": "all",
+                                                    "toolbar": "basic",
+                                                    "media_upload": 1,
+                                                    "delay": 0
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "field_61a4fcbda0a48",
+                                            "label": "Cols",
+                                            "name": "cols",
+                                            "type": "repeater",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "collapsed": "field_61a4fd62a0a49",
+                                            "min": 0,
+                                            "max": 5,
+                                            "layout": "block",
+                                            "button_label": "Add Column",
+                                            "sub_fields": [
+                                                {
+                                                    "key": "field_61a4fd62a0a49",
+                                                    "label": "Data",
+                                                    "name": "data",
+                                                    "type": "text",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": [
+                                                        [
+                                                            {
+                                                                "field": "field_61a50fcd7e59f",
+                                                                "operator": "==",
+                                                                "value": "single_line"
+                                                            }
+                                                        ]
+                                                    ],
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "placeholder": "",
+                                                    "prepend": "",
+                                                    "append": "",
+                                                    "maxlength": ""
+                                                },
+                                                {
+                                                    "key": "field_61a512a28c310",
+                                                    "label": "Data",
+                                                    "name": "data_multiline",
+                                                    "type": "wysiwyg",
+                                                    "instructions": "",
+                                                    "required": 0,
+                                                    "conditional_logic": [
+                                                        [
+                                                            {
+                                                                "field": "field_61a50fcd7e59f",
+                                                                "operator": "==",
+                                                                "value": "multiline_text"
+                                                            }
+                                                        ]
+                                                    ],
+                                                    "wrapper": {
+                                                        "width": "",
+                                                        "class": "",
+                                                        "id": ""
+                                                    },
+                                                    "default_value": "",
+                                                    "tabs": "all",
+                                                    "toolbar": "basic",
+                                                    "media_upload": 1,
+                                                    "delay": 0
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_61a4d0c174617": {
                     "key": "layout_61a4d0c174617",
                     "name": "student_reviews",
@@ -1998,6 +2392,78 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_61a66c9deae72": {
+                    "key": "layout_61a66c9deae72",
+                    "name": "product_cards_by_group",
+                    "label": "Product cards by group",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a66ceceae75",
+                            "label": "Group",
+                            "name": "group",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "field_61a66d01eae76",
+                            "min": 0,
+                            "max": 4,
+                            "layout": "block",
+                            "button_label": "Add Group",
+                            "sub_fields": [
+                                {
+                                    "key": "field_61a66d01eae76",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_61a66c9deae74",
+                                    "label": "Cards",
+                                    "name": "cards",
+                                    "type": "post_object",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+                                        "product"
+                                    ],
+                                    "taxonomy": "",
+                                    "allow_null": 0,
+                                    "multiple": 1,
+                                    "return_format": "id",
+                                    "ui": 1
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_619f9be775cc3": {
                     "key": "layout_619f9be775cc3",
                     "name": "products",
@@ -2469,13 +2935,43 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_61a65edb70750",
+                            "label": "Page Layout",
+                            "name": "page_layout",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "normal": "Normal",
+                                "product_pages": "Product pages"
+                            },
+                            "allow_null": 0,
+                            "default_value": "normal",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
                             "key": "field_61822f0986632",
                             "label": "Block position",
                             "name": "block_position",
                             "type": "button_group",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61a65edb70750",
+                                        "operator": "==",
+                                        "value": "product_pages"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "50",
                                 "class": "",
@@ -2519,7 +3015,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -2531,7 +3027,7 @@
                             ],
                             "allow_null": 0,
                             "multiple": 1,
-                            "return_format": "object",
+                            "return_format": "id",
                             "ui": 1
                         },
                         {
@@ -2543,7 +3039,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -6186,5 +6682,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1638193777
+    "modified": 1638297100
 }
