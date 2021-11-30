@@ -66,17 +66,14 @@ ins {
 	}
 }
 
-// .AccessoryCard_price {
-// 	// display: flex;
-// 	// gap: 6px;
+.AccessoryCard_price {
+	// display: flex;
+	// gap: 6px;
 	
-// 	del,
-// 	ins {
-// 		.woocommerce-Price-amount {
-// 			font-size: 19px;
-// 		}
-// 	}
-// }
+	.woocommerce-Price-amount {
+		font-size: 19px;
+	}
+}
 
 .out-of-stock {
 	color: #992B13;
