@@ -1,4 +1,7 @@
 <?php if ($field['accessory_cards'] || $field['title']): ?>
+	<?php
+	opcache_reset();
+	?>
 	<div class="AccessoriesSection AccessoriesSection-gradientBg">
 		<div class="Container">
 			<div class="AccessoriesSection_wrapper">
@@ -23,10 +26,11 @@
 
 										<?php if ($thumbnail): ?>
 											<div class="AccessoryCard_imgWrapper">
-												<?php echo $thumbnail ?>
-												<?php if ( $product->is_on_sale() ) : ?>
+												<?php
+												echo $thumbnail;
+												if ( $product->is_on_sale() ) : ?>
 
-												<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale Tag Tag-accessoryCard AccessoryCard_tag">' . esc_html__( 'On sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
+												<?php //echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale Tag Tag-accessoryCard AccessoryCard_tag">' . esc_html__( 'On sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
 
 												<?php endif; ?>
 											</div>

@@ -10,11 +10,8 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
   $product_attributes = $product->get_attributes();
   $product_url = get_permalink($field['product']);
   $additional_labels = get_field('additional_labels', $field['product']);
-
-  // print '<pre>';
-  // print_r($field);
-  // print '</pre>';
 ?>
+
 <div class="ProductSection">
   <div class="Container">
     <div class="ProductSection_salePeriod">On sale for the next 23hrs 22 min</div>
@@ -97,12 +94,17 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
       <div class="Testimonials hidden-xs">
         <div class="Testimonials_items">
           <?php foreach ($testimonials as $testimonial): ?>
+            <?php
+              $icon = wp_get_attachment_image( $testimonial['source_icon'], 'full' );
+            ?>
+
             <div class="Testimonial Testimonials_item">
               <?php if ($testimonial['text']): ?>
                 <div class="Testimonial_text">
                   <?php echo $testimonial['text'] ?>
                 </div>
               <?php endif ?>
+
               <?php if ($testimonial['author'] || $testimonial['source_icon']): ?>
                 <div class="Testimonial_info">
                   <?php if ($testimonial['author']): ?>
@@ -110,9 +112,10 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
                       <?php echo $testimonial['author'] ?>
                     </div>
                   <?php endif ?>
-                  <?php if ($testimonial['source_icon']): ?>
+
+                  <?php if ($icon): ?>
                     <div class="Testimonial_source">
-                      <img loading="lazy" src="<?php echo $testimonial['source_icon'] ?>" alt="Reseller Ratings">
+                      <?php echo $icon ?>
                     </div>
                   <?php endif ?>
                 </div>
@@ -121,21 +124,28 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
           <?php endforeach ?>
         </div>
       </div>
+
       <div class="TestimonialsSwiper ProductSection_testimonialsSwiper swiper hidden-smPlus">
         <div class="swiper-wrapper">
           <?php foreach ($testimonials as $testimonial): ?>
+            <?php
+              $icon = wp_get_attachment_image( $testimonial['source_icon'], 'full' );
+            ?>
+
             <div class="swiper-slide TestimonialsSwiper_slide">
               <div class="Testimonial Testimonial-small TestimonialsSwiper_item">
-                <?php if ($testimonial['source_icon']): ?>
+                <?php if ($icon): ?>
                   <div class="Testimonial_source">
-                    <img loading="lazy" src="<?php echo $testimonial['source_icon'] ?>" alt="Reseller Ratings">
+                    <?php echo $icon ?>
                   </div>
                 <?php endif ?>
+
                 <?php if ($testimonial['text']): ?>
                   <div class="Testimonial_text">
                     <?php echo $testimonial['text'] ?>
                   </div>
                 <?php endif ?>
+
                 <?php if ($testimonial['author']): ?>
                   <div class="Testimonial_info">
                     <div class="Testimonial_author">

@@ -1,3 +1,7 @@
+<?php
+$image = wp_get_attachment_image( $field['image'], 'full', false, array('class' => 'TextAndImage_img') );
+?>
+
 <div class="TextAndImage">
   <div class="Container Container-textAndImage">
     <div class="TextAndImage_wrapper">
@@ -9,6 +13,7 @@
                 <?php echo $field['text'] ?>
               </div>
             <?php endif ?>
+            
             <?php
             if ($field['display_button'] === 'yes' && $field['button']['url'] && $field['button']['text']):
               $button_style_classes = [
@@ -29,10 +34,11 @@
           </div>
         </div>
       <?php endif ?>
-      <?php if ($field['image']): ?>
+
+      <?php if ($image): ?>
         <div class="TextAndImage_right">
           <div class="TextAndImage_imgWrapper">
-            <img class="TextAndImage_img" loading="lazy" src="<?php echo $field['image'] ?>" alt="Charity">
+            <?php echo $image ?>
           </div>
         </div>
       <?php endif ?>

@@ -60,9 +60,10 @@
     }
   });
 
-  $('Select').select2({
+  $('.Select').select2({
   	minimumResultsForSearch: -1,
-  });
+  	width: "100px"
+  }).data('select2').$dropdown.addClass('select2-sorting');
 
   Fancybox.bind(`.FancyboxPopupLink`, {
     dragToClose: false,

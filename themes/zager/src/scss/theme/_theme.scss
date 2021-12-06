@@ -29,6 +29,38 @@ body.admin-bar {
 	line-height: 48px;
 }
 
+.btn-outline-primary {
+	display: inline-grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5625em;
+  max-width: 100%;
+  padding: 1em 1.6875em;
+  font-weight: bold;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background: #febd70;
+  color: #13141a;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration :none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    background: darken(#febd70, 15);
+  }
+}
+
+.cart-empty {
+	@extend .Remark;
+}
+
 .price del,
 .price ins {
 	.woocommerce-Price-amount {
@@ -1102,16 +1134,28 @@ button:disabled {
 
 	&__cart-item {
 		display: grid;
-		grid-template-columns: repeat(4, auto);
+		grid-template-columns: repeat(3, auto) 80px;
 		align-items: center;
 		
 		@media (max-width: 767px) {
 			grid-template-columns: auto;
 		}
+
+		&:first-child {
+			.product-remove::before {
+				top: 24px;
+			}
+		}
+
+		&:nth-last-child(2) {
+			.product-remove::before {
+				bottom: 24px;
+			}
+		}
 	}
 
 	.product-thumbnail,
-	.product-subtotal{
+	.product-subtotal {
 		padding: 20px;
 	}
 
@@ -1172,9 +1216,11 @@ button:disabled {
 		&::before {
 			content: "";
 			position: absolute;
-			top: 24px;
+			// top: 24px;
+			top: 0;
+			bottom: 0;
 			left: 0;
-			bottom: 24px;
+			// bottom: 24px;
 			width: 2px;
 			background: #F4EDE4;
 		}
@@ -1189,6 +1235,11 @@ button:disabled {
 
 	.product-subtotal {
 		text-align: center;
+		color: #992B13;
+		font-weight: 700;
+		font-size: 19px;
+		line-height: 24px;
+		font-family: "Roboto Slab", sans-serif;
 		
 		@media (max-width: 767px) {
 			padding-top: 0;
@@ -1698,5 +1749,57 @@ button:disabled {
 	}
 }
 
+.Sorting {
+	.select2-container {		
+		.select2-selection--single {
+			height: 33px;
+		}
+	}
+
+	.select2-container--default .select2-selection--single {
+		border: 2px solid #F3B25D;
+		background: rgba(255, 251, 246, 0.45);
+		
+		.select2-selection__rendered {
+			font-size: 14px;
+			line-height: 33px;
+			font-weight: bold;
+		}
+
+		.select2-selection__arrow {
+			top: 4px;
+			right: 8px;
+		}
+	}
+}
+
+.select2-sorting.select2-container {
+	margin-top: 32px;
+	
+	.select2-dropdown {
+		background: #FFFBF6;
+		filter: drop-shadow(0 3px 3.5px rgba(0, 0, 0, .16));
+	}
+
+	&.select2-container--default .select2-results>.select2-results__options {
+		padding: 5px 0;
+	}
+
+	&.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+		background: transparent;
+		color: #febd70;
+	}
+
+	&.select2-container--default .select2-results__option {
+		padding: 10px;
+		font-weight: 700;
+		transition: all .2s ease-in-out;
+		
+		&--selected {
+			background: transparent;
+			color: #febd70;
+		}
+	}
+}
 
 

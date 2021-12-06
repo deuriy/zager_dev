@@ -1,11 +1,21 @@
+<?php
+$image = wp_get_attachment_image( $field['image'], 'full', false, array('class' => 'CTASection_img') );
+?>
+
 <div class="CTASection">
   <div class="Container">
     <?php if ($field['title']): ?>
-      <h2 class="SectionTitle CTASection_title">Find your last guitar.</h2>
+      <h2 class="SectionTitle CTASection_title">
+        <?php echo $field['title'] ?>
+      </h2>
     <?php endif ?>
+
     <?php if ($field['subtitle']): ?>
-      <h3 class="CTASection_subTitle">The guitar that you can pass onto your children</h3>
+      <h3 class="CTASection_subTitle">
+        <?php echo $field['subtitle'] ?>
+      </h3>
     <?php endif ?>
+
     <?php if ($field['display_button'] === 'yes' && $field['button']['url'] && $field['button']['text']): ?>
       <?php
       $button_style_classes = [
@@ -26,9 +36,10 @@
       </div>
     <?php endif ?>
   </div>
-  <?php if ($field['image']): ?>
+
+  <?php if ($image): ?>
     <div class="CTASection_imgWrapper">
-      <img class="CTASection_img" loading="lazy" src="<?php echo $field['image'] ?>" alt="All guitars">
+      <?php echo $image ?>
     </div>
   <?php endif ?>
 </div>

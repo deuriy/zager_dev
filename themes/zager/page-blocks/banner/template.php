@@ -57,11 +57,15 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
 			<div class="IconsAndTextsSwiper swiper Banner_iconsAndTextsSwiper hidden-smPlus">
 				<div class="swiper-wrapper">
 					<?php foreach ($icon_and_texts as $icon_and_text): ?>
+						<?php
+							$icon = wp_get_attachment_image( $icon_and_text['icon'], 'full', false, array('class' => 'CircleIcon_img') );
+						?>
+
 						<div class="swiper-slide IconsAndTextsSwiper_slide">
 							<div class="IconAndText IconAndText-highlighted IconsAndTexts_item">
-								<?php if ($icon_and_text['icon']): ?>
+								<?php if ($icon): ?>
 	  							<div class="CircleIcon IconAndText_icon">
-	  								<img class="CircleIcon_img" loading="lazy" src="<?php echo $icon_and_text['icon'] ?>" alt="Guitar">
+	  								<?php echo $icon ?>
 	  							</div>
 	  						<?php endif ?>
 
@@ -89,10 +93,14 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
   		<div class="Container">
   			<div class="IconsAndTexts_wrapper">
   				<?php foreach ($icon_and_texts as $icon_and_text): ?>
+  					<?php
+							$icon = wp_get_attachment_image( $icon_and_text['icon'], 'full', false, array('class' => 'CircleIcon_img') );
+						?>
+
   					<div class="IconAndText IconsAndTexts_item">
-  						<?php if ($icon_and_text['icon']): ?>
+  						<?php if ($icon): ?>
   							<div class="CircleIcon IconAndText_icon">
-  								<img class="CircleIcon_img" loading="lazy" src="<?php echo $icon_and_text['icon'] ?>" alt="Guitar">
+  								<?php echo $icon ?>
   							</div>
   						<?php endif ?>
 

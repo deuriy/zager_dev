@@ -189,21 +189,12 @@ if ( ! class_exists( 'Understrap_WP_Primary_Navwalker' ) ) {
 			}
 
 			// If item has_children add atts to <a>.
-			if ( isset( $args->has_children ) && $args->has_children && 0 === $depth && 1 !== $args->depth ) {
-				$atts['href']          = '#';
-				// $atts['data-toggle']   = 'dropdown';
-				$atts['aria-haspopup'] = 'true';
-				$atts['aria-expanded'] = 'false';
-				$atts['class']         = 'MainMenu_link';
-				$atts['id']            = 'menu-item-dropdown-' . $item->ID;
+			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+			// Items in dropdowns use .dropdown-item instead of .nav-link.
+			if ( $depth > 0 ) {
+				$atts['class'] = 'MainMenu_link';
 			} else {
-				$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
-				// Items in dropdowns use .dropdown-item instead of .nav-link.
-				if ( $depth > 0 ) {
-					$atts['class'] = 'MainMenu_link';
-				} else {
-					$atts['class'] = 'MainMenu_link';
-				}
+				$atts['class'] = 'MainMenu_link';
 			}
 
 			$atts['aria-current'] = $item->current ? 'page' : '';

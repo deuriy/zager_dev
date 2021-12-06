@@ -10,25 +10,33 @@ $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icon
         <?php echo $field['title'] ?>
       </h2>
     <?php endif ?>
+
     <form class="SubscribeForm NewsLetter_form">
       <input class="FormText SubscribeForm_textInput" type="email" name="email" placeholder="Email address">
       <button class="BtnYellow BtnYellow-email SubscribeForm_submitBtn" type="submit">Join</button>
     </form>
+
     <?php if ($icon_and_texts): ?>
       <div class="IconsAndTexts NewsLetter_iconsAndTexts">
         <div class="IconsAndTexts_wrapper">
           <?php foreach ($icon_and_texts as $icon_and_text): ?>
+            <?php
+              $icon = wp_get_attachment_image( $icon_and_text['icon'], 'full', false, array('class' => 'CircleIcon_img') );
+            ?>
+
             <div class="IconAndText IconsAndTexts_item">
-              <?php if ($icon_and_text['icon']): ?>
+              <?php if ($icon): ?>
                 <div class="CircleIcon IconAndText_icon">
-                  <img class="CircleIcon_img" loading="lazy" src="<?php echo $icon_and_text['icon'] ?>" alt="Guitar">
+                  <?php echo $icon ?>
                 </div>
               <?php endif ?>
+
               <?php if ($icon_and_text['title']): ?>
                 <h3 class="IconAndText_title">
                   <?php echo $icon_and_text['title'] ?>
                 </h3>
               <?php endif ?>
+              
               <?php if ($icon_and_text['text']): ?>
                 <div class="IconAndText_text">
                   <?php echo $icon_and_text['text'] ?>
