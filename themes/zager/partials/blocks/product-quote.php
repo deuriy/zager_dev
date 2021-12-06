@@ -3,7 +3,7 @@ if (!get_field('product_quote') || get_field('product_quote')['block_display'] =
   return;
 }
 
-$product_quote = get_field('product_quote')['quote_block_type'] == 'product_default' ? get_field('quote_product_default', 'option') : get_field('product_quote');
+$product_quote = get_field('product_quote')['quote_block_type'] == 'product_default' ? get_field('product_page_blocks', 'option')['quote_product_default'] : get_field('product_quote');
 ?>
 
 <?php if ($product_quote['author'] || $product_quote['text']): ?>

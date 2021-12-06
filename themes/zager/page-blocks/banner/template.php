@@ -1,6 +1,6 @@
 <?php
 $style = $field['background_image'] ? ' style="background-image: url(\''. $field['background_image'] .'\');"' : '';
-$additional_classes .= !is_front_page() ? ' Banner-secondaryPage' : '';
+$additional_classes = !is_front_page() ? ' Banner-secondaryPage' : '';
 $additional_classes .= $field['show_icons_and_texts_block'] == 'yes' ? ' Banner-noPaddingBottomDesktop' : '';
 $icon_and_texts = $field['icons_and_texts_type'] === 'default' ? get_field('icons_and_texts', 'option') : $field['icons_and_texts'];
 ?>

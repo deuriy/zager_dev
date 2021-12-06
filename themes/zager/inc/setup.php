@@ -224,6 +224,30 @@ function create_video_category_taxonomies(){
 	));
 }
 
+add_action( 'init', 'create_popup_category_taxonomies' );
+function create_popup_category_taxonomies(){
+
+	register_taxonomy('popup_category', array('popup'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => _x( 'Popup Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'Popup Category', 'taxonomy singular name' ),
+			'search_items'      =>  __( 'Search Popup Categories' ),
+			'all_items'         => __( 'All Popup Categories' ),
+			'parent_item'       => __( 'Parent Popup Category' ),
+			'parent_item_colon' => __( 'Parent Popup Category:' ),
+			'edit_item'         => __( 'Edit Popup Category' ),
+			'update_item'       => __( 'Update Popup Category' ),
+			'add_new_item'      => __( 'Add Category' ),
+			'new_item_name'     => __( 'New Popup Category Name' ),
+			'menu_name'         => __( 'Popup Categories' ),
+		),
+		'show_ui'       => true,
+		'query_var'     => true,
+		//'rewrite'       => array( 'slug' => 'the_faq_category' ),
+	));
+}
+
 add_action('init', 'create_faq_post_type');
 function create_faq_post_type(){
 	register_post_type('faq', array(
@@ -252,7 +276,7 @@ function create_faq_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'menu_icon'					 => 'dashicons-book',
+		'menu_icon'			 => 'dashicons-book',
 		'supports'           => array('title','editor')
 	) );
 }
@@ -285,7 +309,7 @@ function create_customer_review_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'menu_icon'					 => 'dashicons-format-quote',
+		'menu_icon'			 => 'dashicons-format-quote',
 		'supports'           => array('title')
 	) );
 }
@@ -318,7 +342,7 @@ function create_artist_review_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'menu_icon'					 => 'dashicons-format-quote',
+		'menu_icon'			 => 'dashicons-format-quote',
 		'supports'           => array('title')
 	) );
 }
@@ -351,7 +375,7 @@ function create_student_review_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'menu_icon'					 => 'dashicons-format-quote',
+		'menu_icon'			 => 'dashicons-format-quote',
 		'supports'           => array('title', 'editor', 'excerpt')
 	) );
 }
@@ -384,7 +408,40 @@ function create_video_post_type(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'menu_icon'					 => 'dashicons-video-alt3',
+		'menu_icon'			 => 'dashicons-video-alt3',
+		'supports'           => array('title')
+	) );
+}
+
+add_action('init', 'create_popup_post_type');
+function create_popup_post_type(){
+	register_post_type('popup', array(
+		'labels'             => array(
+			'name'               => 'Popups',
+			'singular_name'      => 'Popup',
+			'add_new'            => 'Add Popup',
+			'add_new_item'       => 'Add new Popup',
+			'edit_item'          => 'Edit Popup',
+			'new_item'           => 'New Popup',
+			'view_item'          => 'View Popup',
+			'search_items'       => 'Find Popups',
+			'not_found'          => 'Popups not found',
+			'not_found_in_trash' => 'Popups not found in trash',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Popups'
+
+		  ),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'			 => 'dashicons-open-folder',
 		'supports'           => array('title')
 	) );
 }

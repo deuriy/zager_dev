@@ -1,5 +1,5 @@
 <?php
-$faq = $field['block_type'] === 'default' ? get_field('product_faq_default', 'option') : $field;
+$faq = $field['block_type'] === 'default' ? get_field('product_page_blocks', 'option')['product_faq_default'] : $field;
 ?>
 
 <?php if ($faq['title'] || $faq['faq_items']): ?>

@@ -29,12 +29,12 @@
 		                  	<?php foreach ($field['table'] as $table_key => $table): ?>
 		                  		<?php
 										    		$table_classes = $table['edit_mode'] == 'multiline_text' ? ' ExpandTable-description' : '';
-														$td_classes = $table['style'] == 'normal' ? ' ExpandTable_data-value' : '';
+														$td_classes = $table['edit_mode'] == 'single_line' ? ' ExpandTable_data-value' : '';
 													?>
 
 		                  		<div class="ExpandTable ExpandTable-expanded<?php echo $table_classes ?>">
 												    <table class="ExpandTable_table">
-												    	<?php if ($table['style'] != 'headings' && $table['heading']): ?>
+												    	<?php if ($table['heading']): ?>
 												    		<thead class="ExpandTable_head">
 													        <tr class="ExpandTable_row">
 													          <th class="ExpandTable_th" colspan="5">
@@ -131,12 +131,12 @@
 					<?php foreach ($field['table'] as $table): ?>
 			    	<?php
 			    		$table_classes = $table['edit_mode'] == 'multiline_text' ? ' ExpandTable-description' : '';
-							$td_classes = $table['style'] == 'normal' ? ' ExpandTable_data-value' : '';
+							$td_classes = $table['edit_mode'] == 'single_line' ? ' ExpandTable_data-value' : '';
 						?>
 
 					  <div class="ExpandTable ExpandTable-expanded<?php echo $table_classes ?>">
 					    <table class="ExpandTable_table">
-					    	<?php if ($table['style'] != 'headings' && $table['heading']): ?>
+					    	<?php if ($table['heading']): ?>
 					    		<thead class="ExpandTable_head">
 						        <tr class="ExpandTable_row">
 						          <th class="ExpandTable_th" colspan="5">

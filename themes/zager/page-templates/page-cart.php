@@ -14,19 +14,23 @@ if ($layouts) {
 	$bottom_blocks = [];
 
 	foreach ($layouts as $layout) {
-		switch ($layout['block_position']) {
-			case 'before_content':
-				$before_content_blocks[] = $layout;
-				break;
-			case 'after_content':
-				$after_content_blocks[] = $layout;
-				break;
-			case 'bottom':
-				$bottom_blocks[] = $layout;
-				break;
-			default:
-				$bottom_blocks[] = $layout;
-				break;
+		if (isset($layout['block_position'])) {
+			switch ($layout['block_position']) {
+				case 'before_content':
+					$before_content_blocks[] = $layout;
+					break;
+				case 'after_content':
+					$after_content_blocks[] = $layout;
+					break;
+				case 'bottom':
+					$bottom_blocks[] = $layout;
+					break;
+				default:
+					$bottom_blocks[] = $layout;
+					break;
+			}
+		} else {
+			$bottom_blocks[] = $layout;
 		}
 	}
 }

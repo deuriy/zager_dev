@@ -12,7 +12,7 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
   $additional_labels = get_field('additional_labels', $field['product']);
 
   // print '<pre>';
-  // print_r($product_images_ids);
+  // print_r($field);
   // print '</pre>';
 ?>
 <div class="ProductSection">
@@ -67,7 +67,7 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
         <?php if ($product_attributes): ?>
           <ul class="ProductSection_categoryTags">
             <?php foreach ($product_attributes as $key => $value): ?>
-              <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
+              <?php foreach (wc_get_product_terms($field['product'], $key) as $term): ?>
                 <li class="ProductSection_categoryTag">
                   <span class="CategoryTag">
                     <?php echo $term->name; ?>
@@ -93,7 +93,7 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
       </div>
     </div>
 
-    <?php if ($testimonials): ?>
+    <?php if ($field['display_testimonials'] == 'yes' && $testimonials): ?>
       <div class="Testimonials hidden-xs">
         <div class="Testimonials_items">
           <?php foreach ($testimonials as $testimonial): ?>

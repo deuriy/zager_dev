@@ -5,7 +5,7 @@ switch ($field['video_section_type']) {
     break;
   
   case 'default_product':
-    $video_section = get_field('product_video_section', 'option');
+    $video_section = get_field('product_page_blocks', 'option')['product_video_section'];
     break;
   
   default:
@@ -24,21 +24,29 @@ $video_section_container_class = is_product() ? ' Container-videoSectionProduct'
         <?php echo $video_section['title'] ?>
       </h2>
     <?php endif ?>
+
     <?php if ($video_section['video_blocks']): ?>
       <div class="VideoSection_swiperWrapper">
         <div class="VideoSwiper VideoSection_swiper swiper">
           <div class="swiper-wrapper">
             <?php foreach ($video_section['video_blocks'] as $videoblock): ?>
+              <?php
+                $video_url = $videoblock['youtube_video_url'];
+                $thumbnail = wp_get_attachment_image( $videoblock['thumbnail'], 'full' );
+              ?>
+
               <div class="swiper-slide VideoSwiper_slide">
                 <div class="VideoBlock">
-                  <?php if ($videoblock['thumbnail'] && $videoblock['youtube_video_url']): ?>
-                    <a class="VideoBlock_videoThumb" href="<?php echo $videoblock['youtube_video_url']; ?>" data-fancybox="gallery">
-                      <img loading="lazy" src="<?php echo $videoblock['thumbnail']; ?>" alt="">
+                  <?php if ($thumbnail && $video_url): ?>
+                    <a class="VideoBlock_videoThumb" href="<?php echo $video_url ?>" data-fancybox="gallery">
+                      <?php echo $thumbnail ?>
                     </a>
                   <?php endif ?>
+
                   <?php if ($videoblock['title']): ?>
                     <h3 class="VideoBlock_title"><?php echo $videoblock['title'] ?></h3>
                   <?php endif ?>
+
                   <?php if ($videoblock['description']): ?>
                     <h3 class="VideoBlock_description"><?php echo $videoblock['description'] ?></h3>
                   <?php endif ?>
@@ -50,6 +58,7 @@ $video_section_container_class = is_product() ? ' Container-videoSectionProduct'
         <button class="SwiperBtn SwiperBtn-next VideoSection_next hidden-xs" type="button"></button>
       </div>
     <?php endif ?>
+
     <div class="SwiperControls">
       <div class="SwiperPagination SwiperControls_pagination"></div>
       <?php if ($video_section['button'] && $video_section['display_button'] === 'yes' && $video_section['button']['url'] && $video_section['button']['text']): ?>
@@ -64,7 +73,9 @@ $video_section_container_class = is_product() ? ' Container-videoSectionProduct'
         $button_icon_class = ($video_section['button']['button_icon'] !== 'no_icon') ? ' ' . $button_style_class . '-' . $video_section['button']['button_icon'] . ' ' : ' ';
         $button_classes = $button_style_class . $button_icon_class;
         ?>
-        <a class="<?php echo $button_classes ?>" href="<?php echo $video_section['button']['url'] ?>"><?php echo $video_section['button']['text'] ?></a>
+        <a class="<?php echo $button_classes ?>" href="<?php echo $video_section['button']['url'] ?>">
+          <?php echo $video_section['button']['text'] ?>
+        </a>
       <?php endif ?>
     </div>
   </div>

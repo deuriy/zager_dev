@@ -73,22 +73,24 @@
                       <?php echo $product_image ?>
                     <?php endif ?>
 
-                    <?php foreach ($additional_labels as $additional_label): ?>
-                      <?php if ($additional_label['value'] == 'special_addition'): ?>
-                        <span class="Label Label-productCard ProductCard_label">
-                          <?php echo $additional_label['label'] ?>
-                        </span>
-                      <?php endif ?>
+                    <?php if ($additional_labels): ?>
+                      <?php foreach ($additional_labels as $additional_label): ?>
+                        <?php if ($additional_label['value'] == 'special_addition'): ?>
+                          <span class="Label Label-productCard ProductCard_label">
+                            <?php echo $additional_label['label'] ?>
+                          </span>
+                        <?php endif ?>
 
-                      <?php if ($additional_label['value'] == 'save'): ?>
-                        <?php
-                          $discount = get_field('discount', $id);
-                        ?>
-                        <span class="Tag Tag-productCard ProductCard_tag">
-                          <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-                        </span>
-                      <?php endif ?>
-                    <?php endforeach ?>
+                        <?php if ($additional_label['value'] == 'save'): ?>
+                          <?php
+                            $discount = get_field('discount', $id);
+                          ?>
+                          <span class="Tag Tag-productCard ProductCard_tag">
+                            <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+                          </span>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    <?php endif ?>
                   </div>
                 <?php endif ?>
 
@@ -149,22 +151,24 @@
                     <?php echo $product_image ?>
                   <?php endif ?>
 
-                  <?php foreach ($additional_labels as $additional_label): ?>
-                    <?php if ($additional_label['value'] == 'special_addition'): ?>
-                      <span class="Label Label-productCard ProductCard_label">
-                        <?php echo $additional_label['label'] ?>
-                      </span>
-                    <?php endif ?>
+                  <?php if ($additional_labels): ?>
+                    <?php foreach ($additional_labels as $additional_label): ?>
+                      <?php if ($additional_label['value'] == 'special_addition'): ?>
+                        <span class="Label Label-productCard ProductCard_label">
+                          <?php echo $additional_label['label'] ?>
+                        </span>
+                      <?php endif ?>
 
-                    <?php if ($additional_label['value'] == 'save'): ?>
-                      <?php
-                        $discount = get_field('discount', $id);
-                      ?>
-                      <span class="Tag Tag-productCard ProductCard_tag">
-                        <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-                      </span>
-                    <?php endif ?>
-                  <?php endforeach ?>
+                      <?php if ($additional_label['value'] == 'save'): ?>
+                        <?php
+                          $discount = get_field('discount', $id);
+                        ?>
+                        <span class="Tag Tag-productCard ProductCard_tag">
+                          <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+                        </span>
+                      <?php endif ?>
+                    <?php endforeach ?>
+                  <?php endif ?>
                 </div>
               <?php endif ?>
 

@@ -1,3 +1,7 @@
+<?php
+	global $post;
+?>
+
 <?php if ($field['group']): ?>
 	<div class="ProductCardsSection">
 	  <div class="Container">

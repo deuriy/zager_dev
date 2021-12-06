@@ -199,6 +199,17 @@ function woocommerce_template_loop_product_link_more() {
 
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 
+remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+
+
+add_filter( 'woocommerce_page_title', 'zager_woocommerce_page_title');
+function zager_woocommerce_page_title( $page_title ) {
+  if( $page_title == 'Shop' ) {
+    return "Zager hand built guitars";
+  }
+}
+
 function woocommerce_get_product_thumbnail( $size = 'woocommerce_thumbnail', $deprecated1 = 0, $deprecated2 = 0 ) {
 	global $post, $product;
 
@@ -630,4 +641,160 @@ function zager_variation_price_format_min( $price, $product ) {
    $min_price = current( $prices['price'] );
    $price = sprintf( __( 'From: %1$s', 'woocommerce' ), wc_price( $min_price ) );
    return $price;
+}
+
+function get_products_count_by_attribute($tax_slug, $term_slug) {
+	$query = array(
+    'post_status' => 'publish',
+    'post_type' => 'product',
+    'fields' => 'ids',
+
+    'tax_query' => [
+    	'relation' => 'OR',
+			[
+				'taxonomy' => $tax_slug,
+				'field'    => 'slug',
+				'terms'    => $term_slug
+			]
+		]
+	);
+
+	$wpquery = new WP_Query($query);
+	return $wpquery->found_posts;
+}
+
+add_action( 'wp_ajax_get_filtered_products', 'get_filtered_products' );
+add_action( 'wp_ajax_nopriv_get_filtered_products', 'get_filtered_products' );
+function get_filtered_products() {
+	$min_price = (int)$_POST['min_price'];
+	$max_price = (int)$_POST['max_price'];
+
+	$product_attributes = $_POST['product_attributes'];
+	$tax_queries = [];
+
+	$tax_queries = [
+		'tax_query' => [
+    	'relation' => 'OR',
+		],
+	];
+
+	if ($product_attributes) {
+		foreach ($product_attributes as $product_tax_key => $tax_terms) {
+			$tax_queries['tax_query'][] = [
+				'taxonomy' => $product_tax_key,
+				'field' => 'slug',
+				'terms' => $tax_terms
+			];
+		}
+	}
+
+	$query = array(
+    'post_status' => 'publish',
+    'post_type' => 'product',
+    'posts_per_page' => -1,
+    'fields' => 'ids',
+
+		$tax_queries,
+
+    'meta_query' => [
+    	'relation' => 'AND',
+      [
+        'key' => '_price',
+        'value' => array($min_price, $max_price),
+        'compare' => 'BETWEEN',
+        'type' => 'NUMERIC'
+      ],
+    ]
+	);
+
+	$wpquery = new WP_Query($query);
+
+	if ($wpquery->have_posts()) :
+		while ($wpquery->have_posts()) :
+			$wpquery->the_post();
+
+			$id = get_the_ID();
+			$product = wc_get_product($id);
+			$product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
+      $product_attributes = $product->get_attributes();
+      $product_url = get_permalink($id);
+      $additional_labels = get_field('additional_labels', $id);
+
+			if ($product->get_short_description()) {
+        $product_description = $product->get_short_description();
+      } else {
+        $product_description = wp_trim_words($product->get_description(), 18, '...');
+      } ?>
+
+			<div class="ProductCard ProductCard-twoColumnLg Products_item">
+        <div class="ProductCard_wrapper">
+        	<?php if ($product_image || $additional_labels): ?>
+            <div class="ProductCard_imgWrapper">
+              <?php if ($product_image): ?>
+                <?php echo $product_image ?>
+              <?php endif ?>
+
+              <?php if ($additional_labels): ?>
+                <?php foreach ($additional_labels as $additional_label): ?>
+                  <?php if ($additional_label['value'] == 'special_addition'): ?>
+                    <span class="Label Label-productCard ProductCard_label">
+                      <?php echo $additional_label['label'] ?>
+                    </span>
+                  <?php endif ?>
+
+                  <?php if ($additional_label['value'] == 'save'): ?>
+                    <?php
+                      $discount = get_field('discount', $id);
+                    ?>
+                    <span class="Tag Tag-productCard ProductCard_tag">
+                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+                    </span>
+                  <?php endif ?>
+                <?php endforeach ?>
+              <?php endif ?>
+            </div>
+          <?php endif ?>
+
+          <div class="ProductCard_textWrapper">
+            <h3 class="ProductCard_title">
+            	<?php echo $product->get_name() ?>
+            </h3>
+
+            <?php if ($product_description): ?>
+	            <div class="ProductCard_description">
+	              <?php echo $product_description ?>
+	            </div>
+            <?php endif ?>
+
+            <?php if ($product_attributes): ?>
+	            <div class="ProductCard_tags">
+	              <div class="ProductCard_tagsLabel">Available in</div>
+	              <ul class="ProductCard_tagsList">
+	                <?php foreach ($product_attributes as $key => $value): ?>
+	                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
+	                    <li class="ProductCard_tagsItem">
+	                      <span class="CategoryTag CategoryTag-productCard">
+	                        <?php echo $term->name; ?>
+	                      </span>
+	                    </li>
+	                  <?php endforeach; ?>
+	                <?php endforeach; ?>
+	              </ul>
+	            </div>
+	          <?php endif ?>
+
+            <div class="ProductCard_prices">
+            	<?php echo $product->get_price_html() ?>
+             <!--  <div class="OldPrice OldPrice-productCardTwoColumn">$2395.00</div>
+              <div class="Price Price-productCardTwoColumn">$1995.00</div> -->
+            </div>
+            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
+          </div>
+        </div>
+      </div>
+		<?php endwhile;
+	else:
+		echo "<h3>Products not found</h3>";
+	endif;
+	wp_die();
 }

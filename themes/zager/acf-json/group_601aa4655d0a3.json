@@ -16,6 +16,64 @@
                 "id": ""
             },
             "layouts": {
+                "layout_61a8c49f19e27": {
+                    "key": "layout_61a8c49f19e27",
+                    "name": "text_layout",
+                    "label": "Text layout",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a8c4a619e28",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_61a8c4cf19e29": {
+                    "key": "layout_61a8c4cf19e29",
+                    "name": "ninja_form",
+                    "label": "Ninja Form",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a8c4da19e2a",
+                            "label": "Form Shortcode",
+                            "name": "form_shortcode",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_61a4f3bcc310b": {
                     "key": "layout_61a4f3bcc310b",
                     "name": "expandable_tables",
@@ -4223,7 +4281,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -4237,13 +4295,43 @@
                             "ui": 1
                         },
                         {
+                            "key": "field_61aa5771fa525",
+                            "label": "Display testimonials",
+                            "name": "display_testimonials",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 0,
+                            "default_value": "no",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
                             "key": "field_61713c426d855",
                             "label": "Testimonials type",
                             "name": "testimonials_type",
                             "type": "button_group",
                             "instructions": "Select where the content should be pulled from.",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_61aa5771fa525",
+                                        "operator": "==",
+                                        "value": "yes"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "50",
                                 "class": "",
@@ -4268,6 +4356,11 @@
                             "conditional_logic": [
                                 [
                                     {
+                                        "field": "field_61aa5771fa525",
+                                        "operator": "==",
+                                        "value": "yes"
+                                    },
+                                    {
                                         "field": "field_61713c426d855",
                                         "operator": "==",
                                         "value": "custom"
@@ -4275,7 +4368,7 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -4368,7 +4461,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33",
                                 "class": "",
                                 "id": ""
                             },
@@ -4398,7 +4491,7 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": "50",
+                                "width": "33",
                                 "class": "",
                                 "id": ""
                             },
@@ -4408,6 +4501,28 @@
                             },
                             "allow_null": 0,
                             "default_value": "grey",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_61a7837112e0d",
+                            "label": "Display as slider on mobile devices",
+                            "name": "display_as_slider_on_mobile_devices",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "no": "No",
+                                "yes": "Yes"
+                            },
+                            "allow_null": 0,
+                            "default_value": "no",
                             "layout": "horizontal",
                             "return_format": "value"
                         },
@@ -4538,7 +4653,7 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "url",
+                                    "return_format": "id",
                                     "preview_size": "medium",
                                     "library": "all",
                                     "min_width": "",
@@ -6682,5 +6797,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1638297100
+    "modified": 1638553597
 }

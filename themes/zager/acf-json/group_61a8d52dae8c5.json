@@ -1,0 +1,107 @@
+{
+    "key": "group_61a8d52dae8c5",
+    "title": "Popup Blocks",
+    "fields": [
+        {
+            "key": "field_61a8d532f9b9d",
+            "label": "Popup blocks",
+            "name": "popup_blocks",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_61a8da6f1d770": {
+                    "key": "layout_61a8da6f1d770",
+                    "name": "popup_page_blocks",
+                    "label": "Page blocks",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a8da78faa60",
+                            "label": "Page blocks",
+                            "name": "popup_page_blocks",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_601aa48df9b5b"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_61a8db2050b68": {
+                    "key": "layout_61a8db2050b68",
+                    "name": "product_specifications",
+                    "label": "Product Specifications",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61a8db2950b69",
+                            "label": "Product Specifications",
+                            "name": "product_specifications",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_61865061ce042",
+                                "field_6185a2486de36",
+                                "field_618659a62a26e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "popup"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1638476208
+}

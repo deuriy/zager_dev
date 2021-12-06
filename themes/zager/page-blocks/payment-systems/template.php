@@ -1,5 +1,5 @@
 <?php
-$payment_systems = $field['block_type'] === 'default' ? get_field('product_payment_systems_default', 'option') : $field['payment_systems'];
+$payment_systems = $field['block_type'] === 'default' ? get_field('product_page_blocks', 'option')['product_payment_systems_default'] : $field['payment_systems'];
 ?>
 
 <?php if ($payment_systems): ?>

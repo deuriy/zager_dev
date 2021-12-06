@@ -20,8 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<form class="woocommerce-ordering" method="get">
-	<select name="orderby" class="orderby custom-select" aria-label="<?php esc_attr_e( 'Shop order', 'understrap' ); ?>">
+<form class="Sorting ProductsWrapper_sorting hidden-xs woocommerce-ordering" method="get">
+  <label for="products-orderby" class="Sorting_label">Sort by:</label>
+	<select name="orderby" class="orderby custom-select" aria-label="<?php esc_attr_e( 'Shop order', 'understrap' ); ?>" id="products-orderby">
 		<?php foreach ( $catalog_orderby_options as $option_id => $name ) : ?>
 			<option value="<?php echo esc_attr( $option_id ); ?>" <?php selected( $orderby, $option_id ); ?>><?php echo esc_html( $name ); ?></option>
 		<?php endforeach; ?>

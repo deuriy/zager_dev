@@ -2,6 +2,12 @@
 $series_section = $field['type'] === 'default' ? get_field('series_section', 'option') : $field;
 $series_section_classes = $series_section['style'] == 'lightbeige' ? ' SeriesSection-lightBeige' : '';
 $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' SeriesBlock_textWrapper-greyBgMob' : '';
+
+// print '<pre>';
+// print_r($series_section);
+// print '</pre>';
+$series_blocks_styles = array_column($series_section['series_blocks'], 'style');
+$series_section_classes .= array_search('extended', $series_blocks_styles) !== false ? ' SeriesSection-extended' : '';
 ?>
 
 <div class="SeriesSection<?php echo $series_section_classes ?>">
@@ -13,10 +19,80 @@ $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' Series
     <?php endif ?>
 
     <?php if ($series_section['series_blocks']): ?>
+      <div class="SeriesSwiper SeriesSection_swiper swiper hidden-mdPlus">
+        <div class="swiper-wrapper">
+          <?php foreach ($series_section['series_blocks'] as $series_block): ?>
+            <?php
+              $series_block_classes = $series_block['style'] == 'extended' ? ' SeriesBlock-extended' : '';
+              $image = wp_get_attachment_image( $series_block['image'], 'full', false, array('class' => 'SeriesBlock_img') );
+            ?>
+
+            <div class="swiper-slide SeriesSwiper_slide">
+              <div class="SeriesBlock<?php echo $series_block_classes ?>">
+                <?php if ($series_block['label']): ?>
+                  <div class="Label Label-seriesBlock SeriesBlock_label">
+                    <?php echo $series_block['label'] ?>
+                  </div>
+                <?php endif ?>
+
+                <?php if ($series_block['title']): ?>
+                  <h3 class="SeriesBlock_title">
+                    <?php echo $series_block['title'] ?>
+                  </h3>
+                <?php endif ?>
+
+                <?php if ($image): ?>
+                  <div class="SeriesBlock_imgWrapper">
+                    <?php echo $image ?>
+                  </div>
+                <?php endif ?>
+
+                <?php if ($series_block['description']): ?>
+                  <div class="SeriesBlock_textWrapper<?php echo $series_block_text_classes ?>">
+                    <div class="SeriesBlock_description">
+                      <?php echo $series_block['description'] ?>
+                    </div>
+
+                    <?php if ($series_block['style'] == 'extended'): ?>
+                      <?php if ($series_block['price_from']): ?>
+                        <div class="SeriesBlock_price">
+                          <?php echo 'from $' . $series_block['price_from'] ?>
+                        </div>
+                      <?php endif ?>
+
+                      <?php
+                        $button_is_display = !!($series_block['display_button'] === 'yes' && $series_block['button']['url'] && $series_block['button']['text']);
+                        if ($button_is_display):
+                          $button_style_classes = [
+                            'filled' => 'BtnYellow',
+                            'outline' => 'BtnOutline',
+                            'black' => 'BtnBlack',
+                          ];
+
+                          $button_style_class = $button_style_classes[$series_block['button']['button_style']];
+                          $button_additional_class = $button_style_class === 'BtnYellow' ? ' BtnYellow-seriesBlock ' : '';
+                          $button_additional_class .= $button_style_class === 'BtnOutline' ? ' BtnOutline-lightBeigeBg BtnOutline-darkText ' : '';
+                          $button_icon_class = ($series_block['button']['button_icon'] !== 'no_icon') ? $button_style_class . '-' . $series_block['button']['button_icon'] : '';
+                          $button_classes = $button_style_class . $button_additional_class . $button_icon_class;
+                      ?>
+                        <a class="<?php echo $button_classes ?> SeriesBlock_btn" href="#ComparisonTableZad900">
+                          <?php echo $series_block['button']['text'] ?>
+                        </a>
+                      <?php endif ?>
+                    <?php endif ?>
+                  </div>
+                <?php endif ?>
+              </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+      </div>
+
       <div class="SeriesSection_items">
         <?php foreach ($series_section['series_blocks'] as $series_block): ?>
           <?php
             $series_block_classes = $series_block['style'] == 'extended' ? ' SeriesBlock-extended' : '';
+            $image = wp_get_attachment_image( $series_block['image'], 'full', false, array('class' => 'SeriesBlock_img') );
           ?>
 
           <div class="SeriesBlock SeriesSection_item<?php echo $series_block_classes ?>">
@@ -32,9 +108,9 @@ $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' Series
               </h3>
             <?php endif ?>
 
-            <?php if ($series_block['image']): ?>
+            <?php if ($image): ?>
               <div class="SeriesBlock_imgWrapper">
-                <img class="SeriesBlock_img" loading="lazy" src="<?php echo $series_block['image'] ?>" alt="ZAD 900">
+                <?php echo $image ?>
               </div>
             <?php endif ?>
 
@@ -47,7 +123,7 @@ $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' Series
                 <?php if ($series_block['style'] == 'extended'): ?>
                   <?php if ($series_block['price_from']): ?>
                     <div class="SeriesBlock_price">
-                      <?php echo $series_block['price_from'] ?>
+                      <?php echo 'from $' . $series_block['price_from'] ?>
                     </div>
                   <?php endif ?>
 
