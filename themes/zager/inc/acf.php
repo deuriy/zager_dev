@@ -17,17 +17,6 @@ if (function_exists('acf_add_options_page')) {
 		'update_button'   => 'Update Site Settings',
 		'updated_message' => 'Site settings updated.',
 	]);
-
-	acf_add_options_page([
-		'page_title'      => 'Global Content',
-		'menu_title'      => 'Global Content',
-		'position'        => 21,
-		'menu_slug'       => 'global-content',
-		'icon_url'        => 'dashicons-tagcloud',
-		'autoload'        => true,
-		'update_button'   => 'Update',
-		'updated_message' => 'Global content updated.',
-	]);
 }
 
 function is_empty($var) {
@@ -36,11 +25,12 @@ function is_empty($var) {
 
 function render_page_layouts($layouts) {
 	if ($layouts) {
-		foreach ($layouts as $layout) {
+		foreach ($layouts as $key => $layout) {
 			$layout_name = str_replace('_', '-', $layout['acf_fc_layout']);
 			$template = locate_template('page-blocks/'.$layout_name.'/template.php', false, false);
 			if ($template) {
 				$field = $layout; // Change layout to a friendly name.
+				$field_key = $key;
 				include($template); // if locate_template returns false, include(false) will throw an error
 			}
 		}
@@ -96,4 +86,8 @@ function display_product_tabs() {
 
 function zager_time_ago() {
 	return human_time_diff( get_post_time( 'U' ), current_time( 'timestamp' ) ).' '.__( 'ago' );
+}
+
+function count_rating() {
+
 }

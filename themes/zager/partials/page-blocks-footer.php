@@ -167,16 +167,6 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
         });
       });
     </script>
-  <?php elseif ($layout_name == 'product_section'): ?>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.TestimonialsSwiper', {
-          slidesPerView: 'auto',
-          spaceBetween: 20,
-          autoHeight: true,
-        });
-      });
-    </script>
   <?php elseif ($layout_name == 'video_section'): ?>
     <script>
       document.addEventListener('DOMContentLoaded', function () {

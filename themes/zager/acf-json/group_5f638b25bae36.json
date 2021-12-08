@@ -2972,6 +2972,25 @@
                     "endpoint": 0
                 },
                 {
+                    "key": "field_61ae7f7d1b00e",
+                    "label": "",
+                    "name": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
                     "key": "field_61a7e95351bc4",
                     "label": "",
                     "name": "accessories_shop_page",
@@ -2987,10 +3006,10 @@
                     "layout": "block",
                     "sub_fields": [
                         {
-                            "key": "field_61a7c43a4081a",
-                            "label": "Title",
-                            "name": "products_accessories_section_title",
-                            "type": "text",
+                            "key": "field_61ae7fc91b00f",
+                            "label": "",
+                            "name": "accessories",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -2999,11 +3018,33 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "Accessories",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "clone": [
+                                "field_61a7e818c0647",
+                                "field_61a7e7fcc0646",
+                                "field_61a7e7a4c0643",
+                                "field_61a7ea9d51bc5",
+                                "field_61a7eabc51bc6",
+                                "field_61a7eaee51bc7",
+                                "field_61a7eb1c51bc8",
+                                "field_61a7e7bfc0644",
+                                "field_61a7e7d4c0645",
+                                "field_61a7eb9de5e23",
+                                "field_61a8ea1cc10b5",
+                                "field_61a7ec0ee5e24",
+                                "field_61a7e824c0648",
+                                "field_61a7c3e440819",
+                                "field_61aa40c972658",
+                                "field_61aa3fb6a17ce",
+                                "field_61aa3fdca17cf",
+                                "field_61aa4012a17d0",
+                                "field_61aa4038a17d1",
+                                "field_61a7ef532b207",
+                                "field_61a7ef712b208"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 1
                         }
                     ]
                 }
@@ -3027,5 +3068,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638801476
+    "modified": 1638826084
 }

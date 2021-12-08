@@ -3,9 +3,6 @@ $series_section = $field['type'] === 'default' ? get_field('series_section', 'op
 $series_section_classes = $series_section['style'] == 'lightbeige' ? ' SeriesSection-lightBeige' : '';
 $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' SeriesBlock_textWrapper-greyBgMob' : '';
 
-// print '<pre>';
-// print_r($series_section);
-// print '</pre>';
 $series_blocks_styles = array_column($series_section['series_blocks'], 'style');
 $series_section_classes .= array_search('extended', $series_blocks_styles) !== false ? ' SeriesSection-extended' : '';
 ?>
@@ -19,7 +16,7 @@ $series_section_classes .= array_search('extended', $series_blocks_styles) !== f
     <?php endif ?>
 
     <?php if ($series_section['series_blocks']): ?>
-      <div class="SeriesSwiper SeriesSection_swiper swiper hidden-mdPlus">
+      <div class="SeriesSwiper SeriesSection_swiper swiper hidden-mdPlus hidden">
         <div class="swiper-wrapper">
           <?php foreach ($series_section['series_blocks'] as $series_block): ?>
             <?php

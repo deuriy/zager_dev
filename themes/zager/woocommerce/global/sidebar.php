@@ -16,7 +16,7 @@
     if (is_shop()) {
       $page_settings = $shop_pages_settings['default_shop_page'];
     } elseif (is_product_category('accessories')) {
-      $page_settings = $shop_pages_settings['accessories_shop_page'];
+      $page_settings = $shop_pages_settings['accessories_default_shop_page'];
     }
   ?>
 

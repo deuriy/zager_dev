@@ -6,7 +6,7 @@ $title_class = $field['dekstop_title_size'] != 'large' ? ' SectionTitle-' . $fie
 $title_class .= $field['title_position'] == 'top' ? ' SectionTitle-center SectionTitle-alignLeftXS' : '';
 ?>
 
-<div class="TextSection<?php echo $textsection_class ?>">
+<div class="TextSection<?php echo $textsection_class ?>" id="TextSection<?php echo $field_key ?>">
   <div class="Container">
     <div class="TextSection_wrapper">
       <?php if ($field['title']): ?>

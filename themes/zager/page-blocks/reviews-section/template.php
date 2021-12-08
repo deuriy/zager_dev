@@ -1,6 +1,8 @@
 <?php
 global $product;
 
+opcache_reset();
+
 $ratings_arr = [
   'one' => '1.0',
   'two' => '2.0',
@@ -8,6 +10,13 @@ $ratings_arr = [
   'four' => '4.0',
   'five' => '5.0'
 ];
+
+// print '<pre>';
+// print_r($field);
+// print '</pre>';
+
+$reviews_count = count($field['customer_reviews']['customer_reviews']);
+$rating = 0;
 ?>
 
 <div class="ReviewsSection" id="ReviewsSection">
@@ -63,7 +72,7 @@ $ratings_arr = [
       <div class="ReviewsSectionGroup_subTitle">
         <span class="ReviewsSectionGroup_result">4.7 out of 5</span> 
         <span class="ReviewsSectionGroup_resultLabel">service rating</span>
-        <br class="hidden-smPlus">(based on 120 reviews)
+        <br class="hidden-smPlus">(based on <?php echo $reviews_count ?> reviews)
       </div>
 
       <?php if ($field['description']): ?>

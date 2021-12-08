@@ -54,6 +54,14 @@ if ( post_password_required() ) {
 		<?php //wc_print_notices(); ?>
 		<!-- </div> -->
 
+		<?php
+			// $reviews_count = count($field['customer_reviews']['customer_reviews']);
+			// print '<pre>';
+			// // print $product->get_id();
+			// print_r(get_field('after_product_left', $product->get_id()));
+			// print '</pre>';
+		?>
+
 		<div class="Product_info">
 			<?php woocommerce_show_product_sale_flash(); ?>
 			<div class="Product_recommendation">#1 Recommended Guitar</div>

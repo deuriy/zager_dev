@@ -118,9 +118,104 @@ ins {
 	line-height: 32px;
 }
 
-.ProductCard .woocommerce-Price-amount {
-	font-size: 19px;
-	line-height: 24px;
+.ProductCard {
+	.woocommerce-Price-amount {
+		font-size: 19px;
+		line-height: 24px;
+	}
+
+	&_pricesLabel {
+		font-weight: 700;
+		font-family: "Roboto Slab", sans-serif;
+	}
+
+	&-twoColumnLg {
+		.ProductCard_pricesLabel,
+		.woocommerce-Price-amount {
+			font-size: 28px;
+			line-height: 32px;
+		}
+	}
+}
+
+.ProductSection {
+	.ProductCard_pricesLabel {
+		margin-right: 6px;
+		font-size: 36px;
+		line-height: 48px;
+	}
+}
+
+.woocommerce-pagination {
+	ul.page-numbers {
+		display: flex;
+		align-items: baseline;
+		justify-content: start;
+		column-gap: 20px;
+		list-style: none;
+		
+		li {
+			display: grid;
+	    // width: 40px;
+	    // height: 40px;
+	    justify-items: center;
+	    align-items: center;
+	    font-weight: bold;
+	    font-family: 'Roboto Slab', sans-serif;
+	    color: #13141a;
+	    letter-spacing: .06em;
+		}
+	}
+
+	a.page-numbers,
+	span.page-numbers {
+		display: grid;
+		width: 40px;
+		height: 40px;
+		justify-content: center;
+		align-content: center;
+		border-radius: 100px;
+		color: #13141a;
+		text-decoration: none;
+		transition: all .2s ease-in-out;
+		
+		&:hover,
+		&.current {
+			background: #FEBD70;
+		}
+
+		&.prev,
+		&.next {
+			display: inline-flex;
+			width: auto;
+			height: auto;
+			align-items: center;
+			column-gap: .5625em;
+			background: rgba(255, 251, 246, .45);
+			border: 2px solid #febd70;
+			padding: .875em 1.5625em .875em 1.625em;
+			border-radius: 4px;
+
+			&:hover {
+				background: #FEBD70;
+				color: #13141A;
+			}
+		}
+
+		&.prev {
+			&::after {
+				content: "Previous";
+				text-transform: uppercase;
+			}
+		}
+
+		&.next {
+			&::before {
+				content: "Next";
+				text-transform: uppercase;
+			}
+		}
+	}
 }
 
 .checkout-fieldgroup {
@@ -1773,9 +1868,7 @@ button:disabled {
 	}
 }
 
-.select2-sorting.select2-container {
-	margin-top: 32px;
-	
+.select2-sorting.select2-container {	
 	.select2-dropdown {
 		background: #FFFBF6;
 		filter: drop-shadow(0 3px 3.5px rgba(0, 0, 0, .16));
@@ -1799,6 +1892,12 @@ button:disabled {
 			background: transparent;
 			color: #febd70;
 		}
+	}
+}
+
+body.admin-bar {
+	.select2-sorting.select2-container {
+		margin-top: 32px;
 	}
 }
 

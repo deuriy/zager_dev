@@ -36,14 +36,18 @@ $shop_pages_settings = get_field('shop_pages', 'option');
 if (is_shop()) {
   $page_settings = $shop_pages_settings['default_shop_page'];
 } elseif (is_product_category('accessories')) {
-  $page_settings = $shop_pages_settings['accessories_shop_page'];
+  $page_settings = $shop_pages_settings['accessories_default_shop_page'];
 }
+
+opcache_reset();
 
 // print '<pre>';
 // print_r($page_settings);
 // print '</pre>';
 
-render_page_layouts($page_settings['top_blocks']['page_blocks']);
+if (isset($page_settings['top_blocks'])) {
+	render_page_layouts($page_settings['top_blocks']['page_blocks']);
+}
 
 ?>
 <div class="ProductsWrapper">
@@ -120,7 +124,7 @@ render_page_layouts($page_settings['top_blocks']['page_blocks']);
 					 *
 					 * @hooked woocommerce_pagination - 10
 					 */
-					// do_action( 'woocommerce_after_shop_loop' );
+					do_action( 'woocommerce_after_shop_loop' );
 				} else {
 					/**
 					 * Hook: woocommerce_no_products_found.
@@ -158,10 +162,12 @@ get_footer( 'shop' );
 ?>
 
 <?php
-$popup_ids = array_filter(array_unique(array_column($page_settings['filter_elements'], 'popup')), "is_empty");
+if ($page_settings['filter_elements']) {
+	$popup_ids = array_filter(array_unique(array_column($page_settings['filter_elements'], 'popup')), "is_empty");
+}
 ?>
 
-<?php if ($popup_ids): ?>
+<?php if (isset($popup_ids)): ?>
   <?php foreach ($popup_ids as $popup_id): ?>
     <?php
       $popup_title = get_the_title( $popup_id );

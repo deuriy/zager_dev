@@ -2,14 +2,15 @@
 $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimonials', 'option') : $field['testimonials'];
 ?>
 
-<?php if ($field['product'] || $testimonials): ?>
 <?php
-  $product = wc_get_product($field['product']);
+if ($field['product'] || $testimonials):
+  $id = $field['product'];
+  $product = wc_get_product($id);
   $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
   $product_images_ids = $product->get_gallery_image_ids();
   $product_attributes = $product->get_attributes();
-  $product_url = get_permalink($field['product']);
-  $additional_labels = get_field('additional_labels', $field['product']);
+  $product_url = get_permalink($id);
+  $additional_labels = get_field('additional_labels', $id);
 ?>
 
 <div class="ProductSection">
@@ -36,8 +37,10 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
             </div>
             <button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductSectionImg_prev" type="button"></button>
             <button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductSectionImg_next" type="button"></button>
+
             <div class="Label ProductSectionImg_label">special edition</div>
             <div class="Tag Tag-stars ProductSectionImg_tag">On sale</div>
+
             <a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen ProductSectionImg_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>
           </div>
         </div>
@@ -64,7 +67,7 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
         <?php if ($product_attributes): ?>
           <ul class="ProductSection_categoryTags">
             <?php foreach ($product_attributes as $key => $value): ?>
-              <?php foreach (wc_get_product_terms($field['product'], $key) as $term): ?>
+              <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
                 <li class="ProductSection_categoryTag">
                   <span class="CategoryTag">
                     <?php echo $term->name; ?>
@@ -81,10 +84,10 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('testimoni
 
         <ul class="ProductSection_buttons">
           <li class="ProductSection_btnItem">
-            <a class="BtnOutline BtnOutline-product ProductSection_btn" href="#">View options and features</a>
+            <a class="BtnOutline BtnOutline-product ProductSection_btn" href="<?php echo $product_url ?>">View options and features</a>
           </li>
           <li class="ProductSection_btnItem">
-            <a class="BtnYellow BtnYellow-product ProductSection_btn" href="#">View total with shipping and case</a>
+            <a class="BtnYellow BtnYellow-product ProductSection_btn" href="<?php echo esc_url( wc_get_cart_url() ); ?>">View total with shipping and case</a>
           </li>
         </ul>
       </div>

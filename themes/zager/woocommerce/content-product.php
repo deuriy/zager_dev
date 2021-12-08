@@ -25,7 +25,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <div <?php wc_product_class( 'ProductCard ProductCards_item', $product ); ?>>
-	<div class="ProductCard_wrapper">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -49,15 +48,16 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 *
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
-	do_action( 'woocommerce_shop_loop_item_title' );
+	do_action( 'woocommerce_shop_loop_item_title' ); ?>
 
+	<?php
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *
 	 * @hooked woocommerce_template_loop_rating - 5
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
-	do_action( 'woocommerce_after_shop_loop_item_title' );
+	do_action( 'woocommerce_after_shop_loop_item_title' );  
 
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
@@ -67,6 +67,5 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
-	</div>
 	</div>
 </div>
