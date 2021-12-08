@@ -1,5 +1,5 @@
 <?php
-$testimonials = $field['testimonials_type'] === 'default' ? get_field('testimonials', 'option') : $field['testimonials'];
+$testimonials = $field['testimonials_type'] === 'default' ? get_field('default_page_blocks', 'option')['testimonials'] : $field['testimonials'];
 ?>
 
 <?php

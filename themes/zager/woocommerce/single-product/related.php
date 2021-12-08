@@ -19,17 +19,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( $related_products ) : ?>
+if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
+
+	<?php
+		opcache_reset();
+	?>
 
 	<section class="ProductCardsSection ProductCardsSection-productPage">
 		<div class="Container">
 
 		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'You might also like', 'woocommerce' ) );
+		// $heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'You might also like', 'woocommerce' ) );
+		$heading = get_field('related_products_title');
 
 		if ( $heading ) :
 			?>
-			<h2 class="SectionTitle SectionTitle-productCardsSection ProductCardsSection_title"><?php echo esc_html( $heading ); ?></h2>
+			<h2 class="SectionTitle SectionTitle-productCardsSection ProductCardsSection_title">
+				<?php echo esc_html( $heading ); ?>
+			</h2>
 		<?php endif; ?>
 		
 		<?php woocommerce_product_loop_start(); ?>

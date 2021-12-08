@@ -3,6 +3,55 @@
     "title": "Product Page Blocks",
     "fields": [
         {
+            "key": "field_61b0cb0a17b76",
+            "label": "Display special label",
+            "name": "display_special_label",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "no": "No",
+                "yes": "Yes"
+            },
+            "allow_null": 0,
+            "default_value": "no",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_61b0c83cc8377",
+            "label": "Special label",
+            "name": "special_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61b0cb0a17b76",
+                        "operator": "==",
+                        "value": "yes"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_619783aa9e948",
             "label": "Additional labels",
             "name": "additional_labels",
@@ -11,7 +60,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "60",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -43,7 +92,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "40",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -2258,6 +2307,55 @@
             "button_label": "Add Section",
             "min": "",
             "max": ""
+        },
+        {
+            "key": "field_61b0c881dbb15",
+            "label": "Display related products",
+            "name": "display_related_products",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "yes": "Yes",
+                "no": "No"
+            },
+            "allow_null": 0,
+            "default_value": "yes",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_61b0c8c7dbb16",
+            "label": "Related products title",
+            "name": "related_products_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61b0c881dbb15",
+                        "operator": "==",
+                        "value": "yes"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "You might also like",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -2277,5 +2375,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638903567
+    "modified": 1638976591
 }

@@ -1,5 +1,5 @@
 <?php
-$series_section = $field['type'] === 'default' ? get_field('series_section', 'option') : $field;
+$series_section = $field['type'] === 'default' ? get_field('default_page_blocks', 'option')['series_section'] : $field;
 $series_section_classes = $series_section['style'] == 'lightbeige' ? ' SeriesSection-lightBeige' : '';
 $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' SeriesBlock_textWrapper-greyBgMob' : '';
 

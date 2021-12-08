@@ -1,7 +1,7 @@
 <?php
 switch ($field['video_section_type']) {
   case 'default':
-    $video_section = get_field('video_section', 'option');
+    $video_section = get_field('default_page_blocks', 'option')['video_section'];
     break;
   
   case 'default_product':

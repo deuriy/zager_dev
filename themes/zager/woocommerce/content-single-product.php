@@ -55,17 +55,25 @@ if ( post_password_required() ) {
 		<!-- </div> -->
 
 		<?php
+			opcache_reset();
 			// $reviews_count = count($field['customer_reviews']['customer_reviews']);
 			// print '<pre>';
-			// // print $product->get_id();
+			// print get_field('special_label');
 			// print_r(get_field('after_product_left', $product->get_id()));
 			// print '</pre>';
 		?>
 
 		<div class="Product_info">
 			<?php woocommerce_show_product_sale_flash(); ?>
-			<div class="Product_recommendation">#1 Recommended Guitar</div>
+
+			<div class="Product_specialLabel">
+				<?php if (get_field('display_special_label') == 'yes'): ?>
+					<?php the_field('special_label') ?>
+				<?php endif ?>
+			</div>
+
 			<?php woocommerce_template_single_title(); ?>
+
 			<div class="Product_ratingWrapper">
 				<div class="RatingStars">
 					<ul class="RatingStars_list">
@@ -97,7 +105,7 @@ if ( post_password_required() ) {
 			<a class="BtnYellow BtnYellow-priceCard PriceCard_btn" href="#ProductSizesMobilePopup" data-action="openMobilePopup">See options</a>
 		</div>
 
-		<?php get_template_part('partials/blocks/product-quote'); ?>		
+		<?php get_template_part('partials/blocks/product-quote'); ?>
 
 		<!-- <div class="Accordion Product_accordion hidden-smPlus">
 			<div class="AccordionPanel Accordion_item">
