@@ -2195,7 +2195,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -2205,6 +2205,28 @@
                             },
                             "allow_null": 0,
                             "default_value": "default_product",
+                            "layout": "horizontal",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_61b1849089d24",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "brown": "Brown",
+                                "light": "Light"
+                            },
+                            "allow_null": 0,
+                            "default_value": "brown",
                             "layout": "horizontal",
                             "return_format": "value"
                         },
@@ -2375,5 +2397,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638976591
+    "modified": 1639024276
 }

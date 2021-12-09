@@ -1,5 +1,11 @@
 <?php
-$page_blocks = get_field('page_blocks');
+
+if (is_404()) {
+  $page_blocks = get_field('404_page_blocks', 'options');
+} else {
+  $page_blocks = get_field('page_blocks');
+}
+
 $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
 ?>
 

@@ -19,8 +19,10 @@ if (function_exists('acf_add_options_page')) {
 	]);
 }
 
-function is_empty($var) {
-  return !empty($var);
+if ( !function_exists('is_empty') ) {
+	function is_empty($var) {
+	  return !empty($var);
+	}
 }
 
 function render_page_layouts($layouts) {

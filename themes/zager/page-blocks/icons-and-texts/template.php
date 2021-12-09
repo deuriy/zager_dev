@@ -7,10 +7,13 @@
       $icon_and_texts = $field['icons_and_texts'];
       break;
   }
+
+  $icons_and_texts_classes = $field['background'] == 'brown' ? ' IconsAndTexts-brownBg' : '';
+  $icon_and_text_classes = $field['background'] == 'light' ? ' IconAndText-darkText' : '';
 ?>
 
 <?php if ($icon_and_texts): ?>
-  <div class="IconsAndTexts IconsAndTexts-brownBg IconsAndTexts-product">
+  <div class="IconsAndTexts IconsAndTexts-product<?php echo $icons_and_texts_classes ?>">
     <div class="Container">
       <div class="IconsAndTexts_wrapper">
         <?php foreach ($icon_and_texts as $icon_and_text): ?>
@@ -18,7 +21,7 @@
             $icon = wp_get_attachment_image( $icon_and_text['icon'], 'full', false, array('class' => 'CircleIcon_img') );
           ?>
 
-          <div class="IconAndText IconsAndTexts_item">
+          <div class="IconAndText IconsAndTexts_item<?php echo $icon_and_text_classes ?>">
             <?php if ($icon): ?>
               <div class="CircleIcon IconAndText_icon">
                 <?php echo $icon ?>

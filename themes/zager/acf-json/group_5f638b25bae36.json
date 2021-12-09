@@ -2401,10 +2401,10 @@
             "endpoint": 0
         },
         {
-            "key": "field_6009a66e936b6",
-            "label": "Headline",
-            "name": "404_headline",
-            "type": "text",
+            "key": "field_61b17853d7b93",
+            "label": "404",
+            "name": "404",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -2413,30 +2413,13 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Oops! That page can't be found.",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_6009a677936b7",
-            "label": "Content",
-            "name": "404_content",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "It looks like nothing was found at this location. Maybe try one of the links below or a search?",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "clone": [
+                "field_601aa48df9b5b"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 1,
+            "prefix_name": 1
         },
         {
             "key": "field_61a7c2c940816",
@@ -3068,5 +3051,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1638826084
+    "modified": 1639023275
 }
