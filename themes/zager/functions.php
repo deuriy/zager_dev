@@ -91,7 +91,7 @@ function zager_breadcrumbs() {
 			echo $home_link;
 		}
 
-		if ( is_category() ) {
+		if ( is_category() || is_product_category() ) {
 			$parents = get_ancestors( get_query_var('cat'), 'category' );
 			foreach ( array_reverse( $parents ) as $cat ) {
 				$position += 1;

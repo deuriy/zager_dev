@@ -10,8 +10,6 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-opcache_reset();
-
 ?>
 
 <main class="Main">

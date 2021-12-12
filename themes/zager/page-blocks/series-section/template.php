@@ -1,6 +1,7 @@
 <?php
 $series_section = $field['type'] === 'default' ? get_field('default_page_blocks', 'option')['series_section'] : $field;
 $series_section_classes = $series_section['style'] == 'lightbeige' ? ' SeriesSection-lightBeige' : '';
+$series_section_classes .= $series_section['style'] == 'gradient' ? ' SeriesSection-gradientBg' : '';
 $series_block_text_classes = $series_section['style'] == 'lightbeige' ? ' SeriesBlock_textWrapper-greyBgMob' : '';
 
 $series_blocks_styles = array_column($series_section['series_blocks'], 'style');
@@ -72,7 +73,7 @@ $series_section_classes .= array_search('extended', $series_blocks_styles) !== f
                           $button_icon_class = ($series_block['button']['button_icon'] !== 'no_icon') ? $button_style_class . '-' . $series_block['button']['button_icon'] : '';
                           $button_classes = $button_style_class . $button_additional_class . $button_icon_class;
                       ?>
-                        <a class="<?php echo $button_classes ?> SeriesBlock_btn" href="#ComparisonTableZad900">
+                        <a class="<?php echo $button_classes ?> SeriesBlock_btn" href="<?php echo $series_block['button']['url'] ?>">
                           <?php echo $series_block['button']['text'] ?>
                         </a>
                       <?php endif ?>
@@ -139,7 +140,7 @@ $series_section_classes .= array_search('extended', $series_blocks_styles) !== f
                       $button_icon_class = ($series_block['button']['button_icon'] !== 'no_icon') ? $button_style_class . '-' . $series_block['button']['button_icon'] : '';
                       $button_classes = $button_style_class . $button_additional_class . $button_icon_class;
                   ?>
-                    <a class="<?php echo $button_classes ?> SeriesBlock_btn" href="#ComparisonTableZad900">
+                    <a class="<?php echo $button_classes ?> SeriesBlock_btn" href="<?php echo $series_block['button']['url'] ?>">
                       <?php echo $series_block['button']['text'] ?>
                     </a>
                   <?php endif ?>

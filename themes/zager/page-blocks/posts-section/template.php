@@ -31,7 +31,7 @@
 
 			      	<?php if ($post_content): ?>
 				        <div class="Post_description">
-				          <?php echo wp_trim_words( $post_content, 40, '...' ); ?>
+				          <?php echo wpautop(wp_trim_words( $post_content, 60, '...' )); ?>
 				        </div>
 			      	<?php endif ?>
 			      </div>

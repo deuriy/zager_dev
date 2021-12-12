@@ -20,11 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
-
-	<?php
-		opcache_reset();
-	?>
-
 	<section class="ProductCardsSection ProductCardsSection-productPage">
 		<div class="Container">
 

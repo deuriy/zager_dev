@@ -28,9 +28,6 @@ get_header( 'shop' );
  */
 do_action( 'woocommerce_before_main_content' );
 
-// $shop_page_id = wc_get_page_id('shop');
-// render_page_layouts(get_field('page_blocks', $shop_page_id));
-
 $shop_pages_settings = get_field('shop_pages', 'option');
 
 if (is_shop()) {
@@ -38,12 +35,6 @@ if (is_shop()) {
 } elseif (is_product_category('accessories')) {
   $page_settings = $shop_pages_settings['accessories_default_shop_page'];
 }
-
-opcache_reset();
-
-// print '<pre>';
-// print_r($page_settings);
-// print '</pre>';
 
 if (isset($page_settings['top_blocks'])) {
 	render_page_layouts($page_settings['top_blocks']['page_blocks']);
@@ -68,9 +59,10 @@ if (isset($page_settings['top_blocks'])) {
 				<div class="Sorting ProductsWrapper_sorting hidden-xs">
 	        <div class="Sorting_label">Sort by:</div>
 	        <select class="Select" name="product_sorting" id="product_sorting">
-	          <option value="popularity">Popularity</option>
-	          <option value="newest">Newest</option>
-	          <option value="older">Older</option>
+	          <option value="default">Default</option>
+	          <option value="alphabetical">Alphabetical</option>
+	          <option value="price_asc">Sort by price: low to high</option>
+	          <option value="price_desc">Sort by price: high to low</option>
 	        </select>
 	      </div>
 			<?php endif ?>
@@ -84,10 +76,62 @@ if (isset($page_settings['top_blocks'])) {
 			 * @hooked woocommerce_product_archive_description - 10
 			 */
 			do_action( 'woocommerce_archive_description' );
-			?>
+		?>
 
-		<div class="Products Products-productsWrapper ProductsWrapper_products">
-			<div class="Products_items hidden-xs">
+		<?php if (is_shop()): ?>
+			<div class="Products Products-productsWrapper ProductsWrapper_products">
+				<div class="Products_items hidden-xs">
+					<?php
+						/**
+						 * Hook: woocommerce_before_shop_loop.
+						 *
+						 * @hooked woocommerce_output_all_notices - 10
+						 * @hooked woocommerce_result_count - 20
+						 * @hooked woocommerce_catalog_ordering - 30
+						 */
+						// do_action( 'woocommerce_before_shop_loop' );
+					?>
+
+					<?php
+					if ( woocommerce_product_loop() ) {
+
+						// woocommerce_product_loop_start();
+
+						if ( wc_get_loop_prop( 'total' ) ) {
+							while ( have_posts() ) {
+								the_post();
+
+								/**
+								 * Hook: woocommerce_shop_loop.
+								 */
+								do_action( 'woocommerce_shop_loop' );
+
+								wc_get_template_part( 'content', 'product-twocol' );
+							}
+						}
+
+						// woocommerce_product_loop_end();
+
+						/**
+						 * Hook: woocommerce_after_shop_loop.
+						 *
+						 * @hooked woocommerce_pagination - 10
+						 */
+					} else {
+						/**
+						 * Hook: woocommerce_no_products_found.
+						 *
+						 * @hooked wc_no_products_found - 10
+						 */
+						do_action( 'woocommerce_no_products_found' );
+					}
+					?>
+				</div>
+
+				<?php do_action( 'woocommerce_after_shop_loop' ); ?>
+			</div>
+		<?php elseif (is_product_category('accessories')): ?>
+			<div class="AccessoriesCards ProductsWrapper_accessoriesCards">
 				<?php
 					/**
 					 * Hook: woocommerce_before_shop_loop.
@@ -99,43 +143,26 @@ if (isset($page_settings['top_blocks'])) {
 					// do_action( 'woocommerce_before_shop_loop' );
 				?>
 
-				<?php
-				if ( woocommerce_product_loop() ) {
-
-					// woocommerce_product_loop_start();
+				<?php if ( woocommerce_product_loop() ) {
 
 					if ( wc_get_loop_prop( 'total' ) ) {
 						while ( have_posts() ) {
 							the_post();
 
-							/**
-							 * Hook: woocommerce_shop_loop.
-							 */
 							do_action( 'woocommerce_shop_loop' );
 
-							wc_get_template_part( 'content', 'product-twocol' );
+							wc_get_template_part( 'content', 'accessory-card' );
 						}
 					}
 
-					// woocommerce_product_loop_end();
-
-					/**
-					 * Hook: woocommerce_after_shop_loop.
-					 *
-					 * @hooked woocommerce_pagination - 10
-					 */
-					do_action( 'woocommerce_after_shop_loop' );
 				} else {
-					/**
-					 * Hook: woocommerce_no_products_found.
-					 *
-					 * @hooked wc_no_products_found - 10
-					 */
 					do_action( 'woocommerce_no_products_found' );
 				}
 				?>
 			</div>
-		</div>
+
+			<?php do_action( 'woocommerce_after_shop_loop' ); ?>
+		<?php endif ?>
 
 		<?php render_page_layouts($page_settings['after_products']['page_blocks']); ?>
 	</div>

@@ -596,7 +596,8 @@
                             },
                             "choices": {
                                 "grey": "Grey",
-                                "lightbeige": "Light beige"
+                                "lightbeige": "Light beige",
+                                "gradient": "Gradient"
                             },
                             "allow_null": 0,
                             "default_value": "grey",
@@ -2635,48 +2636,6 @@
                                             "prepend": "",
                                             "append": "",
                                             "maxlength": ""
-                                        },
-                                        {
-                                            "key": "field_61a7e7bfc0644",
-                                            "label": "Min price",
-                                            "name": "min_price",
-                                            "type": "number",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "50",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "min": 0,
-                                            "max": "",
-                                            "step": ""
-                                        },
-                                        {
-                                            "key": "field_61a7e7d4c0645",
-                                            "label": "Max price",
-                                            "name": "max_price",
-                                            "type": "number",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "50",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "min": 0,
-                                            "max": "",
-                                            "step": ""
                                         }
                                     ],
                                     "min": "",
@@ -2731,15 +2690,45 @@
                                             "prefix_name": 0
                                         },
                                         {
+                                            "key": "field_61b2029d0fca3",
+                                            "label": "Entity type",
+                                            "name": "entity_type",
+                                            "type": "button_group",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "attribute": "Attribute",
+                                                "category": "Category"
+                                            },
+                                            "allow_null": 0,
+                                            "default_value": "attribute",
+                                            "layout": "horizontal",
+                                            "return_format": "value"
+                                        },
+                                        {
                                             "key": "field_61a7ec0ee5e24",
                                             "label": "Attribute",
                                             "name": "attribute",
                                             "type": "select",
                                             "instructions": "Select which product attribute you want to display in the filter.",
                                             "required": 0,
-                                            "conditional_logic": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61b2029d0fca3",
+                                                        "operator": "==",
+                                                        "value": "attribute"
+                                                    }
+                                                ]
+                                            ],
                                             "wrapper": {
-                                                "width": "",
+                                                "width": "50",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -2758,6 +2747,36 @@
                                             "return_format": "value",
                                             "ajax": 0,
                                             "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_61b203980fca4",
+                                            "label": "Category",
+                                            "name": "category",
+                                            "type": "taxonomy",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_61b2029d0fca3",
+                                                        "operator": "==",
+                                                        "value": "category"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "50",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "taxonomy": "product_cat",
+                                            "field_type": "checkbox",
+                                            "add_term": 0,
+                                            "save_terms": 0,
+                                            "load_terms": 0,
+                                            "return_format": "object",
+                                            "multiple": 0,
+                                            "allow_null": 0
                                         }
                                     ],
                                     "min": "",
@@ -2955,29 +2974,10 @@
                     "endpoint": 0
                 },
                 {
-                    "key": "field_61ae7f7d1b00e",
-                    "label": "",
-                    "name": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
                     "key": "field_61a7e95351bc4",
                     "label": "",
-                    "name": "accessories_shop_page",
-                    "type": "group",
+                    "name": "accessories",
+                    "type": "clone",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -2986,50 +2986,13 @@
                         "class": "",
                         "id": ""
                     },
+                    "clone": [
+                        "field_61a7e8d889ee0"
+                    ],
+                    "display": "seamless",
                     "layout": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_61ae7fc91b00f",
-                            "label": "",
-                            "name": "accessories",
-                            "type": "clone",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "clone": [
-                                "field_61a7e818c0647",
-                                "field_61a7e7fcc0646",
-                                "field_61a7e7a4c0643",
-                                "field_61a7ea9d51bc5",
-                                "field_61a7eabc51bc6",
-                                "field_61a7eaee51bc7",
-                                "field_61a7eb1c51bc8",
-                                "field_61a7e7bfc0644",
-                                "field_61a7e7d4c0645",
-                                "field_61a7eb9de5e23",
-                                "field_61a8ea1cc10b5",
-                                "field_61a7ec0ee5e24",
-                                "field_61a7e824c0648",
-                                "field_61a7c3e440819",
-                                "field_61aa40c972658",
-                                "field_61aa3fb6a17ce",
-                                "field_61aa3fdca17cf",
-                                "field_61aa4012a17d0",
-                                "field_61aa4038a17d1",
-                                "field_61a7ef532b207",
-                                "field_61a7ef712b208"
-                            ],
-                            "display": "seamless",
-                            "layout": "block",
-                            "prefix_label": 0,
-                            "prefix_name": 1
-                        }
-                    ]
+                    "prefix_label": 1,
+                    "prefix_name": 1
                 }
             ]
         }
@@ -3051,5 +3014,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1639023275
+    "modified": 1639060462
 }

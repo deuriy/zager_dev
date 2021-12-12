@@ -50,17 +50,16 @@ if ( post_password_required() ) {
 	// do_action( 'woocommerce_before_single_product_summary' );
 	?>
 
-	<!-- <div class="Product_notices"> -->
-		<?php //wc_print_notices(); ?>
-		<!-- </div> -->
+	<div class="Product_notices">
+		<?php wc_print_notices(); ?>
+	</div>
 
 		<?php
-			opcache_reset();
-			// $reviews_count = count($field['customer_reviews']['customer_reviews']);
-			// print '<pre>';
-			// print get_field('special_label');
-			// print_r(get_field('after_product_left', $product->get_id()));
-			// print '</pre>';
+		$id = $product->get_id();
+		$product_left_blocks = get_field('after_product_left', $id);
+	  $product_layouts_names = array_unique(array_column($product_left_blocks, 'customer_reviews'));
+	  $reviews = array_unique(array_column($product_layouts_names, 'customer_reviews'));
+	  $reviews_count = count($reviews[0]);
 		?>
 
 		<div class="Product_info">
@@ -84,7 +83,7 @@ if ( post_password_required() ) {
 						<li class="RatingStars_item RatingStars_item-filled"></li>
 					</ul>
 				</div>
-				<a class="Product_reviewsLabel" href="#ReviewsSection">345 reviews</a>
+				<a class="Product_reviewsLabel" href="#ReviewsSection"><?php echo $reviews_count != 0 ? $reviews_count : '' ?> reviews</a>
 			</div>
 		</div>
 

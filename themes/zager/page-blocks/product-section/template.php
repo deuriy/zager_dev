@@ -11,6 +11,11 @@ if ($field['product'] || $testimonials):
   $product_attributes = $product->get_attributes();
   $product_url = get_permalink($id);
   $additional_labels = get_field('additional_labels', $id);
+
+  $product_left_blocks = get_field('after_product_left', $id);
+  $product_layouts_names = array_unique(array_column($product_left_blocks, 'customer_reviews'));
+  $reviews = array_unique(array_column($product_layouts_names, 'customer_reviews'));
+  $reviews_count = count($reviews[0]);
 ?>
 
 <div class="ProductSection">
@@ -47,8 +52,8 @@ if ($field['product'] || $testimonials):
       <?php endif ?>
 
       <div class="ProductSection_right">
-        <a class="ProductSection_recommendation" href="#">
-          <span class="HighlightedText">#1 Recommended</span> Guitar. <span class="UnderlinedText">345 reviews</span>
+        <a class="ProductSection_recommendation" href="<?php echo $product_url; ?>#ReviewsSection">
+          <span class="HighlightedText">#1 Recommended</span> Guitar. <span class="UnderlinedText"><?php echo $reviews_count != 0 ? $reviews_count : '' ?> reviews</span>
         </a>
         <h2 class="ProductSection_title">
           <?php echo $product->get_name() ?>

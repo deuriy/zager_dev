@@ -11,32 +11,53 @@
 		    <div class="VideoReviews_items">
 		    	<?php foreach ($field['artist_reviews'] as $review_id): ?>
 		    		<?php
-					    $review_text_wrapper = get_field('text_wrapper', $review_id);
-					    $review_image_wrapper = get_field('image_wrapper', $review_id);
-
-					    $review_image = wp_get_attachment_image( $review_image_wrapper['image'], 'full', false, array('class' => 'VideoReview_img') );
+					    $author = get_field('author', $review_id);
+					    $subtitle = get_field('subtitle', $review_id);
+					    $media_type = get_field('media_type', $review_id);
+					    $text = get_field('text', $review_id);
 		    		?>
+
 		    		<div class="VideoReview VideoReviews_item">
-		    			<?php if ($review_image_wrapper['review_link'] && $review_image_wrapper['image']): ?>
-		    				<a href="<?php echo $review_image_wrapper['review_link'] ?>"<?php echo $review_image_wrapper['use_review_link_as_fancybox'] == 'yes' ? ' data-fancybox' : '' ?>>
-			    				<?php echo $review_image ?>
-			    			</a>
+		    			<?php if ($media_type == 'yt_video'): ?>
+		    				<?php
+		    					$video_url = get_field('video_url', $review_id);
+		    					$yt_video_id = substr($video_url, strpos($video_url, '?v=') + 3);
+		    				?>
+
+		    				<?php if ($yt_video_id): ?>
+		    					<div class="VideoReview_videoWrapper">
+			    					<div class="Video">
+					    				<iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $yt_video_id ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					    			</div>
+			    				</div>
+		    				<?php endif ?>		    				
+		    			<?php elseif ($media_type == 'image'): ?>
+		    				<?php
+		    					$image_id = get_field('image', $review_id);
+		    					$image = wp_get_attachment_image( $image_id, 'full', false, array('class' => 'VideoReview_img') );
+		    				?>
+
+		    				<?php if ($image): ?>
+			    				<div class="VideoReview_imgWrapper">
+			    					<?php echo $image ?>
+			    				</div>
+		    				<?php endif ?>
 		    			<?php endif ?>
 
-		    			<?php if ($review_text_wrapper['author'] || $review_text_wrapper['subtitle']): ?>
-		    			<div class="VideoReview_textWrapper">
-		    				<?php if ($review_text_wrapper['author']): ?>
-			    				<div class="VideoReview_author">
-			    					<?php echo $review_text_wrapper['author'] ?>
-			    				</div>
-		    				<?php endif ?>
+		    			<?php if ($author || $text): ?>
+			    			<div class="VideoReview_textWrapper">
+			    				<?php if ($author): ?>
+				    				<div class="VideoReview_author">
+				    					<?php echo $author ?>
+				    				</div>
+			    				<?php endif ?>
 
-		    				<?php if ($review_text_wrapper['subtitle']): ?>
-			    				<div class="VideoReview_text">
-			    					<?php echo $review_text_wrapper['subtitle'] ?>
-			    				</div>
-		    				<?php endif ?>
-		    			</div>
+			    				<?php if ($text): ?>
+				    				<div class="VideoReview_text">
+				    					<?php echo $text ?>
+				    				</div>
+			    				<?php endif ?>
+			    			</div>
 		    			<?php endif ?>
 		    		</div>
 		    	<?php endforeach ?>

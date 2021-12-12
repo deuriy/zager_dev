@@ -1,8 +1,6 @@
 <?php
 global $product;
 
-opcache_reset();
-
 $ratings_arr = [
   'one' => '1.0',
   'two' => '2.0',
@@ -11,12 +9,7 @@ $ratings_arr = [
   'five' => '5.0'
 ];
 
-// print '<pre>';
-// print_r($field);
-// print '</pre>';
-
 $reviews_count = count($field['customer_reviews']['customer_reviews']);
-$rating = 0;
 ?>
 
 <div class="ReviewsSection" id="ReviewsSection">

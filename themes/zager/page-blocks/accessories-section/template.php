@@ -66,7 +66,7 @@
 					
 					<div class="SwiperControls">
 						<div class="SwiperPagination SwiperControls_pagination hidden-xs"></div>
-						<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-more" href="/accessories.html">see all accessories</a>
+						<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-more" href="/product-category/accessories/">see all accessories</a>
 					</div>
 				<?php endif ?>
 			</div>

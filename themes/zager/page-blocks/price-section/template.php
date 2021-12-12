@@ -1,5 +1,5 @@
 <?php if ($field['price_card'] || $field['title']): ?>
-	<div class="PriceSection">
+	<div class="PriceSection" id="PriceSection<?php echo $field_key ?>">
 	  <div class="Container">
 	    <div class="PriceSection_wrapper">
 	    	<?php if ($field['title']): ?>

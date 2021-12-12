@@ -248,6 +248,8 @@ function zager_wc_loop_product_attributes() {
   <?php endif;
 }
 
+// remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
+
 add_filter( 'woocommerce_page_title', 'zager_woocommerce_page_title');
 function zager_woocommerce_page_title( $page_title ) {
   if( $page_title == 'Shop' ) {
@@ -677,8 +679,6 @@ if ( ! function_exists( 'yith_wcwl_fix_flatsome_checkout' ) ) {
 	add_action( 'wp_enqueue_scripts', 'yith_wcwl_fix_flatsome_checkout' );
 }
 
-opcache_reset();
-
 add_filter( 'woocommerce_variable_price_html', 'zager_variation_price_format_min', 9999, 2 );
 
 function zager_variation_price_format_min( $price, $product ) {
@@ -690,7 +690,7 @@ function zager_variation_price_format_min( $price, $product ) {
    return $price;
 }
 
-function get_products_count_by_attribute($tax_slug, $term_slug) {
+function get_products_count_by_term($tax_slug, $term_slug) {
 	$query = array(
     'post_status' => 'publish',
     'post_type' => 'product',
@@ -710,23 +710,60 @@ function get_products_count_by_attribute($tax_slug, $term_slug) {
 	return $wpquery->found_posts;
 }
 
+function get_min_range_price() {
+	$products = wc_get_products(array(
+    'status' => 'publish',
+    'limit' => -1
+	));
+
+	$all_prices = array();
+
+	foreach ($products as $product) {
+		if ($product->get_price() == '') continue;
+
+		$all_prices[] = $product->get_price();
+	}
+
+	return min($all_prices);
+}
+
+function get_max_range_price() {
+	$products = wc_get_products(array(
+    'status' => 'publish',
+    'limit' => -1
+	));
+
+	$all_prices = array();
+
+	foreach ($products as $product) {
+		if ($product->get_price() == '') continue;
+
+		$all_prices[] = $product->get_price();
+	}
+
+	return max($all_prices);
+}
+
 add_action( 'wp_ajax_get_filtered_products', 'get_filtered_products' );
 add_action( 'wp_ajax_nopriv_get_filtered_products', 'get_filtered_products' );
 function get_filtered_products() {
 	$min_price = (int)$_POST['min_price'];
 	$max_price = (int)$_POST['max_price'];
+	$page_type = $_POST['page_type'];
 
-	$product_attributes = $_POST['product_attributes'];
+	$order_settings = !empty($_POST['order_settings']) ? $_POST['order_settings'] : [];
+
+	$product_terms = $_POST['product_terms'];
 	$tax_queries = [];
 
 	$tax_queries = [
 		'tax_query' => [
-    	'relation' => 'OR',
+    	'relation' => 'AND',
 		],
 	];
 
-	if ($product_attributes) {
-		foreach ($product_attributes as $product_tax_key => $tax_terms) {
+	if ($product_terms) {
+		foreach ($product_terms as $product_tax_key => $tax_terms) {
 			$tax_queries['tax_query'][] = [
 				'taxonomy' => $product_tax_key,
 				'field' => 'slug',
@@ -735,13 +772,10 @@ function get_filtered_products() {
 		}
 	}
 
-	$query = array(
+	$query = array_merge(array(
     'post_status' => 'publish',
     'post_type' => 'product',
     'posts_per_page' => 10,
-    'fields' => 'ids',
-
-		$tax_queries,
 
     'meta_query' => [
     	'relation' => 'AND',
@@ -752,97 +786,142 @@ function get_filtered_products() {
         'type' => 'NUMERIC'
       ],
     ]
-	);
+	), $order_settings, $tax_queries);
 
 	$wpquery = new WP_Query($query);
 
 	if ($wpquery->have_posts()) :
-		while ($wpquery->have_posts()) :
-			$wpquery->the_post();
+		if ($page_type == 'shop') :
+			while ($wpquery->have_posts()) :
+				$wpquery->the_post();
 
-			$id = get_the_ID();
-			$product = wc_get_product($id);
-			$product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
-      $product_attributes = $product->get_attributes();
-      $product_url = get_permalink($id);
-      $additional_labels = get_field('additional_labels', $id);
+				$id = get_the_ID();
+				$product = wc_get_product($id);
+				$product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
+	      $product_terms = $product->get_attributes();
+	      $product_url = get_permalink($id);
+	      $additional_labels = get_field('additional_labels', $id);
 
-			if ($product->get_short_description()) {
-        $product_description = $product->get_short_description();
-      } else {
-        $product_description = wp_trim_words($product->get_description(), 18, '...');
-      } ?>
+				if ($product->get_short_description()) {
+	        $product_description = $product->get_short_description();
+	      } else {
+	        $product_description = wp_trim_words($product->get_description(), 18, '...');
+	      } ?>
 
-			<div class="ProductCard ProductCard-twoColumnLg Products_item">
-        <div class="ProductCard_wrapper">
-        	<?php if ($product_image || $additional_labels): ?>
-            <div class="ProductCard_imgWrapper">
-              <?php if ($product_image): ?>
-                <?php echo $product_image ?>
-              <?php endif ?>
+				<div class="ProductCard ProductCard-twoColumnLg Products_item">
+	        <div class="ProductCard_wrapper">
+	        	<?php if ($product_image || $additional_labels): ?>
+	            <div class="ProductCard_imgWrapper">
+	              <?php if ($product_image): ?>
+	                <?php echo $product_image ?>
+	              <?php endif ?>
 
-              <?php if ($additional_labels): ?>
-                <?php foreach ($additional_labels as $additional_label): ?>
-                  <?php if ($additional_label['value'] == 'special_addition'): ?>
-                    <span class="Label Label-productCard ProductCard_label">
-                      <?php echo $additional_label['label'] ?>
-                    </span>
-                  <?php endif ?>
+	              <?php if ($additional_labels): ?>
+	                <?php foreach ($additional_labels as $additional_label): ?>
+	                  <?php if ($additional_label['value'] == 'special_addition'): ?>
+	                    <span class="Label Label-productCard ProductCard_label">
+	                      <?php echo $additional_label['label'] ?>
+	                    </span>
+	                  <?php endif ?>
 
-                  <?php if ($additional_label['value'] == 'save'): ?>
-                    <?php
-                      $discount = get_field('discount', $id);
-                    ?>
-                    <span class="Tag Tag-productCard ProductCard_tag">
-                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-                    </span>
-                  <?php endif ?>
-                <?php endforeach ?>
-              <?php endif ?>
-            </div>
-          <?php endif ?>
-
-          <div class="ProductCard_textWrapper">
-            <h3 class="ProductCard_title">
-            	<?php echo $product->get_name() ?>
-            </h3>
-
-            <?php if ($product_description): ?>
-	            <div class="ProductCard_description">
-	              <?php echo $product_description ?>
-	            </div>
-            <?php endif ?>
-
-            <?php if ($product_attributes): ?>
-	            <div class="ProductCard_tags">
-	              <div class="ProductCard_tagsLabel">Available in</div>
-	              <ul class="ProductCard_tagsList">
-	                <?php foreach ($product_attributes as $key => $value): ?>
-	                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
-	                    <li class="ProductCard_tagsItem">
-	                      <span class="CategoryTag CategoryTag-productCard">
-	                        <?php echo $term->name; ?>
-	                      </span>
-	                    </li>
-	                  <?php endforeach; ?>
-	                <?php endforeach; ?>
-	              </ul>
+	                  <?php if ($additional_label['value'] == 'save'): ?>
+	                    <?php
+	                      $discount = get_field('discount', $id);
+	                    ?>
+	                    <span class="Tag Tag-productCard ProductCard_tag">
+	                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+	                    </span>
+	                  <?php endif ?>
+	                <?php endforeach ?>
+	              <?php endif ?>
 	            </div>
 	          <?php endif ?>
 
-            <div class="ProductCard_prices">
-            	<?php echo $product->get_price_html() ?>
-             <!--  <div class="OldPrice OldPrice-productCardTwoColumn">$2395.00</div>
-              <div class="Price Price-productCardTwoColumn">$1995.00</div> -->
-            </div>
-            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
-          </div>
-        </div>
-      </div>
-		<?php endwhile;
+	          <div class="ProductCard_textWrapper">
+	            <h3 class="ProductCard_title">
+	            	<?php echo $product->get_name() ?>
+	            </h3>
+
+	            <?php if ($product_description): ?>
+		            <div class="ProductCard_description">
+		              <?php echo $product_description ?>
+		            </div>
+	            <?php endif ?>
+
+	            <?php if ($product_terms): ?>
+		            <div class="ProductCard_tags">
+		              <div class="ProductCard_tagsLabel">Available in</div>
+		              <ul class="ProductCard_tagsList">
+		                <?php foreach ($product_terms as $key => $value): ?>
+		                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
+		                    <li class="ProductCard_tagsItem">
+		                      <span class="CategoryTag CategoryTag-productCard">
+		                        <?php echo $term->name; ?>
+		                      </span>
+		                    </li>
+		                  <?php endforeach; ?>
+		                <?php endforeach; ?>
+		              </ul>
+		            </div>
+		          <?php endif ?>
+
+	            <div class="ProductCard_prices">
+	            	<?php echo $product->get_price_html() ?>
+	            </div>
+	            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
+	          </div>
+	        </div>
+	      </div>
+			<?php endwhile;
+		elseif ($page_type == 'accessories'):
+			while ($wpquery->have_posts()) :
+				$wpquery->the_post();
+
+				$id = get_the_id();
+				$product = wc_get_product($id);
+				$product_image = $product->get_image('full', array('class' => 'AccessoryCard_img'));
+				$product_url = get_permalink($id);
+				?>
+
+				<div <?php wc_product_class( 'AccessoryCard Accessories_item', $product ); ?>>
+					<?php if ($product_image || $additional_labels): ?>
+				    <div class="AccessoryCard_imgWrapper">
+				      <?php if ($product_image): ?>
+				      	<a href="<?php echo $product_url ?>">
+				        	<?php echo $product_image ?>
+				        </a>
+				      <?php endif ?>
+
+				      <?php if ($product->is_on_sale()): ?>
+				      	<span class="Tag Tag-accessoryCard AccessoryCard_tag">
+				      		<?php echo esc_html__( 'On sale', 'woocommerce' ) ?>
+				      	</span>
+				      <?php endif ?>
+				    </div>
+				  <?php endif ?>
+
+				  <div class="AccessoryCard_textWrapper">
+				    <h3 class="AccessoryCard_title">
+				    	<a href="<?php echo $product_url ?>">
+				    		<?php echo $product->get_name() ?>
+				    	</a>
+				    </h3>
+
+				    <div class="AccessoryCard_price">
+				    	<?php echo $product->get_price_html() ?>
+				    </div>
+
+				    <?php woocommerce_template_loop_add_to_cart() ?>
+
+				    <a class="BtnOutline BtnOutline-lightBeigeBg BtnOutline-darkText BtnOutline-accessoryCard AccessoryCard_btn hidden-xs" href="<?php echo $product_url ?>">view details</a>
+				  </div>
+				</div>
+			<?php endwhile;
+		endif;
 	else:
 		echo "<h3>Products not found</h3>";
 	endif;
+
 	wp_die();
 }
 

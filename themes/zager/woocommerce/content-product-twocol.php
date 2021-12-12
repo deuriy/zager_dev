@@ -24,8 +24,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 
-opcache_reset();
-
 $id = $product->get_id();
 $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
 $product_attributes = $product->get_attributes();

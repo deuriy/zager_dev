@@ -5,7 +5,7 @@
       	<?php foreach ($field['cards'] as $id): ?>
       	<?php
           $product = wc_get_product($id);
-          $product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
+          $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
           $product_attributes = $product->get_attributes();
           $product_url = get_permalink($id);
           $additional_labels = get_field('additional_labels', $id);
@@ -73,8 +73,6 @@
 
                 <div class="ProductCard_prices">
                 	<?php echo $product->get_price_html() ?>
-                  <!-- <div class="OldPrice OldPrice-productCard">from $2395</div>
-                  <div class="Price Price-productCard">from $1995.00</div> -->
                 </div>
 
                 <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options</a>
@@ -90,7 +88,7 @@
 	    <?php foreach ($field['cards'] as $id): ?>
 	    	<?php
           $product = wc_get_product($id);
-          $product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
+          $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
           $product_attributes = $product->get_attributes();
           $product_url = get_permalink($id);
           $additional_labels = get_field('additional_labels', $id);
@@ -157,8 +155,6 @@
 
 	            <div class="ProductCard_prices">
 	            	<?php echo $product->get_price_html() ?>
-	              <!-- <div class="OldPrice OldPrice-productCardTwoColumn">$2395.00</div>
-	              <div class="Price Price-productCardTwoColumn">$1995.00</div> -->
 	            </div>
 
 	            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>

@@ -1,58 +1,71 @@
-let menuHamburger = document.querySelector('.MenuHamburger');
-let mobileNavigation = document.querySelector('.MobileNavigation');
-let mobileMainMenu = document.querySelector('.MobileNavigation .MainMenu');
-let closeMobileNavigation = document.querySelector('.MobileNavigation_closeBtn');
+document.addEventListener('DOMContentLoaded', function () {
+  let menuHamburger = document.querySelector('.MenuHamburger');
+  let mobileNavigation = document.querySelector('.MobileNavigation');
+  let mobileMainMenu = document.querySelector('.MobileNavigation .MainMenu');
+  let closeMobileNavigation = document.querySelector('.MobileNavigation_closeBtn');
 
-function slideToggle(elem) {
-  if (elem.offsetHeight < elem.scrollHeight) {
-    elem.style.maxHeight = `${elem.scrollHeight}px`;
-  } else {
-    elem.style.maxHeight = '';
-  }
-}
-
-menuHamburger.addEventListener('click', function (e) {
-  menuHamburger.classList.toggle('MenuHamburger-active');
-  mobileNavigation.classList.toggle('MobileNavigation-opened');
-
-  document.body.style.overflow = document.documentElement.clientWidth < 768 ? 'hidden' : '';
-
-  e.preventDefault();
-});
-
-document.addEventListener('click', function (e) {
-  if (document.documentElement.clientWidth > 767) {
-    if (!mobileNavigation.contains(e.target) && !menuHamburger.contains(e.target)) {
-      menuHamburger.classList.remove('MenuHamburger-active');
-      mobileNavigation.classList.remove('MobileNavigation-opened');
+  function slideToggle(elem) {
+    if (elem.offsetHeight < elem.scrollHeight) {
+      elem.style.maxHeight = `${elem.scrollHeight}px`;
+    } else {
+      elem.style.maxHeight = '';
     }
   }
-});
 
-closeMobileNavigation.addEventListener('click', function (e) {
-  menuHamburger.classList.remove('MenuHamburger-active');
-  mobileNavigation.classList.remove('MobileNavigation-opened');
-  document.body.style.overflow = '';
-});
+  menuHamburger.addEventListener('click', function (e) {
+    menuHamburger.classList.toggle('MenuHamburger-active');
+    mobileNavigation.classList.toggle('MobileNavigation-opened');
 
-mobileMainMenu.addEventListener('click', function (e) {
-  let parentMenuLink = e.target.closest('.MainMenu_item-parent > .MainMenu_link');
+    document.body.style.overflow = document.documentElement.clientWidth < 768 ? 'hidden' : '';
 
-  if (!parentMenuLink) return;
+    e.preventDefault();
+  });
 
-  let parentMenuItem = parentMenuLink.parentNode;
+  document.addEventListener('click', function (e) {
+    if (document.documentElement.clientWidth > 767) {
+      if (!mobileNavigation.contains(e.target) && !menuHamburger.contains(e.target)) {
+        menuHamburger.classList.remove('MenuHamburger-active');
+        mobileNavigation.classList.remove('MobileNavigation-opened');
+      }
+    }
+  });
 
-  parentMenuItem.classList.toggle('MainMenu_item-expanded');
-  slideToggle(parentMenuItem);
-  e.preventDefault();
-});
+  closeMobileNavigation.addEventListener('click', function (e) {
+    menuHamburger.classList.remove('MenuHamburger-active');
+    mobileNavigation.classList.remove('MobileNavigation-opened');
+    document.body.style.overflow = '';
+  });
 
-document.addEventListener('click', function (e) {
-  let secondaryMenuTitle = e.target.closest('.SecondaryMenu_title');
+  mobileMainMenu.addEventListener('click', function (e) {
+    let parentMenuLink = e.target.closest('.MainMenu_item-parent > .MainMenu_link');
 
-  if (!secondaryMenuTitle) return;
+    if (!parentMenuLink) return;
 
-  let secondaryMenu = secondaryMenuTitle.closest('.SecondaryMenu');
-  secondaryMenu.classList.toggle('SecondaryMenu-expanded');
-  slideToggle(secondaryMenu);
+    let parentMenuItem = parentMenuLink.parentNode;
+
+    parentMenuItem.classList.toggle('MainMenu_item-expanded');
+    slideToggle(parentMenuItem);
+    e.preventDefault();
+  });
+
+  document.addEventListener('click', function (e) {
+    let secondaryMenuTitle = e.target.closest('.SecondaryMenu_title');
+
+    if (!secondaryMenuTitle) return;
+
+    let secondaryMenu = secondaryMenuTitle.closest('.SecondaryMenu');
+    secondaryMenu.classList.toggle('SecondaryMenu-expanded');
+    slideToggle(secondaryMenu);
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    "use strict";
+
+    anchor.addEventListener("click", function (event) {
+      event.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth",
+      });
+    });
+  });
 });

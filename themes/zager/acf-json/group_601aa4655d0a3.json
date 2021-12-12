@@ -4497,7 +4497,8 @@
                             },
                             "choices": {
                                 "grey": "Grey",
-                                "lightbeige": "Light beige"
+                                "lightbeige": "Light beige",
+                                "gradient": "Gradient"
                             },
                             "allow_null": 0,
                             "default_value": "grey",
@@ -7033,5 +7034,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1639024270
+    "modified": 1639060423
 }
