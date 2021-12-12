@@ -32,42 +32,42 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
           spaceBetween: 8,
         });
 
-        document.addEventListener('click', function (e) {
-          let filterTabsMenuItem = e.target.closest('.FilterTabsMenu_item');
+        // document.addEventListener('click', function (e) {
+        //   let filterTabsMenuItem = e.target.closest('.FilterTabsMenu_item');
 
-          if (!filterTabsMenuItem) return;
+        //   if (!filterTabsMenuItem) return;
 
-          let filterTabsMenu = filterTabsMenuItem.closest('.FilterTabsMenu');
-          let activeFilterTabsMenuItem = filterTabsMenu.querySelector('.FilterTabsMenu_item-active');
+        //   let filterTabsMenu = filterTabsMenuItem.closest('.FilterTabsMenu');
+        //   let activeFilterTabsMenuItem = filterTabsMenu.querySelector('.FilterTabsMenu_item-active');
 
-          if (activeFilterTabsMenuItem) {
-            activeFilterTabsMenuItem.classList.remove('FilterTabsMenu_item-active');
-          }
+        //   if (activeFilterTabsMenuItem) {
+        //     activeFilterTabsMenuItem.classList.remove('FilterTabsMenu_item-active');
+        //   }
 
-          filterTabsMenuItem.classList.add('FilterTabsMenu_item-active');
-          e.preventDefault();
-        });
+        //   filterTabsMenuItem.classList.add('FilterTabsMenu_item-active');
+        //   e.preventDefault();
+        // });
 
-        document.addEventListener('click', function (e) {
-          let filterTabsMenuItem = e.target.closest('.FilterTabsMenu_item');
+        // document.addEventListener('click', function (e) {
+        //   let filterTabsMenuItem = e.target.closest('.FilterTabsMenu_item');
 
-          if (!filterTabsMenuItem) return;
+        //   if (!filterTabsMenuItem) return;
 
-          let filterName = filterTabsMenuItem.dataset.filter;
-          let filterTabs = filterTabsMenuItem.closest('.FilterTabs');
+        //   let filterName = filterTabsMenuItem.dataset.filter;
+        //   let filterTabs = filterTabsMenuItem.closest('.FilterTabs');
 
-          filterTabs.querySelectorAll('.FilterTabs_item').forEach(item => {
-            let itemNames = item.dataset.itemName.split(', ');
+        //   filterTabs.querySelectorAll('.FilterTabs_item').forEach(item => {
+        //     let itemNames = item.dataset.itemName.split(', ');
 
-            if (!itemNames.includes(filterName) && filterName != 'all') {
-              item.style.display = 'none';
-            } else {
-              item.style.display = '';
-            }
-          });
+        //     if (!itemNames.includes(filterName) && filterName != 'all') {
+        //       item.style.display = 'none';
+        //     } else {
+        //       item.style.display = '';
+        //     }
+        //   });
 
-          e.preventDefault();
-        });
+        //   e.preventDefault();
+        // });
 
         document.addEventListener('click', function (e) {
           let qaMoreLink = e.target.closest('.QA_moreLink');

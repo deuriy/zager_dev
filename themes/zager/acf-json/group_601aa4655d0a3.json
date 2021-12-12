@@ -1875,7 +1875,7 @@
                                     "key": "field_619ffac994f32",
                                     "label": "URL",
                                     "name": "url",
-                                    "type": "url",
+                                    "type": "text",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": [
@@ -1893,7 +1893,10 @@
                                         "id": ""
                                     },
                                     "default_value": "",
-                                    "placeholder": ""
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
                                 },
                                 {
                                     "key": "field_619fff60985e7",
@@ -7034,5 +7037,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1639060423
+    "modified": 1639329742
 }
