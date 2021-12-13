@@ -57,9 +57,20 @@ if ( post_password_required() ) {
 		<?php
 		$id = $product->get_id();
 		$product_left_blocks = get_field('after_product_left', $id);
-	  $product_layouts_names = array_unique(array_column($product_left_blocks, 'customer_reviews'));
-	  $reviews = array_unique(array_column($product_layouts_names, 'customer_reviews'));
-	  $reviews_count = count($reviews[0]);
+		$reviews_count = 0;
+
+		if ($product_left_blocks) {
+			$product_layouts_names = array_column($product_left_blocks, 'customer_reviews');
+
+			if ($product_layouts_names) {
+				$reviews = array_column($product_layouts_names, 'customer_reviews');
+
+				if ($reviews) {
+		  		$reviews_count = count($reviews[0]);
+				}
+			}
+		}
+	  
 		?>
 
 		<div class="Product_info">
@@ -74,16 +85,18 @@ if ( post_password_required() ) {
 			<?php woocommerce_template_single_title(); ?>
 
 			<div class="Product_ratingWrapper">
-				<div class="RatingStars">
-					<ul class="RatingStars_list">
-						<li class="RatingStars_item RatingStars_item-filled"></li>
-						<li class="RatingStars_item RatingStars_item-filled"></li>
-						<li class="RatingStars_item RatingStars_item-filled"></li>
-						<li class="RatingStars_item RatingStars_item-filled"></li>
-						<li class="RatingStars_item RatingStars_item-filled"></li>
-					</ul>
-				</div>
-				<a class="Product_reviewsLabel" href="#ReviewsSection"><?php echo $reviews_count != 0 ? $reviews_count : '' ?> reviews</a>
+				<?php if ($reviews_count != 0): ?>
+					<div class="RatingStars">
+						<ul class="RatingStars_list">
+							<li class="RatingStars_item RatingStars_item-filled"></li>
+							<li class="RatingStars_item RatingStars_item-filled"></li>
+							<li class="RatingStars_item RatingStars_item-filled"></li>
+							<li class="RatingStars_item RatingStars_item-filled"></li>
+							<li class="RatingStars_item RatingStars_item-filled"></li>
+						</ul>
+					</div>
+					<a class="Product_reviewsLabel" href="#ReviewsSection"><?php echo $reviews_count ?> reviews</a>
+				<?php endif ?>
 			</div>
 		</div>
 

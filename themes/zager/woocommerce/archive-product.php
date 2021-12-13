@@ -106,7 +106,9 @@ if (isset($page_settings['top_blocks'])) {
 								 */
 								do_action( 'woocommerce_shop_loop' );
 
-								wc_get_template_part( 'content', 'product-twocol' );
+								if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no') {
+									wc_get_template_part( 'content', 'product-twocol' );
+								}
 							}
 						}
 
@@ -127,9 +129,9 @@ if (isset($page_settings['top_blocks'])) {
 					}
 					?>
 				</div>
-
-				<?php do_action( 'woocommerce_after_shop_loop' ); ?>
 			</div>
+
+			<?php do_action( 'woocommerce_after_shop_loop' ); ?>
 		<?php elseif (is_product_category('accessories')): ?>
 			<div class="AccessoriesCards ProductsWrapper_accessoriesCards">
 				<?php
@@ -151,7 +153,9 @@ if (isset($page_settings['top_blocks'])) {
 
 							do_action( 'woocommerce_shop_loop' );
 
-							wc_get_template_part( 'content', 'accessory-card' );
+							if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no') {
+								wc_get_template_part( 'content', 'accessory-card' );
+							}
 						}
 					}
 
@@ -185,6 +189,8 @@ if (isset($page_settings['top_blocks'])) {
 render_page_layouts($page_settings['bottom_blocks']['page_blocks']);
 
 get_footer( 'shop' );
+
+get_template_part( 'partials/page-blocks', 'footer' );
 
 ?>
 

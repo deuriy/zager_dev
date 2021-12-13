@@ -70,7 +70,9 @@
 	    					<?php if ($product_image || $additional_labels): ?>
                   <div class="ProductCard_imgWrapper">
                     <?php if ($product_image): ?>
-                      <?php echo $product_image ?>
+                      <a href="<?php echo $product_url ?>">
+                        <?php echo $product_image ?>
+                      </a>
                     <?php endif ?>
 
                     <?php if ($additional_labels): ?>
@@ -96,7 +98,9 @@
 
 	    					<div class="ProductCard_textWrapper">
 	    						<h3 class="ProductCard_title">
-                    <?php echo $product->get_name() ?>
+                    <a href="<?php echo $product_url ?>">
+                      <?php echo $product->get_name() ?>
+                    </a>
                   </h3>
 
 	    						<?php if ($product_attributes): ?>
@@ -148,7 +152,9 @@
 	            <?php if ($product_image || $additional_labels): ?>
                 <div class="ProductCard_imgWrapper">
                   <?php if ($product_image): ?>
-                    <?php echo $product_image ?>
+                    <a href="<?php echo $product_url ?>">
+                      <?php echo $product_image ?>
+                    </a>
                   <?php endif ?>
 
                   <?php if ($additional_labels): ?>
@@ -174,7 +180,9 @@
 
 	            <div class="ProductCard_textWrapper">
 	            	<h3 class="ProductCard_title">
-                  <?php echo $product->get_name() ?>
+                  <a href="<?php echo $product_url ?>">
+                    <?php echo $product->get_name() ?>
+                  </a>
                 </h3>
 
 	              <?php if ($product_attributes): ?>

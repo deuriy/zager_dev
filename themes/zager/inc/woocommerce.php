@@ -571,27 +571,48 @@ if ( ! function_exists( 'get_product_image_slider' ) ) {
 	function get_product_image_slider($product_id) {
 		$product = wc_get_product($product_id);
 
+		$main_image_id = $product->get_image_id();
 		$attachment_ids = $product->get_gallery_image_ids();
 
-		if ( $attachment_ids && $product->get_image_id() ) {
+		if ( $main_image_id || ($attachment_ids && $product->get_image_id()) ) {
 			echo '<div class="ProductImgSwiper Product_swiperWrapper"><div class="ProductImgSwiper_galleryWrapper"><div class="swiper ProductImgSwiper_gallery"><div class="swiper-wrapper">';
 
-			foreach ( $attachment_ids as $attachment_id ) {
-				$original_image_url = wp_get_attachment_url( $attachment_id );
+			if ($main_image_id) {
+				$main_image = wp_get_attachment_image_url( $main_image_id, 'full' );
 
-				echo '<div class="swiper-slide ProductImgSwiper_gallerySlide"><a class="ProductImgSwiper_galleryLink" href="' . $original_image_url . '" data-fancybox="gallery">';
-				echo wp_get_attachment_image( $attachment_id, 'full' );
+				echo '<div class="swiper-slide ProductImgSwiper_gallerySlide"><a class="ProductImgSwiper_galleryLink" href="' . $main_image . '" data-fancybox="gallery">';
+				echo wp_get_attachment_image( $main_image_id, 'full' );
 				echo '</a></div>';
 			}
 
-			echo '</div><button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductImgSwiper_prev hidden-smMinus" type="button"></button><button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductImgSwiper_next hidden-smMinus" type="button"></button><a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen BtnBlack-fullScreenProduct ProductImgSwiper_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>';
+			if ($attachment_ids && $product->get_image_id()) {
+				foreach ( $attachment_ids as $attachment_id ) {
+					$original_image_url = wp_get_attachment_url( $attachment_id );
+
+					echo '<div class="swiper-slide ProductImgSwiper_gallerySlide"><a class="ProductImgSwiper_galleryLink" href="' . $original_image_url . '" data-fancybox="gallery">';
+					echo wp_get_attachment_image( $attachment_id, 'full' );
+					echo '</a></div>';
+				}
+			}
+
+			echo '</div><button class="SwiperBtn SwiperBtn-prev SwiperBtn-transparentDarkBg ProductImgSwiper_prev hidden-smMinus" type="button"></button><button class="SwiperBtn SwiperBtn-next SwiperBtn-transparentDarkBg ProductImgSwiper_next hidden-smMinus" type="button"></button><a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen BtnBlack-fullScreenProduct ProductImgSwiper_fullScreenBtn" href="javascript:;" data-fancybox="gallery">full screen</a>';
 
 			echo '</div></div><div class="swiper ProductImgSwiper_thumbs hidden-smMinus"><div class="swiper-wrapper">';
 
-			foreach ( $attachment_ids as $attachment_id ) {
+			if ($main_image_id) {
+				$main_image = wp_get_attachment_image_url( $main_image_id, 'full' );
+
 				echo '<div class="swiper-slide ProductImgSwiper_thumbsSlide">';
-				echo wp_get_attachment_image( $attachment_id, 'full' );
+				echo wp_get_attachment_image( $main_image_id, 'full' );
 				echo '</div>';
+			}
+
+			if ($attachment_ids && $product->get_image_id()) {
+				foreach ( $attachment_ids as $attachment_id ) {
+					echo '<div class="swiper-slide ProductImgSwiper_thumbsSlide">';
+					echo wp_get_attachment_image( $attachment_id, 'full' );
+					echo '</div>';
+				}
 			}
 
 			echo '</div></div></div>';
@@ -682,12 +703,13 @@ if ( ! function_exists( 'yith_wcwl_fix_flatsome_checkout' ) ) {
 add_filter( 'woocommerce_variable_price_html', 'zager_variation_price_format_min', 9999, 2 );
 
 function zager_variation_price_format_min( $price, $product ) {
-	if (!is_shop() && !is_product_category() && !is_product()) return $price;
+	// if (!is_shop() && !is_product_category() && !is_product()) return $price;
+	if ($product->is_type('simple')) return $price;
 
-   $prices = $product->get_variation_prices( true );
-   $min_price = current( $prices['price'] );
-   $price = sprintf( __( '<span class="ProductCard_pricesLabel">from</span> %1$s', 'woocommerce' ), wc_price( $min_price ) );
-   return $price;
+  $prices = $product->get_variation_prices( true );
+  $min_price = current( $prices['price'] );
+  $price = sprintf( __( '<span class="ProductCard_pricesLabel">from</span> %1$s', 'woocommerce' ), wc_price( $min_price ) );
+  return $price;
 }
 
 function get_products_count_by_term($tax_slug, $term_slug) {

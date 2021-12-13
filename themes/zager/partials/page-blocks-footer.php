@@ -2,6 +2,34 @@
 
 if (is_404()) {
   $page_blocks = get_field('404_page_blocks', 'options');
+} elseif (is_shop() || is_product_category()) {
+  $shop_pages_settings = get_field('shop_pages', 'option');
+
+  if (is_shop()) {
+    $page_settings = $shop_pages_settings['default_shop_page'];
+  } elseif (is_product_category('accessories')) {
+    $page_settings = $shop_pages_settings['accessories_default_shop_page'];
+  }
+
+  if (!empty($page_settings['top_blocks']) && !empty($page_settings['top_blocks']['page_blocks'])) {
+    $top_blocks = $page_settings['top_blocks']['page_blocks'];
+  } else {
+    $top_blocks = [];
+  }
+
+  if (!empty($page_settings['after_products']) && !empty($page_settings['after_products']['page_blocks'])) {
+    $after_products = $page_settings['after_products']['page_blocks'];
+  } else {
+    $after_products = [];
+  }
+
+  if (!empty($page_settings['bottom_blocks']) && !empty($page_settings['bottom_blocks']['page_blocks'])) {
+    $bottom_blocks = $page_settings['bottom_blocks']['page_blocks'];
+  } else {
+    $bottom_blocks = [];
+  }  
+
+  $page_blocks = array_merge($top_blocks, $after_products, $bottom_blocks);
 } else {
   $page_blocks = get_field('page_blocks');
 }
@@ -388,6 +416,25 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
           studentReviewMoreLink.remove();
 
           e.preventDefault();
+        });
+      });
+    </script>
+  <?php elseif ($layout_name == 'artist_reviews'): ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('click', function (e) {
+          let videoReviewMoreLink = e.target.closest('.VideoReview_moreLink');
+
+          if (!videoReviewMoreLink) return;
+
+          let videoReviewText = videoReviewMoreLink.closest('.VideoReview').querySelector('.VideoReview_text');
+          videoReviewText.classList.toggle('VideoReview_text-expanded');
+
+          if (videoReviewText.classList.contains('VideoReview_text-expanded')) {
+            videoReviewMoreLink.textContent = 'Less';
+          } else {
+            videoReviewMoreLink.textContent = 'More';
+          }
         });
       });
     </script>

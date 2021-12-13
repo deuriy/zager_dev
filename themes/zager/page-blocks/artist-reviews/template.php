@@ -56,6 +56,7 @@
 				    				<div class="VideoReview_text">
 				    					<?php echo $text ?>
 				    				</div>
+				    				<a href="javascript:;" class="VideoReview_moreLink">More</a>
 			    				<?php endif ?>
 			    			</div>
 		    			<?php endif ?>

@@ -545,10 +545,10 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_61a46a83d6292",
-                            "label": "Price Card",
-                            "name": "price_card",
-                            "type": "repeater",
+                            "key": "field_61b7b32c2de4d",
+                            "label": "Product card",
+                            "name": "product_card",
+                            "type": "post_object",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -557,275 +557,14 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "collapsed": "field_61a46a9dd6293",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "block",
-                            "button_label": "Add price card",
-                            "sub_fields": [
-                                {
-                                    "key": "field_61a4cecf1fc7c",
-                                    "label": "Show tag",
-                                    "name": "show_tag",
-                                    "type": "button_group",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "no": "No",
-                                        "yes": "Yes"
-                                    },
-                                    "allow_null": 0,
-                                    "default_value": "no",
-                                    "layout": "horizontal",
-                                    "return_format": "value"
-                                },
-                                {
-                                    "key": "field_61a4ceea1fc7d",
-                                    "label": "Tag",
-                                    "name": "tag",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": [
-                                        [
-                                            {
-                                                "field": "field_61a4cecf1fc7c",
-                                                "operator": "==",
-                                                "value": "yes"
-                                            }
-                                        ]
-                                    ],
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_61a46a9dd6293",
-                                    "label": "Title",
-                                    "name": "title",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_61a46ab4d6294",
-                                    "label": "Price",
-                                    "name": "price",
-                                    "type": "number",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "$",
-                                    "append": "",
-                                    "min": "",
-                                    "max": "",
-                                    "step": ""
-                                },
-                                {
-                                    "key": "field_61a46aced6295",
-                                    "label": "Description",
-                                    "name": "description",
-                                    "type": "wysiwyg",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "tabs": "all",
-                                    "toolbar": "full",
-                                    "media_upload": 1,
-                                    "delay": 0
-                                },
-                                {
-                                    "key": "field_61a4da1421249",
-                                    "label": "Display button",
-                                    "name": "display_button",
-                                    "type": "button_group",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "yes": "Yes",
-                                        "no": "No"
-                                    },
-                                    "allow_null": 0,
-                                    "default_value": "yes",
-                                    "layout": "horizontal",
-                                    "return_format": "value"
-                                },
-                                {
-                                    "key": "field_61a46af7d6296",
-                                    "label": "Button",
-                                    "name": "button",
-                                    "type": "group",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": [
-                                        [
-                                            {
-                                                "field": "field_61a4da1421249",
-                                                "operator": "==",
-                                                "value": "yes"
-                                            }
-                                        ]
-                                    ],
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "layout": "block",
-                                    "sub_fields": [
-                                        {
-                                            "key": "field_61a46af7d6297",
-                                            "label": "URL",
-                                            "name": "url",
-                                            "type": "text",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "50",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "maxlength": ""
-                                        },
-                                        {
-                                            "key": "field_61a46af7d6298",
-                                            "label": "Text",
-                                            "name": "text",
-                                            "type": "text",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "50",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "maxlength": ""
-                                        },
-                                        {
-                                            "key": "field_61a46af7d6299",
-                                            "label": "Button style",
-                                            "name": "button_style",
-                                            "type": "button_group",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "33",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "choices": {
-                                                "filled": "Filled",
-                                                "outline": "Outline",
-                                                "black": "Black"
-                                            },
-                                            "allow_null": 0,
-                                            "default_value": "",
-                                            "layout": "horizontal",
-                                            "return_format": "value"
-                                        },
-                                        {
-                                            "key": "field_61a46af7d629a",
-                                            "label": "Button icon",
-                                            "name": "button_icon",
-                                            "type": "button_group",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "33",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "choices": {
-                                                "no_icon": "No icon",
-                                                "guitar": "Guitar",
-                                                "video": "Video",
-                                                "more": "More"
-                                            },
-                                            "allow_null": 0,
-                                            "default_value": "",
-                                            "layout": "horizontal",
-                                            "return_format": "value"
-                                        },
-                                        {
-                                            "key": "field_61a46af7d629b",
-                                            "label": "Open in fancybox",
-                                            "name": "open_in_fancybox",
-                                            "type": "button_group",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "33",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "choices": {
-                                                "no": "No",
-                                                "yes": "Yes"
-                                            },
-                                            "allow_null": 0,
-                                            "default_value": "no",
-                                            "layout": "horizontal",
-                                            "return_format": "value"
-                                        }
-                                    ]
-                                }
-                            ]
+                            "post_type": [
+                                "product"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 1,
+                            "return_format": "id",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -7037,5 +6776,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1639329742
+    "modified": 1639428997
 }

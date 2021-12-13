@@ -13,14 +13,24 @@ if ($field['product'] || $testimonials):
   $additional_labels = get_field('additional_labels', $id);
 
   $product_left_blocks = get_field('after_product_left', $id);
-  $product_layouts_names = array_unique(array_column($product_left_blocks, 'customer_reviews'));
-  $reviews = array_unique(array_column($product_layouts_names, 'customer_reviews'));
-  $reviews_count = count($reviews[0]);
+  $reviews_count = 0;
+
+  if ($product_left_blocks) {
+    $product_layouts_names = array_column($product_left_blocks, 'customer_reviews');
+
+    if ($product_layouts_names) {
+      $reviews = array_column($product_layouts_names, 'customer_reviews');
+
+      if ($reviews) {
+        $reviews_count = count($reviews[0]);
+      }
+    }
+  }
 ?>
 
 <div class="ProductSection">
   <div class="Container">
-    <div class="ProductSection_salePeriod">On sale for the next 23hrs 22 min</div>
+    <!-- <div class="ProductSection_salePeriod">On sale for the next 23hrs 22 min</div> -->
     <div class="ProductSection_wrapper">
       <?php if ($product_images_ids || $product_image): ?>
         <div class="ProductSection_left">
@@ -52,9 +62,17 @@ if ($field['product'] || $testimonials):
       <?php endif ?>
 
       <div class="ProductSection_right">
-        <a class="ProductSection_recommendation" href="<?php echo $product_url; ?>#ReviewsSection">
-          <span class="HighlightedText">#1 Recommended</span> Guitar. <span class="UnderlinedText"><?php echo $reviews_count != 0 ? $reviews_count : '' ?> reviews</span>
-        </a>
+        <div class="ProductSection_labelWrapper">
+          <div class="ProductSection_specialLabel HighlightedText">
+            <?php if (get_field('display_special_label', $id) == 'yes'): ?>
+              <?php the_field('special_label', $id) ?>
+            <?php endif ?>
+          </div>
+          <a href="<?php echo $product_url; ?>#ReviewsSection" class="ProductSection_specialLabel UnderlinedText">
+            <?php echo $reviews_count != 0 ? $reviews_count : '' ?> reviews
+          </a>
+        </div>
+        
         <h2 class="ProductSection_title">
           <?php echo $product->get_name() ?>
         </h2>

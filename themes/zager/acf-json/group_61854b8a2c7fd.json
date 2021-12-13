@@ -3,6 +3,28 @@
     "title": "Product Page Blocks",
     "fields": [
         {
+            "key": "field_61b7b1e38b371",
+            "label": "Display product on shop pages",
+            "name": "display_product_on_shop_pages",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "yes": "Yes",
+                "no": "No"
+            },
+            "allow_null": 0,
+            "default_value": "yes",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
             "key": "field_61b0cb0a17b76",
             "label": "Display special label",
             "name": "display_special_label",
@@ -2397,5 +2419,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1639024276
+    "modified": 1639428617
 }

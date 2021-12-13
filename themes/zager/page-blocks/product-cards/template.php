@@ -19,13 +19,16 @@
                 $additional_labels = get_field('additional_labels', $id);
                 $additional_classes = $product->get_type() == 'variable' ? ' ProductCard-extended' : '';
               ?>
+
               <div class="swiper-slide ProductCardsSwiper_slide">
                 <div class="ProductCard<?php echo $additional_classes; ?>">
                   <div class="ProductCard_wrapper">
                     <?php if ($product_image || $additional_labels): ?>
                       <div class="ProductCard_imgWrapper">
                         <?php if ($product_image): ?>
-                          <?php echo $product_image ?>
+                          <a href="<?php echo $product_url ?>">
+                            <?php echo $product_image ?>
+                          </a>
                         <?php endif ?>
 
                         <?php if ($additional_labels): ?>
@@ -51,7 +54,9 @@
 
                     <div class="ProductCard_textWrapper">
                       <h3 class="ProductCard_title">
-                        <?php echo $product->get_name() ?>
+                        <a href="<?php echo $product_url ?>">
+                          <?php echo $product->get_name() ?>
+                        </a>
                       </h3>
 
                       <div class="ProductCard_description hidden-xs">
@@ -108,12 +113,15 @@
               $additional_labels = get_field('additional_labels', $id);
               $additional_classes = $product->get_type() == 'variable' ? ' ProductCard-extended' : '';
             ?>
+
             <div class="ProductCard ProductCards_item<?php echo $additional_classes; ?>">
               <div class="ProductCard_wrapper">
                 <?php if ($product_image || $additional_labels): ?>
                   <div class="ProductCard_imgWrapper">
                     <?php if ($product_image): ?>
-                      <?php echo $product_image ?>
+                      <a href="<?php echo $product_url ?>">
+                        <?php echo $product_image ?>
+                      </a>
                     <?php endif ?>
 
                     <?php if ($additional_labels): ?>
@@ -139,7 +147,9 @@
 
                 <div class="ProductCard_textWrapper">
                   <h3 class="ProductCard_title">
-                    <?php echo $product->get_name() ?>
+                    <a href="<?php echo $product_url ?>">
+                      <?php echo $product->get_name() ?>
+                    </a>
                   </h3>
 
                   <div class="ProductCard_description hidden-xs">

@@ -1,5 +1,7 @@
 <?php if ($field['text']): ?>
 	<div class="Text">
-		<?php echo $field['text'] ?>
+		<div class="Container">
+			<?php echo $field['text'] ?>
+		</div>
 	</div>
 <?php endif ?>

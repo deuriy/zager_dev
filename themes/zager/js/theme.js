@@ -7116,15 +7116,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let secondaryMenu = secondaryMenuTitle.closest('.SecondaryMenu');
     secondaryMenu.classList.toggle('SecondaryMenu-expanded');
     slideToggle(secondaryMenu);
-  });
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    "use strict";
-
-    anchor.addEventListener("click", function (event) {
-      event.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth"
-      });
-    });
-  });
+  }); // document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+  //   "use strict";
+  //   anchor.addEventListener("click", function (event) {
+  //     event.preventDefault();
+  //     if (this.getAttribute("href") == '#' || this.dataset.action !== undefined) return;
+  //     document.querySelector(this.getAttribute("href")).scrollIntoView({
+  //       behavior: "smooth",
+  //     });
+  //   });
+  // });
 });

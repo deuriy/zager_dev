@@ -218,6 +218,16 @@ ins {
 	}
 }
 
+.ProductsWrapper_content {
+	.woocommerce-pagination {
+		margin-bottom: 60px;
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
 .checkout-fieldgroup {
 	&__header {
 		display: grid;
