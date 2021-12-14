@@ -18,6 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+opcache_reset();
 
 if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
 	<section class="ProductCardsSection ProductCardsSection-productPage">
@@ -34,21 +35,45 @@ if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
 			</h2>
 		<?php endif; ?>
 		
-		<?php woocommerce_product_loop_start(); ?>
+		<?php //woocommerce_product_loop_start(); ?>
 
-			<?php foreach ( $related_products as $related_product ) : ?>
+		<div class="ProductCardsSwiper ProductCardsSection_swiper swiper hidden-mdPlus">
+			<div class="swiper-wrapper">
 
-					<?php
-					$post_object = get_post( $related_product->get_id() );
+				<?php foreach ( $related_products as $related_product ) : ?>
 
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+						<?php
+						$post_object = get_post( $related_product->get_id() );
 
-					wc_get_template_part( 'content', 'product' );
-					?>
+						setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-			<?php endforeach; ?>
+						wc_get_template_part( 'content', 'product-slide' );
+						?>
 
-		<?php woocommerce_product_loop_end(); ?>
+				<?php endforeach; ?>
+
+			</div>
+		</div>
+
+		<div class="ProductCards ProductCards-productPage hidden-smMinus">
+			<div class="ProductCards_wrapper ProductCards_wrapper">
+
+				<?php foreach ( $related_products as $related_product ) : ?>
+
+						<?php
+						$post_object = get_post( $related_product->get_id() );
+
+						setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+
+						wc_get_template_part( 'content', 'product' );
+						?>
+
+				<?php endforeach; ?>
+
+			<?php //woocommerce_product_loop_end(); ?>
+
+			</div>
+		</div>
 
 		</div>
 	</section>

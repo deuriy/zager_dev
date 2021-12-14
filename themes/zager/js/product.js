@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loop: true,
     spaceBetween: 20,
     slidesPerView: 'auto',
-    autoHeight: true,
+    // autoHeight: true,
     centeredSlides: true,
 
     navigation: {

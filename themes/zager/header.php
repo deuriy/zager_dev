@@ -46,6 +46,7 @@ defined('ABSPATH') || exit;
             </a>
           <?php endif; ?>
         </div>
+
         <div class="Header_right">
           <?php if ($contacts): ?>
             <div class="ContactLinks Header_contacts hidden-xs">
@@ -94,18 +95,32 @@ defined('ABSPATH') || exit;
                   );
                   ?>
                 </div>
-                <div class="ContactLinks ContactLinks-mobileNavigation MobileNavigation_contacts">
-                  <ul class="ContactLinks_list">
-                    <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-phone ContactLinks_link" href="tel:+4027707747">402-770-7747</a></li>
-                    <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-email ContactLinks_link" href="mailto:help@zager.com">help@zager.com</a></li>
-                  </ul>
-                </div>
+
+                <?php if ($contacts): ?>
+                  <div class="ContactLinks ContactLinks-mobileNavigation MobileNavigation_contacts">
+                    <ul class="ContactLinks_list">
+                      <?php foreach ($contacts as $contact): ?>
+                        <li class="ContactLinks_item">
+                          <?php
+                          $link_prefix = $contact['type'] === 'phone' ? 'tel:+' : 'mailto:';
+                          ?>
+                          <a class="ContactLink ContactLink-mobileNavigation ContactLink-<?php echo $contact['type']; ?> ContactLinks_link" href="<?php echo $link_prefix . $contact['text'] ?>">
+                            <?php if ($contact['text']): ?>
+                              <?php echo $contact['text'] ?>
+                            <?php endif ?>
+                          </a>
+                        </li>
+                      <?php endforeach ?>
+                    </ul>
+                  </div>
+                <?php endif ?>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <?php
     wp_nav_menu(
       array(

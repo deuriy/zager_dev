@@ -51,9 +51,13 @@ if ( $product->is_in_stock() ) : ?>
 
 				<div class="TotalPrice TotalPrice-productOptions">
 					<div class="TotalPrice_textWrapper">
-						<div class="TotalPrice_price"><?php echo $product->get_price_html(); ?></div>
+						<div class="TotalPrice_price">
+							<?php echo $product->get_price_html(); ?>
+						</div>
+
 						<div class="TotalPrice_textAndBtn">
-							<div class="TotalPrice_text">Starting at <strong>$72/mo</strong> with <img class="TotalPrice_affirmLogo" src="<?php echo get_template_directory_uri(); ?>/img/affirm_logo.webp" alt="Affirm logo"></div><a class="BtnGrey BtnGrey-totalPrice TotalPrice_prequalifyBtn" href="#">Prequalify now</a>
+							<div class="TotalPrice_text">Starting at <strong>$72/mo</strong> with <img class="TotalPrice_affirmLogo" src="<?php echo get_template_directory_uri(); ?>/img/affirm_logo.webp" alt="Affirm logo"></div>
+							<a class="BtnGrey BtnGrey-totalPrice TotalPrice_prequalifyBtn" href="#">Prequalify now</a>
 						</div>
 					</div>
 					<div class="TotalPrice_buttons">
