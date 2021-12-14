@@ -106,7 +106,7 @@ if (isset($page_settings['top_blocks'])) {
 								 */
 								do_action( 'woocommerce_shop_loop' );
 
-								if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no') {
+								if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no' && has_term( 'guitar', 'product_cat', get_the_ID() )) {
 									wc_get_template_part( 'content', 'product-twocol' );
 								}
 							}

@@ -797,7 +797,7 @@ function get_filtered_products() {
 	$query = array_merge(array(
     'post_status' => 'publish',
     'post_type' => 'product',
-    'posts_per_page' => 10,
+    'posts_per_page' => 9,
 
     'meta_query' => [
     	'relation' => 'AND',
@@ -830,70 +830,72 @@ function get_filtered_products() {
 	        $product_description = wp_trim_words($product->get_description(), 18, '...');
 	      } ?>
 
-				<div class="ProductCard ProductCard-twoColumnLg Products_item">
-	        <div class="ProductCard_wrapper">
-	        	<?php if ($product_image || $additional_labels): ?>
-	            <div class="ProductCard_imgWrapper">
-	              <?php if ($product_image): ?>
-	                <?php echo $product_image ?>
-	              <?php endif ?>
+	      <?php if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no' && has_term( 'guitar', 'product_cat', get_the_ID() )): ?>
+					<div class="ProductCard ProductCard-twoColumnLg Products_item">
+		        <div class="ProductCard_wrapper">
+		        	<?php if ($product_image || $additional_labels): ?>
+		            <div class="ProductCard_imgWrapper">
+		              <?php if ($product_image): ?>
+		                <?php echo $product_image ?>
+		              <?php endif ?>
 
-	              <?php if ($additional_labels): ?>
-	                <?php foreach ($additional_labels as $additional_label): ?>
-	                  <?php if ($additional_label['value'] == 'special_addition'): ?>
-	                    <span class="Label Label-productCard ProductCard_label">
-	                      <?php echo $additional_label['label'] ?>
-	                    </span>
-	                  <?php endif ?>
+		              <?php if ($additional_labels): ?>
+		                <?php foreach ($additional_labels as $additional_label): ?>
+		                  <?php if ($additional_label['value'] == 'special_addition'): ?>
+		                    <span class="Label Label-productCard ProductCard_label">
+		                      <?php echo $additional_label['label'] ?>
+		                    </span>
+		                  <?php endif ?>
 
-	                  <?php if ($additional_label['value'] == 'save'): ?>
-	                    <?php
-	                      $discount = get_field('discount', $id);
-	                    ?>
-	                    <span class="Tag Tag-productCard ProductCard_tag">
-	                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-	                    </span>
-	                  <?php endif ?>
-	                <?php endforeach ?>
-	              <?php endif ?>
-	            </div>
-	          <?php endif ?>
-
-	          <div class="ProductCard_textWrapper">
-	            <h3 class="ProductCard_title">
-	            	<?php echo $product->get_name() ?>
-	            </h3>
-
-	            <?php if ($product_description): ?>
-		            <div class="ProductCard_description">
-		              <?php echo $product_description ?>
-		            </div>
-	            <?php endif ?>
-
-	            <?php if ($product_terms): ?>
-		            <div class="ProductCard_tags">
-		              <div class="ProductCard_tagsLabel">Available in</div>
-		              <ul class="ProductCard_tagsList">
-		                <?php foreach ($product_terms as $key => $value): ?>
-		                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
-		                    <li class="ProductCard_tagsItem">
-		                      <span class="CategoryTag CategoryTag-productCard">
-		                        <?php echo $term->name; ?>
-		                      </span>
-		                    </li>
-		                  <?php endforeach; ?>
-		                <?php endforeach; ?>
-		              </ul>
+		                  <?php if ($additional_label['value'] == 'save'): ?>
+		                    <?php
+		                      $discount = get_field('discount', $id);
+		                    ?>
+		                    <span class="Tag Tag-productCard ProductCard_tag">
+		                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+		                    </span>
+		                  <?php endif ?>
+		                <?php endforeach ?>
+		              <?php endif ?>
 		            </div>
 		          <?php endif ?>
 
-	            <div class="ProductCard_prices">
-	            	<?php echo $product->get_price_html() ?>
-	            </div>
-	            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
-	          </div>
-	        </div>
-	      </div>
+		          <div class="ProductCard_textWrapper">
+		            <h3 class="ProductCard_title">
+		            	<?php echo $product->get_name() ?>
+		            </h3>
+
+		            <?php if ($product_description): ?>
+			            <div class="ProductCard_description">
+			              <?php echo $product_description ?>
+			            </div>
+		            <?php endif ?>
+
+		            <?php if ($product_terms): ?>
+			            <div class="ProductCard_tags">
+			              <div class="ProductCard_tagsLabel">Available in</div>
+			              <ul class="ProductCard_tagsList">
+			                <?php foreach ($product_terms as $key => $value): ?>
+			                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
+			                    <li class="ProductCard_tagsItem">
+			                      <span class="CategoryTag CategoryTag-productCard">
+			                        <?php echo $term->name; ?>
+			                      </span>
+			                    </li>
+			                  <?php endforeach; ?>
+			                <?php endforeach; ?>
+			              </ul>
+			            </div>
+			          <?php endif ?>
+
+		            <div class="ProductCard_prices">
+		            	<?php echo $product->get_price_html() ?>
+		            </div>
+		            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
+		          </div>
+		        </div>
+		      </div>
+	      <?php endif ?>
 			<?php endwhile;
 		elseif ($page_type == 'accessories'):
 			while ($wpquery->have_posts()) :
@@ -952,7 +954,7 @@ add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 function new_loop_shop_per_page( $cols ) {
   // $cols contains the current number of products per page based on the value stored on Options –> Reading
   // Return the number of products you wanna show per page.
-  $cols = 10;
+  $cols = 9;
   return $cols;
 }
 

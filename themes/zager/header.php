@@ -32,87 +32,87 @@ defined('ABSPATH') || exit;
 
   <div class="Wrapper">
     <div class="Header">
-      <div class="Header_top">
-        <div class="Container Container-header">
-          <div class="Header_topWrapper">
-            <div class="Header_left">
-              <?php
-              $logo_img = '';
-              if ($custom_logo_id = get_theme_mod('custom_logo')) :
-                $logo_img = wp_get_attachment_image($custom_logo_id, 'full', false, array(
-                  'class'    => 'Header_logoImg'
-                ));
-                ?>
-                <a class="Header_logo" href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-                  <?php echo $logo_img; ?>
-                </a>
-              <?php endif; ?>
+      <div class="Container Container-header Header_container">
+        <div class="Header_left">
+          <?php
+          $logo_img = '';
+          if ($custom_logo_id = get_theme_mod('custom_logo')) :
+            $logo_img = wp_get_attachment_image($custom_logo_id, 'full', false, array(
+              'class'    => 'Header_logoImg'
+            ));
+            ?>
+            <a class="Header_logo" href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
+              <?php echo $logo_img; ?>
+            </a>
+          <?php endif; ?>
+        </div>
+        <div class="Header_right">
+          <?php if ($contacts): ?>
+            <div class="ContactLinks Header_contacts hidden-xs">
+              <ul class="ContactLinks_list">
+                <?php foreach ($contacts as $contact): ?>
+                  <li class="ContactLinks_item">
+                    <?php
+                    $link_prefix = $contact['type'] === 'phone' ? 'tel:+' : 'mailto:';
+                    ?>
+                    <a class="ContactLink ContactLink-<?php echo $contact['type']; ?> ContactLinks_link" href="<?php echo $link_prefix . $contact['text'] ?>">
+                      <?php if ($contact['text']): ?>
+                        <?php echo $contact['text'] ?>
+                      <?php endif ?>
+                    </a>
+                  </li>
+                <?php endforeach ?>
+              </ul>
             </div>
-            <div class="Header_right">
-              <?php if ($contacts): ?>
-                <div class="ContactLinks Header_contacts hidden-xs">
-                  <ul class="ContactLinks_list">
-                    <?php foreach ($contacts as $contact): ?>
-                      <li class="ContactLinks_item">
-                        <?php
-                        $link_prefix = $contact['type'] === 'phone' ? 'tel:+' : 'mailto:';
-                        ?>
-                        <a class="ContactLink ContactLink-<?php echo $contact['type']; ?> ContactLinks_link" href="<?php echo $link_prefix . $contact['text'] ?>">
-                          <?php if ($contact['text']): ?>
-                            <?php echo $contact['text'] ?>
-                          <?php endif ?>
-                        </a>
-                      </li>
-                    <?php endforeach ?>
-                  </ul>
+          <?php endif ?>
+          <div class="Header_buttons">
+            <?php if ($display_cart_button === 'yes'): ?>
+              <a class="CartBtn" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+                <span class="CartBtn_text hidden-xs">cart</span>
+              </a>
+            <?php endif ?>
+
+            <a class="MenuHamburger hidden-mdPlus" href="#">
+              <span class="MenuHamburger_text hidden-xs">menu</span>
+            </a>
+
+            <div class="MobileNavigation Header_mobileNavigation hidden-mdPlus">
+              <div class="MobileNavigation_header hidden-sm">
+                <button class="CloseButton MobileNavigation_closeBtn" type="button"></button>
+              </div>
+              <div class="Container Container-mobileNavigation">
+                <div class="MainMenu MobileNavigation_mainMenu">
+                  <h3 class="MainMenu_title hidden-sm">Menu</h3>
+                  <?php
+                  wp_nav_menu(
+                    array(
+                      'theme_location'  => 'header',
+                      'container_class' => 'MainMenu',
+                      'menu_class'      => 'MainMenu_menu',
+                      'walker'          => new Understrap_WP_Primary_Navwalker(),
+                    )
+                  );
+                  ?>
                 </div>
-              <?php endif ?>
-              <div class="Header_buttons">
-                <?php if ($display_cart_button === 'yes'): ?>
-                  <a class="CartBtn" href="<?php echo esc_url( wc_get_cart_url() ); ?>"><span class="CartBtn_text hidden-xs">cart</span></a>
-                <?php endif ?>
-                <a class="MenuHamburger hidden-mdPlus" href="#"><span class="MenuHamburger_text hidden-xs">menu</span></a>
-                <div class="MobileNavigation Header_mobileNavigation hidden-mdPlus">
-                  <div class="MobileNavigation_header hidden-sm">
-                    <button class="CloseButton MobileNavigation_closeBtn" type="button"></button>
-                  </div>
-                  <div class="Container Container-mobileNavigation">
-                    <div class="MainMenu MobileNavigation_mainMenu">
-                      <h3 class="MainMenu_title hidden-sm">Menu</h3>
-                      <?php
-                      wp_nav_menu(
-                        array(
-                          'theme_location'  => 'header',
-                          'container_class' => 'MainMenu',
-                          'menu_class'      => 'MainMenu_menu',
-                          'walker'          => new Understrap_WP_Primary_Navwalker(),
-                        )
-                      );
-                      ?>
-                    </div>
-                    <div class="ContactLinks ContactLinks-mobileNavigation MobileNavigation_contacts">
-                      <ul class="ContactLinks_list">
-                        <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-phone ContactLinks_link" href="tel:+4027707747">402-770-7747</a></li>
-                        <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-email ContactLinks_link" href="mailto:help@zager.com">help@zager.com</a></li>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="ContactLinks ContactLinks-mobileNavigation MobileNavigation_contacts">
+                  <ul class="ContactLinks_list">
+                    <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-phone ContactLinks_link" href="tel:+4027707747">402-770-7747</a></li>
+                    <li class="ContactLinks_item"><a class="ContactLink ContactLink-mobileNavigation ContactLink-email ContactLinks_link" href="mailto:help@zager.com">help@zager.com</a></li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="Header_bottom hidden-smMinus">
-        <?php
-        wp_nav_menu(
-          array(
-            'theme_location'  => 'header',
-            'container_class' => 'MainMenu',
-            'menu_class'      => 'MainMenu_menu',
-            'walker'          => new Understrap_WP_Primary_Navwalker(),
-          )
-        );
-        ?>
-      </div>
     </div>
+    <?php
+    wp_nav_menu(
+      array(
+        'theme_location'  => 'header',
+        'container_class' => 'MainMenu hidden-smMinus',
+        'menu_class'      => 'MainMenu_menu',
+        'walker'          => new Understrap_WP_Primary_Navwalker(),
+      )
+    );
+    ?>

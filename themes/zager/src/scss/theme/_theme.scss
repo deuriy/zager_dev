@@ -151,7 +151,8 @@ ins {
 		display: flex;
 		align-items: baseline;
 		justify-content: start;
-		column-gap: 20px;
+		flex-wrap: wrap;
+		gap: 20px;
 		list-style: none;
 		
 		li {
