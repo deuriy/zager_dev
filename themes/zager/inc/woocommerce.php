@@ -194,11 +194,13 @@ function zager_wc_template_loop_product_open() {
 	echo '<div class="ProductCard_wrapper">';
 }
 
+opcache_reset();
+
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
 add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_more', 10);
 function woocommerce_template_loop_product_link_more() {
-	echo '<a href="' . get_the_permalink() . '" class="BtnYellow BtnYellow-productCard ProductCard_btn">View options and features</a>';
+	echo '<a href="' . get_the_permalink() . '" class="BtnYellow BtnYellow-productCard ProductCard_btn">View options<span class="hidden-xs"> and features</span></a>';
 }
 
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
