@@ -19,8 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-opcache_reset();
-
 if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
 	<section class="ProductCardsSection ProductCardsSection-productPage">
 		<div class="Container">

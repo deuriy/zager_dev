@@ -194,8 +194,6 @@ function zager_wc_template_loop_product_open() {
 	echo '<div class="ProductCard_wrapper">';
 }
 
-opcache_reset();
-
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
 
 add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_more', 10);
