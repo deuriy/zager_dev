@@ -1,5 +1,5 @@
 <?php if ($field['posts']): ?>
-  <div class="Posts Posts-tabs Tabs_posts">
+  <div class="Posts">
     <?php foreach ($field['posts'] as $post_obj): ?>
       <div class="Post Posts_item PostsSection_item">
         <?php

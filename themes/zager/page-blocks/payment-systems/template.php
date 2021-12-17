@@ -3,13 +3,13 @@ $payment_systems = $field['block_type'] === 'default' ? get_field('product_page_
 ?>
 
 <?php if ($payment_systems): ?>
-	<div class="PaymentSystems Tabs_paymentSystems">
+	<div class="PaymentSystems">
 		<?php foreach ($payment_systems as $payment_system): ?>
 			<?php
 			$logo = wp_get_attachment_image($payment_system['logo'], 'full', false, array('class' => 'PaymentSystem_img'));
 			?>
 
-			<div class="PaymentSystem<?php echo $payment_system['display_button'] ? ' PaymentSystem-extended' : '' ?> PaymentSystems_item">
+			<div class="PaymentSystem<?php echo $payment_system['display_button'] == 'yes' ? ' PaymentSystem-extended' : '' ?> PaymentSystems_item">
 				<?php if ($logo): ?>
 					<div class="PaymentSystem_imgWrapper">
 						<?php echo $logo; ?>

@@ -35,20 +35,11 @@ if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+
 ?>
 
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	// do_action( 'woocommerce_before_single_product_summary' );
-	?>
 
 	<div class="Product_notices">
 		<?php wc_print_notices(); ?>
@@ -70,7 +61,6 @@ if ( post_password_required() ) {
 				}
 			}
 		}
-	  
 		?>
 
 		<div class="Product_info">
@@ -95,7 +85,9 @@ if ( post_password_required() ) {
 							<li class="RatingStars_item RatingStars_item-filled"></li>
 						</ul>
 					</div>
-					<a class="Product_reviewsLabel" href="#ReviewsSection"><?php echo $reviews_count ?> reviews</a>
+					<a class="Product_reviewsLabel" href="#ReviewsSection">
+						<?php echo $reviews_count ?> reviews
+					</a>
 				<?php endif ?>
 			</div>
 		</div>
@@ -110,77 +102,109 @@ if ( post_password_required() ) {
 		</div>
 
 		<div class="PriceCard PriceCard-productOptions Product_priceCard hidden-mdPlus">
-			<div class="PriceCard_price">$2,595</div>
-			<div class="PriceCard_description">
-				<p>Starting at <strong>$72/mo</strong> with <img src="img/affirm_logo.webp" alt="Affirm logo"></p>
+			<div class="PriceCard_price">
+				<?php echo $product->get_price_html() ?>
 			</div>
-			<a class="BtnYellow BtnYellow-priceCard PriceCard_btn" href="#ProductSizesMobilePopup" data-action="openMobilePopup">See options</a>
+
+			<div class="PriceCard_description">
+				<p>Starting at <strong>$72/mo</strong> with <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/affirm_logo.webp" alt="Affirm logo"></p>
+			</div>
+
+			<?php if ($product->is_type('simple')): ?>
+				<a class="BtnYellow BtnYellow-productOptions Product_optionsBtn" href="#TotalPriceMobilePopup" data-action="openMobilePopup">See options</a>
+			<?php else: ?>
+				<?php
+					$attributes = $product->get_variation_attributes();
+					$attribute_keys = array_keys( $attributes );
+					$sanitized_first_attribute = sanitize_title( $attribute_keys[0] );
+				?>
+
+				<a class="BtnYellow BtnYellow-priceCard PriceCard_btn" href="#MobilePopup-<?php echo $sanitized_first_attribute ?>" data-action="openMobilePopup">See options</a>
+			<?php endif ?>
+			
 		</div>
 
 		<?php get_template_part('partials/blocks/product-quote'); ?>
 
-		<!-- <div class="Accordion Product_accordion hidden-smPlus">
-			<div class="AccordionPanel Accordion_item">
-				<h3 class="AccordionPanel_title">Features</h3>
-				<div class="AccordionPanel_content">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ex rem qui consectetur at quaerat nostrum, commodi esse cumque accusantium dolorum? Saepe reprehenderit laborum earum necessitatibus accusantium molestiae, dolore repellendus!</p>
-				</div>
-			</div>
-			<div class="AccordionPanel Accordion_item">
-				<h3 class="AccordionPanel_title">Specifications</h3>
-				<div class="AccordionPanel_content">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ex rem qui consectetur at quaerat nostrum, commodi esse cumque accusantium dolorum? Saepe reprehenderit laborum earum necessitatibus accusantium molestiae, dolore repellendus!</p>
-				</div>
-			</div>
-			<div class="AccordionPanel Accordion_item">
-				<h3 class="AccordionPanel_title">Finance</h3>
-				<div class="AccordionPanel_content">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ex rem qui consectetur at quaerat nostrum, commodi esse cumque accusantium dolorum? Saepe reprehenderit laborum earum necessitatibus accusantium molestiae, dolore repellendus!</p>
-				</div>
-			</div>
-			<div class="AccordionPanel Accordion_item">
-				<h3 class="AccordionPanel_title">FAQ</h3>
-				<div class="AccordionPanel_content">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ex rem qui consectetur at quaerat nostrum, commodi esse cumque accusantium dolorum? Saepe reprehenderit laborum earum necessitatibus accusantium molestiae, dolore repellendus!</p>
-				</div>
-			</div>
-		</div> -->
+		<?php
+			$selected_product_tabs = get_field('display_product_tabs');
 
-		<?php display_product_tabs(); ?>
+			if ($selected_product_tabs):
+				$product_tabs = [
+					'features' => [
+						'title' => get_field('override_features_tab_title') === 'yes' ? get_field('features_tab_title') : 'Features',
+						'fields' => get_field('features_tab_blocks')
+					],
+					'specifications' => [
+						'title' => get_field('override_specifications_tab_title') === 'yes' ? get_field('specifications_tab_title') : 'Specifications',
+						'fields' => get_field('specifications_tab_blocks')
+					],
+					'finance' => [
+						'title' => get_field('override_finance_tab_title') === 'yes' ? get_field('finance_tab_title') : 'Finance',
+						'fields' => get_field('finance_tab_blocks')
+					],
+					'faq' => [
+						'title' => get_field('override_faq_tab_title') === 'yes' ? get_field('faq_tab_title') : 'FAQ',
+						'fields' => get_field('faq_tab_blocks')
+					]
+				];
+			?>
+
+			<div class="Accordion hidden-smPlus">
+				<?php foreach ($selected_product_tabs as $key => $selected_tab): ?>
+					<div class="AccordionPanel Accordion_item">
+						<h3 class="AccordionPanel_title">
+							<?php echo $product_tabs[$selected_tab]['title'] ?>
+						</h3>
+
+						<div class="AccordionPanel_content">
+							<?php
+							$selected_tab_fields = $product_tabs[$selected_tab]['fields'];
+							render_page_layouts($selected_tab_fields);
+							?>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+
+			<div class="Tabs Tabs-defaultStyle Tabs-product hidden-xs">
+				<ul class="Tabs_list">
+					<?php foreach ($selected_product_tabs as $key => $selected_tab): ?>
+						<li class="Tabs_item<?php echo $key === 0 ? ' Tabs_item-active' : '' ?>">
+							<?php echo $product_tabs[$selected_tab]['title'] ?>
+						</li>
+					<?php endforeach ?>
+				</ul>
+
+				<div class="Tabs_container">
+					<?php foreach ($selected_product_tabs as $key => $selected_tab): ?>
+						<div class="Tabs_content<?php echo $key === 0 ? ' Tabs_content-active' : '' ?>">
+							<?php
+							$selected_tab_fields = $product_tabs[$selected_tab]['fields'];
+							render_page_layouts($selected_tab_fields);
+							?>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+		<?php endif; ?>
 
 		<div class="Product_optionsBtnWrapper hidden-mdPlus">
-			<a class="BtnYellow BtnYellow-productOptions Product_optionsBtn" href="#ProductSizesMobilePopup" data-action="openMobilePopup">See options</a>
+			<?php if ($product->is_type('simple')): ?>
+				<a class="BtnYellow BtnYellow-productOptions Product_optionsBtn" href="#TotalPriceMobilePopup" data-action="openMobilePopup">See options</a>
+			<?php else: ?>
+				<?php
+					$attributes = $product->get_variation_attributes();
+					$attribute_keys = array_keys( $attributes );
+					$sanitized_first_attribute = sanitize_title( $attribute_keys[0] );
+				?>
+
+				<a class="BtnYellow BtnYellow-productOptions Product_optionsBtn" href="#MobilePopup-<?php echo $sanitized_first_attribute ?>" data-action="openMobilePopup">See options</a>
+			<?php endif ?>
 		</div>
-
-		<?php
-	/**
-	 * Hook: woocommerce_single_product_summary.
-	 *
-	 * @hooked woocommerce_template_single_title - 5
-	 * @hooked woocommerce_template_single_rating - 10
-	 * @hooked woocommerce_template_single_price - 10
-	 * @hooked woocommerce_template_single_excerpt - 20
-	 * @hooked woocommerce_template_single_add_to_cart - 30
-	 * @hooked woocommerce_template_single_meta - 40
-	 * @hooked woocommerce_template_single_sharing - 50
-	 * @hooked WC_Structured_Data::generate_product_data() - 60
-	 */
-	// do_action( 'woocommerce_single_product_summary' );
-	?>
-
-	<?php
-	/**
-	 * Hook: woocommerce_after_single_product_summary.
-	 *
-	 * @hooked woocommerce_output_product_data_tabs - 10
-	 * @hooked woocommerce_upsell_display - 15
-	 * @hooked woocommerce_output_related_products - 20
-	 */
-	// do_action( 'woocommerce_after_single_product_summary' );
-	?>
 </div>
 </div>
 
 <?php render_page_layouts(get_field('after_product_left')); ?>
 
-<?php //do_action( 'woocommerce_after_single_product' ); ?>
+<?php do_action( 'woocommerce_after_single_product' ); ?>

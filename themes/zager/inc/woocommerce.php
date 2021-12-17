@@ -248,6 +248,8 @@ function zager_wc_loop_product_attributes() {
   <?php endif;
 }
 
+add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+
 // remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
 
 add_filter( 'woocommerce_page_title', 'zager_woocommerce_page_title');
@@ -533,7 +535,7 @@ function woocommerce_form_field( $key, $args, $value = null ) {
 
 // 	return $field;
 // }
-	remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
 
 // add this filter in functions.php file
 	add_filter( 'woocommerce_get_item_data', 'wc_checkout_description', 10, 2 );
@@ -629,6 +631,21 @@ add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' );
 
 function woo_custom_order_button_text() {
 	return __( 'Pay now', 'woocommerce' ); 
+}
+
+add_filter( 'woocommerce_add_to_cart_redirect', 'redirect_after_adding_product' );
+ 
+function redirect_after_adding_product( $url ) {
+
+	if (isset($_REQUEST['add-to-cart-checkout'])) {
+		return wc_get_checkout_url();
+	}
+
+	if (isset($_REQUEST['add-to-cart'])) {
+		return wc_get_cart_url();
+	}
+
+	return $url;
 }
 
 // Hook in
@@ -966,3 +983,32 @@ function my_wc_hide_in_stock_message( $html, $product ) {
 	return $html;
 }
 add_filter( 'woocommerce_get_stock_html', 'my_wc_hide_in_stock_message', 10, 3 );
+
+
+function woocommerce_mobile_variable_add_to_cart() {
+	global $product;
+
+	// Enqueue variation scripts.
+	wp_enqueue_script( 'wc-add-to-cart-variation' );
+
+	// Get Available variations?
+	$get_variations = count( $product->get_children() ) <= apply_filters( 'woocommerce_ajax_variation_threshold', 30, $product );
+
+	// Load the template.
+	wc_get_template(
+		'single-product/add-to-cart/variable-mobile.php',
+		array(
+			'available_variations' => $get_variations ? $product->get_available_variations() : false,
+			'attributes'           => $product->get_variation_attributes(),
+			'selected_attributes'  => $product->get_default_attributes(),
+		)
+	);
+}
+
+function woocommerce_single_mobile_variation_add_to_cart_button() {
+	wc_get_template( 'single-product/add-to-cart/mobile-variation-add-to-cart-button.php' );
+}
+
+function woocommerce_mobile_simple_add_to_cart() {
+	wc_get_template( 'single-product/add-to-cart/mobile-simple.php' );
+}

@@ -1,5 +1,5 @@
 <?php if ($field['accessory_cards'] || $field['title']): ?>
-	<div class="AccessoryTiles Tabs_accessoryTiles">
+	<div class="AccessoryTiles">
 		<?php if ($field['title']): ?>
 			<h3 class="AccessoryTiles_title">
 				<?php echo $field['title']; ?>

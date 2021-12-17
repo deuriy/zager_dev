@@ -14,10 +14,6 @@
 		      		<?php
 		      			$product_card = wc_get_product($product_card_id);
 		      			$product_card_class = get_field('display_special_label', $product_card_id) == 'yes' ? ' PriceSection_item-withTag' : '';
-
-		      			// print '<pre>';
-		      			// print_r($product_card);
-		      			// print '</pre>';
 		      		?>
 
 			        <div class="PriceCard PriceSection_item<?php echo $product_card_class ?>">

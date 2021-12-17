@@ -60,8 +60,11 @@ if ( $product->is_in_stock() ) : ?>
 							<a class="BtnGrey BtnGrey-totalPrice TotalPrice_prequalifyBtn" href="#">Prequalify now</a>
 						</div>
 					</div>
+					
 					<div class="TotalPrice_buttons">
-						<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-outline-primary BtnYellow BtnYellow-totalPrice TotalPrice_btn"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+						<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-outline-primary BtnYellow BtnYellow-totalPrice TotalPrice_btn">
+							<?php echo esc_html( $product->single_add_to_cart_text() ); ?>
+						</button>
 					</div>
 				</div>
 

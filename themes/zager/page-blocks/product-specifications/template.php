@@ -1,7 +1,7 @@
 <?php if ($field['title'] || $field['specifications_list'] || $field['characteristics_list']): ?>
-	<div class="Specifications Tabs_specifications">
+	<div class="Specifications">
 		<?php if ($field['title']): ?>
-			<h2 class="SectionTitle SectionTitle-specifications Specifications_title">
+			<h2 class="SectionTitle SectionTitle-specifications Specifications_title hidden-xs">
 				<?php echo $field['title']; ?>
 			</h2>
 		<?php endif ?>

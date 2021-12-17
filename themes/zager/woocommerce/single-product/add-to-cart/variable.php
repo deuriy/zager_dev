@@ -16,11 +16,11 @@ global $product;
 global $woocommerce;
 
 $attribute_keys = array_keys( $attributes ); ?>
+		
+<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 <div class="ProductOptions Sidebar_productOptions">
 	<div class="ProductOptions_inner">
-		
-		<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 		<a class="Offer ProductOptions_offer" href="#">Try this guitar for 30 days. Includes free shipping both ways.
 		</a>
@@ -37,41 +37,43 @@ $attribute_keys = array_keys( $attributes ); ?>
 						<?php foreach ( $attributes as $name => $options ) : ?>
 							<?php $sanitized_name = sanitize_title( $name ); ?>
 							<tr class="VariationsBlock ProductOptions_variationsBlock attribute attribute-<?php echo esc_attr( $sanitized_name ); ?>">
-								<td class="VariationsBlock_header label attribute__label">
-									<label for="<?php echo esc_attr( $sanitized_name ); ?>" class="VariationsBlock_title">
-										<?php echo wc_attribute_label( $name ); ?>
-									</label>
-									<a class="FancyboxPopupLink VariationsBlock_link" href="#" data-src="#CompareSizesPopup">Compare Sizes</a>
-								</td>
-								<?php
-								if ( isset( $_REQUEST[ 'attribute_' . $sanitized_name ] ) ) {
-									$checked_value = $_REQUEST[ 'attribute_' . $sanitized_name ];
-								} elseif ( isset( $selected_attributes[ $sanitized_name ] ) ) {
-									$checked_value = $selected_attributes[ $sanitized_name ];
-								} else {
-									$checked_value = '';
-								}
-								?>
-								<td class="Variations VariationsBlock_items value attribute__value">
+								<td>
+									<div class="VariationsBlock_header label attribute__label">
+										<label for="<?php echo esc_attr( $sanitized_name ); ?>" class="VariationsBlock_title">
+											<?php echo wc_attribute_label( $name ); ?>
+										</label>
+										<a class="FancyboxPopupLink VariationsBlock_link" href="#" data-src="#CompareSizesPopup">Compare Sizes</a>
+									</div>
 									<?php
-									if ( ! empty( $options ) ) {
-										if ( taxonomy_exists( $name ) ) {
-											// Get terms if this is a taxonomy - ordered. We need the names too.
-											$terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
-
-											foreach ( $terms as $term ) {
-												if ( ! in_array( $term->slug, $options ) ) {
-													continue;
-												}
-												custom_print_attribute_radio( $checked_value, $term->slug, $term->name, $sanitized_name );
-											}
-										} else {
-											foreach ( $options as $option ) {
-												custom_print_attribute_radio( $checked_value, $option, $option, $sanitized_name );
-											}
-										}
+									if ( isset( $_REQUEST[ 'attribute_' . $sanitized_name ] ) ) {
+										$checked_value = $_REQUEST[ 'attribute_' . $sanitized_name ];
+									} elseif ( isset( $selected_attributes[ $sanitized_name ] ) ) {
+										$checked_value = $selected_attributes[ $sanitized_name ];
+									} else {
+										$checked_value = '';
 									}
 									?>
+									<div class="Variations VariationsBlock_items value attribute__value">
+										<?php
+										if ( ! empty( $options ) ) {
+											if ( taxonomy_exists( $name ) ) {
+												// Get terms if this is a taxonomy - ordered. We need the names too.
+												$terms = wc_get_product_terms( $product->get_id(), $name, array( 'fields' => 'all' ) );
+
+												foreach ( $terms as $term ) {
+													if ( ! in_array( $term->slug, $options ) ) {
+														continue;
+													}
+													custom_print_attribute_radio( $checked_value, $term->slug, $term->name, $sanitized_name );
+												}
+											} else {
+												foreach ( $options as $option ) {
+													custom_print_attribute_radio( $checked_value, $option, $option, $sanitized_name );
+												}
+											}
+										}
+										?>
+									</div>
 								</td>
 							</tr>
 						<?php endforeach; ?>
