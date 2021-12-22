@@ -15,16 +15,18 @@
  * @version 3.6.0
  */
 
-defined( 'ABSPATH' ) || exit;
+// defined( 'ABSPATH' ) || exit;
 
-global $product;
+// global $product;
 
-// Ensure visibility.
-if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
-}
+// // Ensure visibility.
+// if ( empty( $product ) || ! $product->is_visible() ) {
+// 	return;
+// }
 
-$id = $product->get_id();
+// $id = $product->get_id();
+$id = get_the_ID();
+$product = wc_get_product($id);
 $product_image = $product->get_image('full', array('class' => 'AccessoryCard_img'));
 $product_url = get_permalink($id);
 ?>

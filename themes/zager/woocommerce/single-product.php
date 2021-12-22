@@ -73,6 +73,7 @@ get_header( 'shop' ); ?>
 
 <?php
 get_template_part('partials/compare-sizes-popup');
+get_template_part('partials/compare-electronics-popup');
 get_template_part('partials/product-mobile-popup');
 get_footer( 'shop' );
 

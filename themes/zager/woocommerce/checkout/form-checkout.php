@@ -63,12 +63,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 							<div class="express-checkout__payment-methods">
 								<div class="express-checkout__payment-method">
 									<div class="express-checkout__payment-method-img-wrapper">
-										<img src="<?php echo get_template_directory_uri(); ?>/img/paypal.svg" alt="">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/paypal.svg" alt="" loading="lazy">
 									</div>
 								</div>
 								<div class="express-checkout__payment-method">
 									<div class="express-checkout__payment-method-img-wrapper">
-										<img src="<?php echo get_template_directory_uri(); ?>/img/affirm.svg" alt="">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/affirm.svg" alt="" loading="lazy">
 									</div>
 									<div class="express-checkout__payment-method-description">
 										Starting at $91/mo with Affirm. <a href="#">Learn more</a>

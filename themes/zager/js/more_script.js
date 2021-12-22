@@ -23,6 +23,7 @@ jQuery(document).ready(function (){
 
 		let data = {
 			action : 'get_reviews',
+			type : jQuery('.reviews-block').attr('data-review-type'),
 			href : a.attr('href'),
 		};
 

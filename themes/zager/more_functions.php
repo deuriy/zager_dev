@@ -87,6 +87,8 @@ function get_reviews () {
 	$list = 1;
 	$guitar = false;
 
+	$type = !empty($_REQUEST['type']) ? $_REQUEST['type'] : 'common';
+
 	foreach ( $href as $r ) {
 		$ra = explode('=', $r);
 
@@ -110,11 +112,12 @@ function get_reviews () {
 	];
 
 	if ( !empty($guitar) ) {
+		$guitar = explode('|', $guitar);
 		$args['tax_query'] = [
 			[
 				'taxonomy' => 'customer_reviews_category',
 				'field' => 'slug',
-				'terms' => [$guitar]
+				'terms' => $guitar
 			]
 		];
 	}
@@ -123,9 +126,17 @@ function get_reviews () {
 	$reviews = $query->posts;
 
 	$total = $query->found_posts;
-	$last = intval(floor($total / REVIEW_STEP));
+	$last = intval(ceil($total / REVIEW_STEP));
 
-	$data['reviews'] = get_buffered_file(ZAGER_THEME_DIR . 'more-templates/reviews-guitar.php', ['reviews' => $reviews]);
+	$file = ZAGER_THEME_DIR . 'more-templates/reviews-guitar.php';
+
+	switch ( $type ) {
+		case 'single':
+			$file = ZAGER_THEME_DIR . 'more-templates/reviews-single-guitar.php';
+			break;
+	}
+
+	$data['reviews'] = get_buffered_file($file, ['reviews' => $reviews]);
 	$data['pagination'] = get_buffered_file(ZAGER_THEME_DIR . 'more-templates/reviews-pagination.php', ['list' => $list, 'last' => $last, 'total' => $total, 'guitar' => $guitar]);
 
 	echo json_encode($data);

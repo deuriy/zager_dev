@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.addEventListener('click', function (e) {
 		let orderTableHeader = e.target.closest('.woocommerce-checkout-review-order-table__header');
 
-		if (!orderTableHeader || document.documentElement.clientWidth > 767) return;
+		if (!orderTableHeader || document.documentElement.clientWidth > 1023) return;
 
 		let orderTable = orderTableHeader.closest('.woocommerce-checkout-review-order-table');
 		let orderTableCartContent = orderTable.querySelector('.woocommerce-checkout-review-order-table__cart-content');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.addEventListener('click', function (e) {
 		let orderTableCloseBtn = e.target.closest('.woocommerce-checkout-review-order-table__close-btn');
 
-		if (!orderTableCloseBtn || document.documentElement.clientWidth > 767) return;
+		if (!orderTableCloseBtn || document.documentElement.clientWidth > 1023) return;
 
 		let orderTable = orderTableCloseBtn.closest('.woocommerce-checkout-review-order-table');
 		orderTable.classList.add('woocommerce-checkout-review-order-table--collapsed');
@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		let multistageFormButtonsWrapper = multistageForm.querySelector('.multistage-form__buttons');
 		let checkoutPaymentBtnWrapper = multistageForm.querySelector('.woocommerce-checkout-payment__btn-wrapper');
 		let multistageFormPrevBtn = multistageFormButtonsWrapper.querySelector('[data-action="prevStep"]');
-
-		// console.log(currentStageIndex);
 
 		if (currentStageIndex == 2) {
 			multistageFormButtonsWrapper.classList.add('hidden');
@@ -147,47 +145,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		return true;
 	}
 
-	// function updateLocationField (input) {
-
-	// }
-
 	let billingInputs = document.querySelectorAll('.woocommerce-billing-fields .input-text:not([name="billing_state"])');
 	console.log(billingInputs);
 	let shippingInputs = document.querySelectorAll('.shipping_address .input-text');
 	let nextStepBtn = document.querySelector('.multistage-form [data-action="nextStep"]');
 
-	nextStepBtn.disabled = !checkFillingInputs(billingInputs);
+	if (nextStepBtn) {
+		nextStepBtn.disabled = !checkFillingInputs(billingInputs);
 
-	billingInputs.forEach(function (input) {
-		input.addEventListener('input', function (e) {
-			nextStepBtn.disabled = !checkFillingInputs(billingInputs);
+		billingInputs.forEach(function (input) {
+			input.addEventListener('input', function (e) {
+				nextStepBtn.disabled = !checkFillingInputs(billingInputs);
+			});
 		});
-	});
-
-	// shippingInputs.forEach(function (input) {
-	// 	input.addEventListener('input', function (e) {
-	// 		updateLocationField(input);
-	// 	});
-	// });
-
-	// document.addEventListener('change', function(e) {
-	// 	let radio = e.target.closest('input[type="radio"]');
-
-	// 	if (!radio || radio.name != 'same_as_billing_address') return;
-
-	// 	console.log(document.getElementById('billing_address_no').checked);
-
-	// 	document.getElementById('ship-to-different-address-checkbox').click();
-
-	// 	// if (document.getElementById('billing_address_no').checked) {
-	// 	// 	document.getElementById('ship-to-different-address-checkbox').checked = true;
-	// 	// } else {
-	// 	// 	document.getElementById('ship-to-different-address-checkbox').checked = false;
-	// 	// }
-
-	// 	console.log();
-	// 	console.log(document.getElementById('ship-to-different-address-checkbox').checked);
-	// });
+	}
+	
 });
 
 (function($) {
@@ -205,11 +177,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	$("#billing_phone").mask("(999) 999-9999");
-
-	// setTimeout(() => {
-	// 	$('#select2-billing_country-results [data-selected="true"]').click();
-	// 	console.log('Yes!');
-	// });
-	
 	
 })( jQuery );

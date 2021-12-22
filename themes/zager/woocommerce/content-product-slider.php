@@ -19,7 +19,7 @@
 
 // global $product;
 
-// Ensure visibility.
+// // Ensure visibility.
 // if ( empty( $product ) || ! $product->is_visible() ) {
 // 	return;
 // }
@@ -40,14 +40,13 @@ if ($product->get_short_description()) {
 }
 ?>
 
-<?php // if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no' && has_term( 'guitar', 'product_cat', get_the_ID() )) { ?>
-<div <?php wc_product_class( 'ProductCard ProductCard-twoColumnLg Products_item', $product ); ?>>
-  <div class="ProductCard_wrapper">
-  	<?php if ($product_image || $additional_labels): ?>
+<div class="swiper-slide ProductCardsSwiper_slide">
+  <div <?php wc_product_class( 'ProductCard ProductCard-slider', $product ); ?>>
+    <div class="ProductCard_wrapper">
       <div class="ProductCard_imgWrapper">
         <?php if ($product_image): ?>
-        	<a href="<?php echo $product_url ?>">
-          	<?php echo $product_image ?>
+          <a href="<?php echo $product_url ?>">
+            <?php echo $product_image ?>
           </a>
         <?php endif ?>
 
@@ -61,66 +60,66 @@ if ($product->get_short_description()) {
 
             <?php if ($additional_label['value'] == 'save'): ?>
               <?php
-              	$has_save_label = true;
+                $has_save_label = true;
                 $discount = get_field('discount', $id);
               ?>
 
               <?php if ($discount): ?>
-              	<span class="Tag Tag-productCard ProductCard_tag">
-              		<?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-              	</span>
+                <span class="Tag Tag-productCard ProductCard_tag">
+                  <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
+                </span>
               <?php else: ?>
-              	<span class="Tag Tag-stars ProductCard_tag">
-              		<?php echo esc_html__( 'On sale!', 'woocommerce' ) ?>
-              	</span>
+                <span class="Tag Tag-stars ProductCard_tag">
+                  <?php echo esc_html__( 'On sale!', 'woocommerce' ) ?>
+                </span>
               <?php endif ?>
             <?php endif ?>
           <?php endforeach ?>
 
           <?php if ($product->is_on_sale() && !$has_save_label): ?>
-          	<span class="Tag Tag-stars ProductCard_tag">
-          		<?php echo esc_html__( 'Sale!', 'woocommerce' ) ?>
-          	</span>
+            <span class="Tag Tag-stars ProductCard_tag">
+              <?php echo esc_html__( 'Sale!', 'woocommerce' ) ?>
+            </span>
           <?php endif ?>
         <?php endif ?>
       </div>
-    <?php endif ?>
 
-    <div class="ProductCard_textWrapper">
-      <h3 class="ProductCard_title">
-      	<a href="<?php echo $product_url ?>">
-      		<?php echo $product->get_name() ?>
-      	</a>
-      </h3>
+      <div class="ProductCard_textWrapper">
+        <h3 class="ProductCard_title">
+          <a href="<?php echo $product_url ?>">
+            <?php echo $product->get_name() ?>
+          </a>
+        </h3>
 
-      <?php if ($product_description): ?>
-        <div class="ProductCard_description">
-          <?php echo $product_description ?>
-        </div>
-      <?php endif ?>
+        <?php if ($product_description): ?>
+          <div class="ProductCard_description">
+            <?php echo $product_description ?>
+          </div>
+        <?php endif ?>
 
-      <?php if ($product_attributes): ?>
-        <div class="ProductCard_tags">
-          <div class="ProductCard_tagsLabel">Available in</div>
-          <ul class="ProductCard_tagsList">
-            <?php foreach ($product_attributes as $key => $value): ?>
-              <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
-                <li class="ProductCard_tagsItem">
-                  <span class="CategoryTag CategoryTag-productCard">
-                    <?php echo $term->name; ?>
-                  </span>
-                </li>
+        <?php if ($product_attributes): ?>
+          <div class="ProductCard_tags">
+            <div class="ProductCard_tagsLabel">Available in</div>
+            <ul class="ProductCard_tagsList">
+              <?php foreach ($product_attributes as $key => $value): ?>
+                <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
+                  <li class="ProductCard_tagsItem">
+                    <span class="CategoryTag CategoryTag-productCard">
+                      <?php echo $term->name; ?>
+                    </span>
+                  </li>
+                <?php endforeach; ?>
               <?php endforeach; ?>
-            <?php endforeach; ?>
-          </ul>
+            </ul>
+          </div>
+        <?php endif ?>
+
+        <div class="ProductCard_prices">
+          <?php echo $product->get_price_html() ?>
         </div>
-      <?php endif ?>
 
-      <div class="ProductCard_prices">
-      	<?php echo $product->get_price_html() ?>
+        <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options</a>
       </div>
-
-      <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
     </div>
   </div>
 </div>

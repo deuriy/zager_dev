@@ -74,7 +74,9 @@ if ($field['product'] || $testimonials):
         </div>
         
         <h2 class="ProductSection_title">
-          <?php echo $product->get_name() ?>
+          <a href="<?php echo $product_url ?>">
+            <?php echo $product->get_name() ?>
+          </a>
         </h2>
 
         <div class="ProductSection_description">

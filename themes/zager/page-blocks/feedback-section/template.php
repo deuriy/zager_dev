@@ -28,7 +28,7 @@
 	$reviews = $query->posts;
 
 	$total = $query->found_posts;
-	$last = intval(floor($total / REVIEW_STEP));
+	$last = intval(ceil($total / REVIEW_STEP));
 ?>
 <div class="FeedbackSection reviews">
   <div id="reviews-container" class="Container">
@@ -79,7 +79,7 @@
         </div>
       <?php endif ?>
 
-	<div class="Reviews FilterTabs_items reviews-block">
+	<div class="Reviews FilterTabs_items reviews-block" data-review-type="common">
 		<?php include ZAGER_THEME_DIR . 'more-templates/reviews-guitar.php'; ?>
   	</div>
 

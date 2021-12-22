@@ -54,41 +54,43 @@ if ($layouts) {
 			</div>
 
 			<div class="Sidebar Sidebar-cartPage Product_sidebar">
-				<div class="Shipping Sidebar_shipping">
-					<h3 class="Shipping_title">Shipping</h3>
-					<div class="Shipping_type">Free</div>
-					<div class="Shipping_text">
-						<p>Free Shipping - 52 year anniversary sale!</p>
-					</div>
-				</div>
-				<div class="SubTotal Sidebar_subTotal">
-					<div class="SubTotal_label">Sub total</div>
-					<div class="SubTotal_cost">
-						<?php echo WC()->cart->get_cart_total(); ?>
-					</div>
-				</div>
-				<div class="Sidebar_checkoutBtnWrapper">
-					<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward BtnYellow BtnYellow-cartSidebar">
-						<?php esc_html_e( 'Checkout', 'woocommerce' ); ?>
-					</a>
-				</div>
-				<div class="PaymentMethods Sidebar_paymentMethods">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/payment_methods.webp" alt="" class="PaymentMethods_img">
-					<div class="PaymentMethods_text">
-						<p>We accept all major payment methods</p>
-					</div>
-				</div>
-				<div class="FinancingPurchase">
-					<div class="FinancingPurchase_text">
-						<strong>Finance this purchase</strong>
-					</div>
-					<div class="FinancingPurchase_textAndLogo">
-						<div class="FinancingPurchase_text">
-							Starting at <strong>$72/mo</strong> with
+				<div class="Sidebar_inner">
+					<div class="Shipping Sidebar_shipping">
+						<h3 class="Shipping_title">Shipping</h3>
+						<div class="Shipping_type">Free</div>
+						<div class="Shipping_text">
+							<p>Free Shipping - 52 year anniversary sale!</p>
 						</div>
-						<img src="<?php echo get_template_directory_uri(); ?>/images/affirm_logo.svg" alt="">
 					</div>
-					<a href="#" class="BtnGrey BtnGrey-totalPrice FinancingPurchase_prequalifyBtn">Prequalify now</a>
+					<div class="SubTotal Sidebar_subTotal">
+						<div class="SubTotal_label">Sub total</div>
+						<div class="SubTotal_cost">
+							<?php echo WC()->cart->get_cart_total(); ?>
+						</div>
+					</div>
+					<div class="Sidebar_checkoutBtnWrapper">
+						<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward BtnYellow BtnYellow-cartSidebar">
+							<?php esc_html_e( 'Checkout', 'woocommerce' ); ?>
+						</a>
+					</div>
+					<div class="PaymentMethods Sidebar_paymentMethods">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/payment_methods.webp" alt="" class="PaymentMethods_img" loading="lazy">
+						<div class="PaymentMethods_text">
+							<p>We accept all major payment methods</p>
+						</div>
+					</div>
+					<div class="FinancingPurchase">
+						<div class="FinancingPurchase_text">
+							<strong>Finance this purchase</strong>
+						</div>
+						<div class="FinancingPurchase_textAndLogo">
+							<div class="FinancingPurchase_text">
+								Starting at <strong>$72/mo</strong> with
+							</div>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/affirm_logo.svg" alt="" loading="lazy">
+						</div>
+						<a href="#" class="BtnGrey BtnGrey-totalPrice FinancingPurchase_prequalifyBtn">Prequalify now</a>
+					</div>
 				</div>
 			</div>
 		</div>

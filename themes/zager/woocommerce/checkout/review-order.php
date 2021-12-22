@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="shop_table woocommerce-checkout-review-order-table">
+<div class="shop_table woocommerce-checkout-review-order-table woocommerce-checkout-review-order-table--collapsed">
 	<div class="woocommerce-checkout-review-order-table__header">
 		<div class="woocommerce-checkout-review-order-table__title">Summary</div>
 		<div class="woocommerce-checkout-review-order-table__price hidden-mdPlus">$2595</div>

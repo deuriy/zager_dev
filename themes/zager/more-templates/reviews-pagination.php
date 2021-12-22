@@ -1,8 +1,13 @@
-<div class="Pagination hidden-smMinus">
+<?php
+
+if ( is_array($guitar) )
+	$guitar = implode('|', $guitar);
+
+?><div class="Pagination hidden-smMinus">
 	<?php if ($list <= 1) : ?>
 		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft BtnOutline-disabled Pagination_prev" href="#">Previous</a>
 	<?php else : ?>
-		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft Pagination_prev" href="?list=<?=($list - 1)?><?=!(empty($guitar)) ? '&guitar=' . $guitar : ''?>">Previous</a>
+		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft Pagination_prev reviews-filter reviews-filter-list" href="?list=<?=($list - 1)?><?=!(empty($guitar)) ? '&guitar=' . $guitar : ''?>">Previous</a>
 	<?php endif; ?>
 
 
@@ -24,7 +29,7 @@
 	<?php if ($list >= $last) : ?>
 		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight Pagination_next BtnOutline-disabled" href="#">Next</a>
 	<?php else : ?>
-		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight Pagination_next" href="?list=<?=($list + 1)?><?=!(empty($guitar)) ? '&guitar=' . $guitar : ''?>">Next</a>
+		<a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight Pagination_next reviews-filter reviews-filter-list" href="?list=<?=($list + 1)?><?=!(empty($guitar)) ? '&guitar=' . $guitar : ''?>">Next</a>
 	<?php endif; ?>
 </div>
 <!-- <a class="BtnYellow BtnYellow-loadMore LoadingPosts_btn" href="#">Load more</a>-->

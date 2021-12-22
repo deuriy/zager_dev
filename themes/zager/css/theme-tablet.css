@@ -1,6 +1,14 @@
 @media (min-width: 1024px){
+body.admin-bar .woocommerce .woocommerce-checkout-review-order {
+  top: 72px;
+}
+
 .checkout-fieldgroup__fields-row {
   margin-bottom: 20px;
+}
+
+.checkout-fieldgroup__fields-row--single {
+  grid-template-columns: 100%;
 }
 
 .checkout-fieldgroup__fields-row--checkbox {
@@ -47,7 +55,6 @@
 }
 
 .multistage-form__buttons {
-  display: grid;
   grid-template-columns: auto auto;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -72,6 +79,12 @@
 
 .woocommerce__multistage-form {
   margin: 32px 0 120px;
+}
+
+.woocommerce .woocommerce-checkout-review-order {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
 }
 
 .woocommerce .woocommerce-checkout-review-order-table {
@@ -133,13 +146,15 @@
 }
 }
 
-@media (min-width: 1200px){
-.multistage-form {
-  grid-template-columns: 1fr 363px;
-}
+@media (min-width: 768px){
+.checkout-fieldgroup__fields-row {
+  grid-template-columns: 1fr 1fr;
 }
 
-@media (min-width: 768px){
+.checkout-fieldgroup__fields-row--checkbox {
+  grid-template-columns: 100%;
+}
+
 .nf-form-cont .nf-form-title h3 {
   margin-bottom: 24px;
   font-size: 32px;
@@ -148,6 +163,12 @@
 
 .nf-form-cont .nf-form-content .nf-field-container {
   margin-bottom: 16px;
+}
+}
+
+@media (min-width: 1200px){
+.multistage-form {
+  grid-template-columns: 1fr 363px;
 }
 }
 

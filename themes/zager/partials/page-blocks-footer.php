@@ -617,38 +617,38 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
           }
         });
 
-        document.querySelectorAll('a[href^="#"]:not(a[href="#"])').forEach(anchor => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
+        // document.querySelectorAll('a[href^="#"]:not(a[href="#"])').forEach(anchor => {
+        //   anchor.addEventListener("click", function (e) {
+        //     e.preventDefault();
 
-            let targetElem = document.querySelector(this.getAttribute("href"));
+        //     let targetElem = document.querySelector(this.getAttribute("href"));
 
-            if (!targetElem) return;
+        //     if (!targetElem) return;
 
-            if (targetElem.closest('.Tabs_content:not(.Tabs_content-active)')) {
-              let tabs = targetElem.closest('.Tabs');
-              let activeTabContent = tabs.querySelector('.Tabs_content-active');
-              activeTabContent.classList.remove('Tabs_content-active');
+        //     if (targetElem.closest('.Tabs_content:not(.Tabs_content-active)')) {
+        //       let tabs = targetElem.closest('.Tabs');
+        //       let activeTabContent = tabs.querySelector('.Tabs_content-active');
+        //       activeTabContent.classList.remove('Tabs_content-active');
 
-              let tabContent = targetElem.closest('.Tabs_content');
-              tabContent.classList.add('Tabs_content-active');
+        //       let tabContent = targetElem.closest('.Tabs_content');
+        //       tabContent.classList.add('Tabs_content-active');
 
-              let tabIndex = tabContent.dataset.tabIndex;
-              let activeTabItem = tabs.querySelector('.Tabs_item-active');
-              activeTabItem.classList.remove('Tabs_item-active');
+        //       let tabIndex = tabContent.dataset.tabIndex;
+        //       let activeTabItem = tabs.querySelector('.Tabs_item-active');
+        //       activeTabItem.classList.remove('Tabs_item-active');
 
-              let tabItem = tabs.querySelector(`.Tabs_item[data-tab-index="${tabIndex}"]`);
-              tabItem.classList.add('Tabs_item-active');
-            }
+        //       let tabItem = tabs.querySelector(`.Tabs_item[data-tab-index="${tabIndex}"]`);
+        //       tabItem.classList.add('Tabs_item-active');
+        //     }
 
-            setTimeout(() => {
-              targetElem.scrollIntoView({
-                behavior: "smooth",
-              });
-            });
+        //     setTimeout(() => {
+        //       targetElem.scrollIntoView({
+        //         behavior: "smooth",
+        //       });
+        //     });
 
-          });
-        });
+        //   });
+        // });
       });
     </script>
   <?php elseif ($layout_name == 'accessories_section'): ?>

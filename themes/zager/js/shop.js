@@ -1,7 +1,19 @@
 (function($) {
+	let loadingStep = 10;
+	// let loadingMode = 'rewrite';
 
-	function filterProducts () {
+	if ($( '.AccessoriesCards' ).length) {
+		loadingStep = 9;
+	}
+
+	let postsPerPage = loadingStep;
+
+	function loadFilteredProducts (loadingMode = 'rewrite', page = 1) {
 		let terms = {};
+  	let orderSettings = {};
+  	// let postsPerPage = postsPerPage != undefined ? postsPerPage : 10;
+  	let minPrice = 0;
+		let maxPrice = 2925;
 
   	document.querySelectorAll('#Filter .CheckboxList').forEach(function(checkboxList) {
   		terms[checkboxList.querySelector('.Checkbox_input').getAttribute('name')] = [];
@@ -14,41 +26,30 @@
   	});
 
   	if ($(".RangeSlider").length) {
-  		min_price = $(".RangeSlider").slider("values", 0);
-			max_price = $(".RangeSlider").slider("values", 1);
-  	} else {
-  		min_price = 0;
-  		max_price = 2925;
+  		minPrice = $(".RangeSlider").slider("values", 0);
+			maxPrice = $(".RangeSlider").slider("values", 1);
   	}
-
-  	console.log(min_price);
-  	console.log(max_price);
-
-  	let order_settings = {};
 
   	switch ($('.Select').val()) {
   		case 'alphabetical':
-  			order_settings = {
+  			orderSettings = {
   				'orderby': 'title',
 			    'order': 'asc'
   			};
-
   			break;
   		case 'price_asc':
-  			order_settings = {
+  			orderSettings = {
   				'orderby': 'meta_value_num',
 			    'meta_key': '_price',
 			    'order': 'asc'
   			};
-
   			break;
   		case 'price_desc':
-  			order_settings = {
+  			orderSettings = {
   				'orderby': 'meta_value_num',
 			    'meta_key': '_price',
 			    'order': 'desc'
   			};
-
   			break;
   	}
 
@@ -57,31 +58,74 @@
 			action: 'get_filtered_products',
 			contentType: 'application/json',
 			page_type: $('#Filter').data('page-type'),
-			min_price: min_price,
-			max_price: max_price,
+			min_price: minPrice,
+			max_price: maxPrice,
+			page: page,
+			posts_per_page: postsPerPage,
 			product_terms: terms,
-			order_settings: order_settings
+			order_settings: orderSettings,
+			loading_mode: loadingMode
 		};
+
+		console.log(`loadingStep: ${loadingStep}`);
+		console.log(`postsPerPage: ${postsPerPage}`);
+
+		console.log(`page: ${page}`);
+		console.log(`loadingMode: ${loadingMode}`);
 
 		$.ajax({
 			url: ajaxurl,
 			type: 'POST',
 			data: data,
 			beforeSend: function( xhr ) {
-				if ($( '.Products_items' ).length) {
-					$( '.Products_items' ).html( '<h3>Processing...</h3>' );
-				} else if ($( '.ProductsWrapper_accessoriesCards' ).length) {
-					$( '.ProductsWrapper_accessoriesCards' ).html( '<h3>Processing...</h3>' );
+				if ($( '.Products' ).length) {
+					if (loadingMode == 'rewrite') {
+						// $( '.Products' ).html( '<div class="Loader Loader-center Products_loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>' );
+						$( '.Products' ).html( '<div class="Reload Reload-center Products_reload"></div>' );
+					} else {
+						$( '.Products .LoadingPosts, .Products .QueryInfo' ).remove();
+						$( '.Products' ).append( '<div class="Reload Reload-center Products_reload"></div>' );
+					}
+					
+				} else if ($( '.AccessoriesCards' ).length) {
+					$( '.AccessoriesCards' ).html( '<div class="Reload Reload-center Products_reload"></div>' );
 				}
 			},
 			success: function( response ) {
-				if ($( '.Products_items' ).length) {
-					$( '.Products_items' ).html(response);
-				} else if ($( '.ProductsWrapper_accessoriesCards' ).length) {
-					$( '.ProductsWrapper_accessoriesCards' ).html(response);
+				if ($( '.Products' ).length) {
+					if (loadingMode == 'rewrite') {
+						$( '.Products' ).html(response);
+					} else {
+						$( '.Products .Reload' ).remove();
+						$( '.Products_items' ).append(response);
+
+						$('.Products_slides .ProductCardsSwiper_slide').each(function(index, el) {
+							$('.ProductCardsSwiper .swiper-wrapper').append($(el));
+							// console.log(el);
+						});
+
+						$('.Products_slides').remove();
+					}
+
+					new Swiper('.ProductCardsSwiper', {
+					  slidesPerView: 'auto',
+					  spaceBetween: 20,
+					});
+				} else if ($( '.AccessoriesCards' ).length) {
+					$( '.AccessoriesCards' ).html(response);
 				}
 			}
 		});
+
+		if (loadingMode == 'rewrite' && $('.ProductsWrapper_header').length) {
+			// $('body').scrollTo('.ProductsWrapper_header');
+			console.log('Scroll to header');
+		}
+
+		// let productsWrapperHeader = document.querySelector('.ProductsWrapper_header');
+		// if (productsWrapperHeader) {
+		// 	productsWrapperHeader.scrollIntoView();
+		// }
 	}
 	
 	if ($(".RangeSlider").length) {
@@ -101,7 +145,7 @@
 	    },
 
 	    change: function (event, ui) {
-	    	filterProducts();
+	    	loadFilteredProducts();
 	    },
 
 	    classes: {
@@ -113,14 +157,17 @@
 
   $('.Select').select2({
   	minimumResultsForSearch: -1,
-  	// width: "100px"
-  	width: "210px"
+  	width: ''
   }).data('select2').$dropdown.addClass('select2-sorting');
 
   $('.Select').on('select2:select', function (e) {
-  	filterProducts();
-  	console.log($(this).val());
-	  console.log('Change');
+  	loadFilteredProducts();
+	});
+
+  Fancybox.bind(`[data-fancybox="filter"]`, {
+	  dragToClose: false,
+	  showClass: 'fancybox-fadeIn',
+	  mainClass: 'fancybox__container--filter-popup'
 	});
 
   Fancybox.bind(`.FancyboxPopupLink`, {
@@ -134,7 +181,33 @@
 
   	if (!filterCheckboxInput) return;
 
-  	filterProducts();
-  });  
+  	loadFilteredProducts();
+  });
+
+  document.addEventListener('click', function (e) {
+  	let paginationLink = e.target.closest('.Pagination_link');
+
+  	if (!paginationLink) return;
+
+  	let paginationItem = paginationLink.closest('.Pagination_item');
+  	let pageIndex = paginationItem.dataset.pageIndex;
+  	loadFilteredProducts('rewrite', pageIndex);
+
+  	e.preventDefault();
+  });
+
+  document.addEventListener('click', function (e) {
+  	let loadingPostsBtn = e.target.closest('.LoadingPosts_btn');
+
+  	if (!loadingPostsBtn) return;
+
+  	let currentPaginationItem = document.querySelector('.Pagination_item-current');
+  	let currentPageIndex = Number(currentPaginationItem.dataset.pageIndex);
+  	loadFilteredProducts('append', currentPageIndex + 1);
+
+  	e.preventDefault();
+  })
+
+  loadFilteredProducts();
 	
 })( jQuery );

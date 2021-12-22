@@ -131,7 +131,7 @@ function create_faq_category_taxonomies(){
 add_action( 'init', 'create_customer_reviews_category_taxonomies' );
 function create_customer_reviews_category_taxonomies(){
 
-	register_taxonomy('customer_reviews_category', array('customer_review'), array(
+	register_taxonomy('customer_reviews_category', array('customer_review','product'), array(
 		'hierarchical'  => true,
 		'labels'        => array(
 			'name'              => _x( 'Customer Reviews Categories', 'taxonomy general name' ),
@@ -458,10 +458,10 @@ function lb_editor_remove_meta_box() {
  */
     if (isset($post_type) && post_type_supports($post_type, 'excerpt')){
         remove_meta_box('postexcerpt', $post_type, 'normal');
-    } 
+    }
 }
 add_action('admin_menu', 'lb_editor_remove_meta_box');
- 
+
 function lb_editor_add_custom_meta_box() {
     global $post_type;
     /**
@@ -476,7 +476,7 @@ function lb_editor_add_custom_meta_box() {
     }
 }
 add_action( 'add_meta_boxes', 'lb_editor_add_custom_meta_box' );
- 
+
 function lb_editor_custom_post_excerpt_meta_box( $post ) {
 
     /**
@@ -492,13 +492,13 @@ function lb_editor_custom_post_excerpt_meta_box( $post ) {
      *  the content as it is styled.
      */
     wp_editor(html_entity_decode(stripcslashes($post->post_excerpt)), 'excerpt', $settings);
- 
+
     // The meta box description - adjust as necessary
     echo '&lt;p&gt;&lt;em&gt;Excerpts are optional, hand-crafted, summaries of your content.&lt;/em&gt;&lt;/p&gt;';
 }
 
 add_action('admin_head', 'excerpt_textarea_height');
-function excerpt_textarea_height() { 
+function excerpt_textarea_height() {
     echo'
     <style type="text/css">
         #excerpt{ height:250px; }
@@ -664,6 +664,6 @@ function duplication_admin_notice() {
     if ( isset( $_GET[ 'saved' ] ) && 'post_duplication_created' == $_GET[ 'saved' ] ) {
 
 		 echo '<div class="notice notice-success is-dismissible"><p>Post copy created.</p></div>';
-		 
+
     }
 }

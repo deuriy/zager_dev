@@ -729,21 +729,27 @@ function zager_variation_price_format_min( $price, $product ) {
   return $price;
 }
 
-function get_products_count_by_term($tax_slug, $term_slug) {
-	$query = array(
-    'post_status' => 'publish',
-    'post_type' => 'product',
-    'fields' => 'ids',
-
-    'tax_query' => [
-    	'relation' => 'OR',
+function get_products_count_by_term($tax_slug, $term_slug, $additional_tax_query) {
+	$tax_queries = [
+		'tax_query' => [
+    	'relation' => 'AND',
 			[
 				'taxonomy' => $tax_slug,
 				'field'    => 'slug',
 				'terms'    => $term_slug
 			]
 		]
-	);
+	];
+
+	if ($additional_tax_query) {
+		$tax_queries['tax_query'][] = $additional_tax_query;
+	}
+
+	$query = array_merge(array(
+    'post_status' => 'publish',
+    'post_type' => 'product',
+    'fields' => 'ids',
+	), $tax_queries);
 
 	$wpquery = new WP_Query($query);
 	return $wpquery->found_posts;
@@ -790,14 +796,28 @@ function get_filtered_products() {
 	$max_price = (int)$_POST['max_price'];
 	$page_type = $_POST['page_type'];
 
-	$order_settings = !empty($_POST['order_settings']) ? $_POST['order_settings'] : [];
+	$page = sanitize_text_field($_POST['page']);
+  $posts_per_page = sanitize_text_field($_POST['posts_per_page']);
+  $loading_mode = sanitize_text_field($_POST['loading_mode']);
+  $current_page = $page;
+  $page -= 1;
 
+  // Set the number of results to display
+  $previous_btn = true;
+  $next_btn = true;
+  $offset = $page * $posts_per_page;
+	$order_settings = !empty($_POST['order_settings']) ? $_POST['order_settings'] : [];
 	$product_terms = $_POST['product_terms'];
 	$tax_queries = [];
 
 	$tax_queries = [
 		'tax_query' => [
     	'relation' => 'AND',
+    	[
+    		'taxonomy' => 'product_cat',
+    		'field' => 'slug',
+    		'terms' => 'guitar'
+    	]
 		],
 	];
 
@@ -811,10 +831,46 @@ function get_filtered_products() {
 		}
 	}
 
+	$all_products_query = array_merge(array(
+		'post_type' => 'product',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+
+		'meta_query' => [
+    	'relation' => 'AND',
+      [
+        'key' => '_price',
+        'value' => array($min_price, $max_price),
+        'compare' => 'BETWEEN',
+        'type' => 'NUMERIC'
+      ]
+    ]
+	), $order_settings, $tax_queries);
+
+	$excluded_posts_ids = [];
+
+	$all_products_wp_query = new WP_Query($all_products_query);
+	$products_count = 0;
+
+	if ($all_products_wp_query->have_posts()) {
+		while ($all_products_wp_query->have_posts()) {
+			$all_products_wp_query->the_post();
+
+			if (get_field('display_product_on_shop_pages', get_the_ID()) == 'no') {
+				$excluded_posts_ids[] = get_the_ID();
+			} else {
+				$products_count++;
+			}
+		}
+		wp_reset_postdata();
+	}
+
 	$query = array_merge(array(
     'post_status' => 'publish',
     'post_type' => 'product',
-    'posts_per_page' => 9,
+    'posts_per_page' => $posts_per_page,
+    'offset' => $offset,
+    'post__not_in' => $excluded_posts_ids,
 
     'meta_query' => [
     	'relation' => 'AND',
@@ -823,157 +879,174 @@ function get_filtered_products() {
         'value' => array($min_price, $max_price),
         'compare' => 'BETWEEN',
         'type' => 'NUMERIC'
-      ],
+      ]
     ]
 	), $order_settings, $tax_queries);
 
 	$wpquery = new WP_Query($query);
+	?>
 
-	if ($wpquery->have_posts()) :
-		if ($page_type == 'shop') :
-			while ($wpquery->have_posts()) :
-				$wpquery->the_post();
+	<?php if ($wpquery->have_posts()) : ?>
+		<?php if ($page_type == 'shop') : ?>
+			<?php if ($loading_mode == 'rewrite'): ?>
+				<div class="ProductCardsSwiper Products_cardsSwiper swiper hidden-smPlus">
+					<div class="swiper-wrapper">
+			<?php else: ?>
+				<div class="Products_slides">
+			<?php endif ?>
 
-				$id = get_the_ID();
-				$product = wc_get_product($id);
-				$product_image = $product->get_image('product-card', array('class' => 'ProductCard_img'));
-	      $product_terms = $product->get_attributes();
-	      $product_url = get_permalink($id);
-	      $additional_labels = get_field('additional_labels', $id);
+				<?php
+				while ($wpquery->have_posts()) {
+					$wpquery->the_post();
 
-				if ($product->get_short_description()) {
-	        $product_description = $product->get_short_description();
-	      } else {
-	        $product_description = wp_trim_words($product->get_description(), 18, '...');
-	      } ?>
-
-	      <?php if (get_field('display_product_on_shop_pages', get_the_ID()) != 'no' && has_term( 'guitar', 'product_cat', get_the_ID() )): ?>
-					<div class="ProductCard ProductCard-twoColumnLg Products_item">
-		        <div class="ProductCard_wrapper">
-		        	<?php if ($product_image || $additional_labels): ?>
-		            <div class="ProductCard_imgWrapper">
-		              <?php if ($product_image): ?>
-		                <?php echo $product_image ?>
-		              <?php endif ?>
-
-		              <?php if ($additional_labels): ?>
-		                <?php foreach ($additional_labels as $additional_label): ?>
-		                  <?php if ($additional_label['value'] == 'special_addition'): ?>
-		                    <span class="Label Label-productCard ProductCard_label">
-		                      <?php echo $additional_label['label'] ?>
-		                    </span>
-		                  <?php endif ?>
-
-		                  <?php if ($additional_label['value'] == 'save'): ?>
-		                    <?php
-		                      $discount = get_field('discount', $id);
-		                    ?>
-		                    <span class="Tag Tag-productCard ProductCard_tag">
-		                      <?php echo $additional_label['label'] . ' ' . $discount . '%' ?>
-		                    </span>
-		                  <?php endif ?>
-		                <?php endforeach ?>
-		              <?php endif ?>
-		            </div>
-		          <?php endif ?>
-
-		          <div class="ProductCard_textWrapper">
-		            <h3 class="ProductCard_title">
-		            	<?php echo $product->get_name() ?>
-		            </h3>
-
-		            <?php if ($product_description): ?>
-			            <div class="ProductCard_description">
-			              <?php echo $product_description ?>
-			            </div>
-		            <?php endif ?>
-
-		            <?php if ($product_terms): ?>
-			            <div class="ProductCard_tags">
-			              <div class="ProductCard_tagsLabel">Available in</div>
-			              <ul class="ProductCard_tagsList">
-			                <?php foreach ($product_terms as $key => $value): ?>
-			                  <?php foreach (wc_get_product_terms($id, $key) as $term): ?>
-			                    <li class="ProductCard_tagsItem">
-			                      <span class="CategoryTag CategoryTag-productCard">
-			                        <?php echo $term->name; ?>
-			                      </span>
-			                    </li>
-			                  <?php endforeach; ?>
-			                <?php endforeach; ?>
-			              </ul>
-			            </div>
-			          <?php endif ?>
-
-		            <div class="ProductCard_prices">
-		            	<?php echo $product->get_price_html() ?>
-		            </div>
-		            <a class="BtnYellow BtnYellow-productCard ProductCard_btn" href="<?php echo $product_url ?>">View options and features</a>
-		          </div>
-		        </div>
-		      </div>
-	      <?php endif ?>
-			<?php endwhile;
-		elseif ($page_type == 'accessories'):
-			while ($wpquery->have_posts()) :
-				$wpquery->the_post();
-
-				$id = get_the_id();
-				$product = wc_get_product($id);
-				$product_image = $product->get_image('full', array('class' => 'AccessoryCard_img'));
-				$product_url = get_permalink($id);
+					wc_get_template_part( 'content', 'product-slider' );
+				}
+				wp_reset_postdata();
 				?>
 
-				<div <?php wc_product_class( 'AccessoryCard Accessories_item', $product ); ?>>
-					<?php if ($product_image || $additional_labels): ?>
-				    <div class="AccessoryCard_imgWrapper">
-				      <?php if ($product_image): ?>
-				      	<a href="<?php echo $product_url ?>">
-				        	<?php echo $product_image ?>
-				        </a>
-				      <?php endif ?>
-
-				      <?php if ($product->is_on_sale()): ?>
-				      	<span class="Tag Tag-accessoryCard AccessoryCard_tag">
-				      		<?php echo esc_html__( 'On sale', 'woocommerce' ) ?>
-				      	</span>
-				      <?php endif ?>
-				    </div>
-				  <?php endif ?>
-
-				  <div class="AccessoryCard_textWrapper">
-				    <h3 class="AccessoryCard_title">
-				    	<a href="<?php echo $product_url ?>">
-				    		<?php echo $product->get_name() ?>
-				    	</a>
-				    </h3>
-
-				    <div class="AccessoryCard_price">
-				    	<?php echo $product->get_price_html() ?>
-				    </div>
-
-				    <?php woocommerce_template_loop_add_to_cart() ?>
-
-				    <a class="BtnOutline BtnOutline-lightBeigeBg BtnOutline-darkText BtnOutline-accessoryCard AccessoryCard_btn hidden-xs" href="<?php echo $product_url ?>">view details</a>
-				  </div>
+			<?php if ($loading_mode == 'rewrite'): ?>
+					</div>
 				</div>
-			<?php endwhile;
-		endif;
-	else:
-		echo "<h3>Products not found</h3>";
-	endif;
+			<?php else: ?>
+				</div>
+			<?php endif ?>
+
+			<?php if ($loading_mode == 'rewrite'): ?>
+				<div class="Products_items hidden-xs">
+			<?php endif ?>
+
+				<?php
+				while ($wpquery->have_posts()) {
+					$wpquery->the_post();
+
+					wc_get_template_part( 'content', 'product-twocol' );
+				}
+				wp_reset_postdata();
+				?>
+
+			<?php if ($loading_mode == 'rewrite'): ?>
+				</div>
+			<?php endif ?>
+		<?php elseif ($page_type == 'accessories'): ?>
+			<?php if ($loading_mode == 'rewrite'): ?>
+				<div class="AccessoriesCards_items">
+			<?php endif ?>
+
+				<?php
+				while ($wpquery->have_posts()) {
+					$wpquery->the_post();
+
+					wc_get_template_part( 'content', 'accessory-card' );
+				}
+				?>
+
+			<?php if ($loading_mode == 'rewrite'): ?>
+				</div>
+			<?php endif ?>
+		<?php endif; ?>
+
+		<?php
+			$paginations_count = ceil($products_count / $posts_per_page);
+
+			print '<div class="QueryInfo">';
+			print "<h3>Products count: $products_count</h3>";
+      print "<h3>Offset: $offset</h3>";
+      print "<h3>Page: $page</h3>";
+      print "<h3>Current page: $current_page</h3>";
+      print "<h3>Founded products: $wpquery->post_count</h3>";
+      print "<h3>Posts per page: $posts_per_page</h3>";
+      print "<h3>Start loop: $start_loop</h3>";
+      print "<h3>End loop: $end_loop</h3>";
+      echo '</div>';
+
+			if ($paginations_count != 1) {
+				if ($current_page >= 7) {
+	        $start_loop = $current_page - 3;
+
+	        if ($paginations_count > $current_page + 3) {
+	          $end_loop = $current_page + 3;
+	        }
+	        elseif ($current_page <= $paginations_count && $current_page > $paginations_count - 6) {
+	          $start_loop = $paginations_count - 6;
+	          $end_loop = $paginations_count;
+	        } else {
+	          $end_loop = $paginations_count;
+	        }
+	      } else {
+	        $start_loop = 1;
+
+	        if ($paginations_count > 7) {
+	          $end_loop = 7;
+	        }
+	        else {
+	          $end_loop = $paginations_count;
+	        }
+	      }
+
+	      $pagination_container .= "<div class=\"Pagination hidden-smMinus\"><ul class=\"Pagination_list\">";
+
+	      if ($previous_btn && $current_page > 1) {
+	        $prev = $current_page - 1;
+	        $pagination_container .= "<li class=\"Pagination_item Pagination_item-prev\" data-page-index=\"$prev\"><a href=\"#\" class=\"BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft Pagination_link Pagination_link-prev\">Previous</a></li>";
+	      } elseif ($previous_btn) {
+	        $pagination_container .= "<li class=\"Pagination_item Pagination_item-prev\"><a href=\"#\" class=\"BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft BtnOutline-disabled Pagination_link Pagination_link-prev\">Previous</a></li>";
+	      }
+
+	      for ($i = $start_loop; $i <= $end_loop; $i++) {
+	      	// if ($i > $start_loop + 2 && $i + 1 <= $end_loop) {
+	      	// 	if ($i + 1 == $end_loop) {
+	      	// 		$pagination_container .= "<li class=\"Pagination_more\">...</li>";
+	      	// 	}
+	      	// } else {
+	      	// 	if ($current_page == $i) {
+		      //     $pagination_container .= "<li data-page-index=\"$i\" class=\"Pagination_item Pagination_item-current\"><a href=\"#\" class=\"Pagination_link\">{$i}</a></li>";
+		      //   }
+		      //   else {
+		      //     $pagination_container .= "<li data-page-index=\"$i\" class=\"Pagination_item\"><a href=\"#\" class=\"Pagination_link\">{$i}</a></li>";
+		      //   }
+	      	// }
+
+	      	if ($current_page == $i) {
+	          $pagination_container .= "<li data-page-index=\"$i\" class=\"Pagination_item Pagination_item-current\"><a href=\"#\" class=\"Pagination_link\">{$i}</a></li>";
+	        }
+	        else {
+	          $pagination_container .= "<li data-page-index=\"$i\" class=\"Pagination_item\"><a href=\"#\" class=\"Pagination_link\">{$i}</a></li>";
+	        }
+	      }
+	     
+	      if ($next_btn && $current_page < $paginations_count) {
+	        $next = $current_page + 1;
+	        $pagination_container .= "<li data-page-index=\"$next\" class=\"Pagination_item Pagination_item-next\"><a href=\"#\" class=\"BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight Pagination_link Pagination_link-next\">Next</a></li>";
+	      } elseif ($next_btn) {
+	        $pagination_container .= "<li class=\"Pagination_item Pagination_item-next\"><a href=\"#\" class=\"BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight BtnOutline-disabled Pagination_link Pagination_link-next\">Next</a></li>";
+	      }
+
+	      $pagination_container = $pagination_container . "</ul></div>";
+	     
+	      echo '<div class="LoadingPosts LoadingPosts-productsWrapper">' . $pagination_container;
+
+	      if ($paginations_count != $current_page) {
+	      	echo '<a class="BtnYellow BtnYellow-loadMore LoadingPosts_btn hidden-smPlus" href="#">Load more</a>';
+	      }
+
+	      echo '</div>';
+	    }
+		?>
+	<?php else: ?>
+		<h3>Products not found</h3>
+	<?php endif;
 
 	wp_die();
 }
 
-add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+// add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 
-function new_loop_shop_per_page( $cols ) {
-  // $cols contains the current number of products per page based on the value stored on Options –> Reading
-  // Return the number of products you wanna show per page.
-  $cols = 9;
-  return $cols;
-}
+// function new_loop_shop_per_page( $cols ) {
+//   // $cols contains the current number of products per page based on the value stored on Options –> Reading
+//   // Return the number of products you wanna show per page.
+//   $cols = 9;
+//   return $cols;
+// }
 
 function my_wc_hide_in_stock_message( $html, $product ) {
 	$availability = $product->get_availability();

@@ -46,8 +46,6 @@
 												<?php echo $product->get_price_html() ?>
 											</div>
 
-											<!-- <a class="BtnYellow BtnYellow-accessoryCard AccessoryCard_btn AccessoryCard_btn-addToCart" href="#">Add to cart</a> -->
-
 											<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn btn-outline-primary BtnYellow BtnYellow-accessoryCard AccessoryCard_btn AccessoryCard_btn-addToCart">
 												<?php echo esc_html( $product->single_add_to_cart_text() ); ?>
 											</button>
