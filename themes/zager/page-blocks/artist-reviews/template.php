@@ -17,7 +17,7 @@
 					    $text = get_field('text', $review_id);
 		    		?>
 
-		    		<div class="VideoReview VideoReviews_item">
+		    		<div class="VideoReview VideoReviews_item" data-review-id="<?php echo $review_id ?>">
 		    			<?php if ($media_type == 'yt_video'): ?>
 		    				<?php
 		    					$video_url = get_field('video_url', $review_id);
@@ -65,17 +65,9 @@
 		    </div>
 	  	<?php endif ?>
 
-	    <!-- <div class="LoadingPosts">
-	      <div class="Pagination hidden-smMinus"><a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowLeft BtnOutline-disabled Pagination_prev" href="#">Previous</a>
-	        <ul class="Pagination_list">
-	          <li class="Pagination_item Pagination_item-current"><a class="Pagination_link" href="#">1</a></li>
-	          <li class="Pagination_item"><a class="Pagination_link" href="#">2</a></li>
-	          <li class="Pagination_item"><a class="Pagination_link" href="#">3</a></li>
-	          <li class="Pagination_item-more">...</li>
-	          <li class="Pagination_item"><a class="Pagination_link" href="#">35</a></li>
-	        </ul><a class="BtnOutline BtnOutline-darkText BtnOutline-lightBeigeBg BtnOutline-arrowRight Pagination_next" href="#">next</a>
-	      </div><a class="BtnYellow BtnYellow-loadMore LoadingPosts_btn" href="#">Load more</a>
-	    </div> -->
+	    <div class="LoadingPosts LoadingPosts-center">
+	      <a class="BtnYellow BtnYellow-loadMore LoadingPosts_btn" href="#">Load more</a>
+	    </div>
 	  </div>
 	</div>
 <?php endif ?>

@@ -25,8 +25,10 @@ $shop_pages_settings = get_field('shop_pages', 'option');
 
 if (is_shop()) {
   $page_settings = $shop_pages_settings['default_shop_page'];
+  $page_type = 'shop';
 } elseif (is_product_category('accessories')) {
   $page_settings = $shop_pages_settings['accessories_default_shop_page'];
+  $page_type = 'accessories';
 }
 
 if (isset($page_settings['top_blocks'])) {
@@ -72,9 +74,13 @@ if (isset($page_settings['top_blocks'])) {
 		<?php do_action( 'woocommerce_archive_description' ); ?>
 
 		<?php if (is_shop()): ?>
-			<div class="Products Products-productsWrapper ProductsWrapper_products"></div>
+			<div class="Products Products-productsWrapper ProductsWrapper_products">
+				<?php get_filtered_products($page_type, false) ?>
+			</div>
 		<?php elseif (is_product_category('accessories')): ?>
-			<div class="AccessoriesCards ProductsWrapper_accessoriesCards"></div>
+			<div class="AccessoriesCards ProductsWrapper_accessoriesCards">
+				<?php get_filtered_products($page_type, false) ?>
+			</div>
 		<?php endif ?>
 
 		<div class="ProductsWrapper_afterProducts">

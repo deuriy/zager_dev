@@ -17,16 +17,16 @@
 
     if (is_shop()) {
       $page_settings = $shop_pages_settings['default_shop_page'];
-      $pageType = 'shop';
+      $page_type = 'shop';
     } elseif (is_product_category('accessories')) {
       $page_settings = $shop_pages_settings['accessories_default_shop_page'];
-      $pageType = 'accessories';
+      $page_type = 'accessories';
     }
   ?>
 
   <div class="Sidebar Sidebar-extendedFilter ProductsWrapper_sidebar hidden-xs">
     <div class="Sidebar_inner">
-      <div class="Filter Sidebar_filter Sidebar_filter-extended" id="Filter" data-page-type="<?php echo $pageType ?>">
+      <div class="Filter Sidebar_filter Sidebar_filter-extended" id="Filter" data-page-type="<?php echo $page_type ?>">
         <?php if ($page_settings['filter_title']): ?>
           <h3 class="Filter_title">
             <?php echo $page_settings['filter_title'] ?>

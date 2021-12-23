@@ -51,6 +51,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 
 		if (is_shop() || is_product_category()) {
 			wp_enqueue_script( 'jquery.ui', get_template_directory_uri() . '/js/jquery-ui.min.js', array( 'jquery' ), $js_version, true );
+			wp_enqueue_script( 'jquery.ui.touch.punch', get_template_directory_uri() . '/js/jquery.ui.touch-punch.min.js', array( 'jquery' ), $js_version, true );
 			wp_enqueue_script( 'select2-js', get_template_directory_uri() . '/js/select2.min.js', array( 'jquery' ), $js_version, true );
 			wp_enqueue_script( 'shop', get_template_directory_uri() . '/js/shop.js', array( 'jquery' ), $js_version, true );
 

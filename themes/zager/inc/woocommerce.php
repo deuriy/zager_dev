@@ -791,14 +791,17 @@ function get_max_range_price() {
 
 add_action( 'wp_ajax_get_filtered_products', 'get_filtered_products' );
 add_action( 'wp_ajax_nopriv_get_filtered_products', 'get_filtered_products' );
-function get_filtered_products() {
-	$min_price = (int)$_POST['min_price'];
-	$max_price = (int)$_POST['max_price'];
-	$page_type = $_POST['page_type'];
+function get_filtered_products($default_page_type, $ajax_call = true) {
+	$min_price = isset($_POST['min_price']) ? (int)$_POST['min_price'] : get_min_range_price();
+	$max_price = isset($_POST['max_price']) ? (int)$_POST['max_price'] : get_max_range_price();
 
-	$page = sanitize_text_field($_POST['page']);
-  $posts_per_page = sanitize_text_field($_POST['posts_per_page']);
-  $loading_mode = sanitize_text_field($_POST['loading_mode']);
+	$page = isset($_POST['page']) ? sanitize_text_field($_POST['page']) : 1;
+
+	$page_type = isset($_POST['page_type']) ? $_POST['page_type'] : $default_page_type;
+	$default_posts_per_page = $page_type == 'shop' ? 10 : 9;
+  $posts_per_page = isset($_POST['posts_per_page']) ? sanitize_text_field($_POST['posts_per_page']) : $default_posts_per_page;
+
+  $loading_mode = isset($_POST['loading_mode']) ? sanitize_text_field($_POST['loading_mode']) : 'rewrite';
   $current_page = $page;
   $page -= 1;
 
@@ -807,19 +810,31 @@ function get_filtered_products() {
   $next_btn = true;
   $offset = $page * $posts_per_page;
 	$order_settings = !empty($_POST['order_settings']) ? $_POST['order_settings'] : [];
-	$product_terms = $_POST['product_terms'];
-	$tax_queries = [];
+	$product_terms = isset($_POST['product_terms']) ? $_POST['product_terms'] : [];
 
-	$tax_queries = [
-		'tax_query' => [
-    	'relation' => 'AND',
-    	[
-    		'taxonomy' => 'product_cat',
-    		'field' => 'slug',
-    		'terms' => 'guitar'
-    	]
-		],
-	];
+	if ($page_type == 'shop') {
+		$tax_queries = [
+			'tax_query' => [
+	    	'relation' => 'AND',
+	    	[
+	    		'taxonomy' => 'product_cat',
+	    		'field' => 'slug',
+	    		'terms' => 'guitar'
+	    	]
+			],
+		];
+	} else {
+		$tax_queries = [
+			'tax_query' => [
+	    	'relation' => 'AND',
+	    	[
+	    		'taxonomy' => 'product_cat',
+	    		'field' => 'slug',
+	    		'terms' => 'accessories'
+	    	]
+			],
+		];
+	}
 
 	if ($product_terms) {
 		foreach ($product_terms as $product_tax_key => $tax_terms) {
@@ -948,16 +963,16 @@ function get_filtered_products() {
 		<?php
 			$paginations_count = ceil($products_count / $posts_per_page);
 
-			print '<div class="QueryInfo">';
-			print "<h3>Products count: $products_count</h3>";
-      print "<h3>Offset: $offset</h3>";
-      print "<h3>Page: $page</h3>";
-      print "<h3>Current page: $current_page</h3>";
-      print "<h3>Founded products: $wpquery->post_count</h3>";
-      print "<h3>Posts per page: $posts_per_page</h3>";
-      print "<h3>Start loop: $start_loop</h3>";
-      print "<h3>End loop: $end_loop</h3>";
-      echo '</div>';
+			// print '<div class="QueryInfo">';
+			// print "<h3>Products count: $products_count</h3>";
+   //    print "<h3>Offset: $offset</h3>";
+   //    print "<h3>Page: $page</h3>";
+   //    print "<h3>Current page: $current_page</h3>";
+   //    print "<h3>Founded products: $wpquery->post_count</h3>";
+   //    print "<h3>Posts per page: $posts_per_page</h3>";
+      // print "<h3>Start loop: $start_loop</h3>";
+      // print "<h3>End loop: $end_loop</h3>";
+      // echo '</div>';
 
 			if ($paginations_count != 1) {
 				if ($current_page >= 7) {
@@ -983,7 +998,7 @@ function get_filtered_products() {
 	        }
 	      }
 
-	      $pagination_container .= "<div class=\"Pagination hidden-smMinus\"><ul class=\"Pagination_list\">";
+	      $pagination_container = "<div class=\"Pagination hidden-smMinus\"><ul class=\"Pagination_list\">";
 
 	      if ($previous_btn && $current_page > 1) {
 	        $prev = $current_page - 1;
@@ -1036,7 +1051,9 @@ function get_filtered_products() {
 		<h3>Products not found</h3>
 	<?php endif;
 
-	wp_die();
+	if ($ajax_call) {
+		wp_die();
+	}
 }
 
 // add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );

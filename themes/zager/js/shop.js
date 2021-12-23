@@ -1,6 +1,7 @@
 (function($) {
 	let loadingStep = 10;
 	// let loadingMode = 'rewrite';
+	let windowWidth = document.documentElement.clientWidth;
 
 	if ($( '.AccessoriesCards' ).length) {
 		loadingStep = 9;
@@ -67,11 +68,11 @@
 			loading_mode: loadingMode
 		};
 
-		console.log(`loadingStep: ${loadingStep}`);
-		console.log(`postsPerPage: ${postsPerPage}`);
+		// console.log(`loadingStep: ${loadingStep}`);
+		// console.log(`postsPerPage: ${postsPerPage}`);
 
-		console.log(`page: ${page}`);
-		console.log(`loadingMode: ${loadingMode}`);
+		// console.log(`page: ${page}`);
+		// console.log(`loadingMode: ${loadingMode}`);
 
 		$.ajax({
 			url: ajaxurl,
@@ -80,15 +81,19 @@
 			beforeSend: function( xhr ) {
 				if ($( '.Products' ).length) {
 					if (loadingMode == 'rewrite') {
-						// $( '.Products' ).html( '<div class="Loader Loader-center Products_loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>' );
 						$( '.Products' ).html( '<div class="Reload Reload-center Products_reload"></div>' );
 					} else {
-						$( '.Products .LoadingPosts, .Products .QueryInfo' ).remove();
+						$( '.Products .LoadingPosts' ).remove();
 						$( '.Products' ).append( '<div class="Reload Reload-center Products_reload"></div>' );
 					}
 					
 				} else if ($( '.AccessoriesCards' ).length) {
-					$( '.AccessoriesCards' ).html( '<div class="Reload Reload-center Products_reload"></div>' );
+					if (loadingMode == 'rewrite') {
+						$( '.AccessoriesCards' ).html( '<div class="Reload Reload-center Products_reload"></div>' );
+					} else {
+						$( '.AccessoriesCards .LoadingPosts' ).remove();
+						$( '.AccessoriesCards' ).append( '<div class="Reload Reload-center Products_reload"></div>' );
+					}
 				}
 			},
 			success: function( response ) {
@@ -98,10 +103,10 @@
 					} else {
 						$( '.Products .Reload' ).remove();
 						$( '.Products_items' ).append(response);
+						$( '.Products' ).append($( '.LoadingPosts' ));
 
 						$('.Products_slides .ProductCardsSwiper_slide').each(function(index, el) {
 							$('.ProductCardsSwiper .swiper-wrapper').append($(el));
-							// console.log(el);
 						});
 
 						$('.Products_slides').remove();
@@ -112,20 +117,24 @@
 					  spaceBetween: 20,
 					});
 				} else if ($( '.AccessoriesCards' ).length) {
-					$( '.AccessoriesCards' ).html(response);
+					if (loadingMode == 'rewrite') {
+						$( '.AccessoriesCards' ).html(response);
+					} else {
+						$( '.AccessoriesCards .Reload' ).remove();
+						$( '.AccessoriesCards_items' ).append(response);
+						$( '.AccessoriesCards' ).append($( '.LoadingPosts' ));
+					}
 				}
 			}
 		});
 
-		if (loadingMode == 'rewrite' && $('.ProductsWrapper_header').length) {
-			// $('body').scrollTo('.ProductsWrapper_header');
-			console.log('Scroll to header');
-		}
+		if (loadingMode == 'rewrite') {
+			let productsWrapperHeader = document.querySelector('.ProductsWrapper_header');
 
-		// let productsWrapperHeader = document.querySelector('.ProductsWrapper_header');
-		// if (productsWrapperHeader) {
-		// 	productsWrapperHeader.scrollIntoView();
-		// }
+			if (productsWrapperHeader) {
+				productsWrapperHeader.scrollIntoView();
+			}
+		}		
 	}
 	
 	if ($(".RangeSlider").length) {
@@ -145,7 +154,9 @@
 	    },
 
 	    change: function (event, ui) {
-	    	loadFilteredProducts();
+	    	if (windowWidth > 767) {
+	    		loadFilteredProducts();
+	    	}
 	    },
 
 	    classes: {
@@ -179,7 +190,7 @@
   document.addEventListener('change', function (e) {
   	let filterCheckboxInput = e.target.closest('#Filter .Checkbox_input');
 
-  	if (!filterCheckboxInput) return;
+  	if (!filterCheckboxInput || windowWidth < 768) return;
 
   	loadFilteredProducts();
   });
@@ -206,8 +217,33 @@
   	loadFilteredProducts('append', currentPageIndex + 1);
 
   	e.preventDefault();
-  })
+  });
 
-  loadFilteredProducts();
+  document.addEventListener('click', function (e) {
+  	let filterResetBtn = e.target.closest('.Filter_resetBtn');
+
+  	if (!filterResetBtn) return;
+
+  	// console.log('Yes');
+  	// console.log(Fancybox.getInstance());
+  	Fancybox.getInstance().close();
+  });
+
+  document.addEventListener('click', function (e) {
+  	let filterApplyBtn = e.target.closest('.Filter_applyBtn');
+
+  	if (!filterApplyBtn) return;
+
+  	// console.log('Yes');
+  	// console.log(Fancybox.getInstance());
+
+  	loadFilteredProducts();
+  	Fancybox.getInstance().close();
+  });
+
+  new Swiper('.ProductCardsSwiper', {
+	  slidesPerView: 'auto',
+	  spaceBetween: 20,
+	});
 	
 })( jQuery );

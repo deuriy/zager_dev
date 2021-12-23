@@ -437,6 +437,57 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
           }
         });
       });
+
+      (function($) {
+        let page = 1;
+        let postsPerPage = 9;
+        let excludedReviewsIDs = [];
+
+        $('.VideoReview').each(function(index, el) {
+          excludedReviewsIDs.push(Number(el.dataset.reviewId));
+        });
+
+        function loadArtistReviews (page = 1) {
+          let ajaxurl = '/wp-admin/admin-ajax.php';
+          let data = {
+            action: 'get_artist_reviews',
+            contentType: 'application/json',
+            page: page,
+            posts_per_page: postsPerPage,
+            excluded_reviews_ids: excludedReviewsIDs
+          };
+
+          $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: data,
+            beforeSend: function( xhr ) {
+              if ($( '.VideoReviews_items' ).length) {
+                $( '.VideoReviews_items' ).after( '<div class="Reload Reload-center VideoReviews_reload"></div>' );
+                $('.LoadingPosts').remove();
+              }
+            },
+            success: function( response ) {
+              if ($( '.VideoReviews_items' ).length) {
+                $('.VideoReviews_reload').remove();
+                $( '.VideoReviews_items' ).append(response);
+                $( '.VideoReviews_items' ).after($('.LoadingPosts'));
+              }
+            }
+          });
+        }
+
+        document.addEventListener('click', function (e) {
+          let loadingPostsBtn = e.target.closest('.LoadingPosts_btn');
+
+          if (!loadingPostsBtn) return;
+
+          page++;
+          loadArtistReviews(page);
+
+          e.preventDefault();
+        });
+      })( jQuery );
     </script>
   <?php elseif ($layout_name == 'expandable_tables'): ?>
     <script>
