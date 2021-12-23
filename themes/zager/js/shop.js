@@ -2,6 +2,7 @@
 	let loadingStep = 10;
 	// let loadingMode = 'rewrite';
 	let windowWidth = document.documentElement.clientWidth;
+	// console.log(windowWidth);
 
 	if ($( '.AccessoriesCards' ).length) {
 		loadingStep = 9;
@@ -224,8 +225,6 @@
 
   	if (!filterResetBtn) return;
 
-  	// console.log('Yes');
-  	// console.log(Fancybox.getInstance());
   	Fancybox.getInstance().close();
   });
 
@@ -233,9 +232,6 @@
   	let filterApplyBtn = e.target.closest('.Filter_applyBtn');
 
   	if (!filterApplyBtn) return;
-
-  	// console.log('Yes');
-  	// console.log(Fancybox.getInstance());
 
   	loadFilteredProducts();
   	Fancybox.getInstance().close();

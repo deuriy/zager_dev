@@ -34,6 +34,7 @@ $attribute_keys = array_keys( $attributes ); ?>
 			<?php else : ?>
 				<table class="ProductOptions_variationsBlocks variations" cellspacing="0">
 					<tbody>
+						<?php $index = 0; ?>
 						<?php foreach ( $attributes as $name => $options ) : ?>
 							<?php $sanitized_name = sanitize_title( $name ); ?>
 							<tr class="VariationsBlock ProductOptions_variationsBlock attribute attribute-<?php echo esc_attr( $sanitized_name ); ?>">
@@ -42,7 +43,12 @@ $attribute_keys = array_keys( $attributes ); ?>
 										<label for="<?php echo esc_attr( $sanitized_name ); ?>" class="VariationsBlock_title">
 											<?php echo wc_attribute_label( $name ); ?>
 										</label>
-										<a class="FancyboxPopupLink VariationsBlock_link" href="#" data-src="#CompareSizesPopup">Compare Sizes</a>
+										<?php if ($index == 0): ?>
+											<a class="FancyboxPopupLink VariationsBlock_link" href="#" data-src="#CompareSizesPopup">Compare Sizes</a>
+										<?php else: ?>
+											<a class="FancyboxPopupLink VariationsBlock_link" href="#" data-src="#FancyboxPopup-2357">Compare Electronics</a>
+										<?php endif ?>
+										
 									</div>
 									<?php
 									if ( isset( $_REQUEST[ 'attribute_' . $sanitized_name ] ) ) {
@@ -76,6 +82,7 @@ $attribute_keys = array_keys( $attributes ); ?>
 									</div>
 								</td>
 							</tr>
+							<?php $index++; ?>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
