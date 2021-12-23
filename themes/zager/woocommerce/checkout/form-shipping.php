@@ -84,6 +84,14 @@ defined( 'ABSPATH' ) || exit;
 
 							<div class="checkout-fieldgroup checkout-fieldgroup--shipping checkout-fields__group">
 								<div class="checkout-fieldgroup__fields">
+									<div class="checkout-fieldgroup__fields-row">
+										<div class="checkout-fieldgroup__field">
+											<?php woocommerce_form_field( 'shipping_first_name', $fields['shipping_first_name'], $checkout->get_value( 'shipping_first_name' ) ); ?>
+										</div>
+										<div class="checkout-fieldgroup__field">
+											<?php woocommerce_form_field( 'shipping_last_name', $fields['shipping_last_name'], $checkout->get_value( 'shipping_last_name' ) ); ?>
+										</div>
+									</div>
 									<div class="checkout-fieldgroup__fields-row checkout-fieldgroup__fields-row--single">
 										<div class="checkout-fieldgroup__field">
 											<?php woocommerce_form_field( 'shipping_address_1', $fields['shipping_address_1'], $checkout->get_value( 'shipping_address_1' ) ); ?>
