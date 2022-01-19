@@ -15,12 +15,16 @@
   <?php
     $shop_pages_settings = get_field('shop_pages', 'option');
 
-    if (is_shop()) {
-      $page_settings = $shop_pages_settings['default_shop_page'];
-      $page_type = 'shop';
-    } elseif (is_product_category('accessories')) {
+    if (is_product_category('accessories')) {
       $page_settings = $shop_pages_settings['accessories_default_shop_page'];
       $page_type = 'accessories';
+    } elseif (is_product_category('discount-vault')) {
+      $page_settings = $shop_pages_settings['dicount_vault_default_shop_page'];
+      $page_type = 'discount';
+    }
+    else {
+      $page_settings = $shop_pages_settings['default_shop_page'];
+      $page_type = 'shop';
     }
   ?>
 

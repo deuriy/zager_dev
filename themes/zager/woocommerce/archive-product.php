@@ -23,17 +23,27 @@ do_action( 'woocommerce_before_main_content' );
 
 $shop_pages_settings = get_field('shop_pages', 'option');
 
-if (is_shop()) {
-  $page_settings = $shop_pages_settings['default_shop_page'];
-  $page_type = 'shop';
-} elseif (is_product_category('accessories')) {
+// print '<pre>';
+// print_r($shop_pages_settings);
+// print '</pre>';
+
+if (is_product_category('accessories')) {
   $page_settings = $shop_pages_settings['accessories_default_shop_page'];
   $page_type = 'accessories';
+} elseif (is_product_category('discount-vault')) {
+  $page_settings = $shop_pages_settings['dicount_vault_default_shop_page'];
+  $page_type = 'discount';
+}
+else {
+  $page_settings = $shop_pages_settings['default_shop_page'];
+  $page_type = 'shop';
 }
 
 if (isset($page_settings['top_blocks'])) {
 	render_page_layouts($page_settings['top_blocks']['page_blocks']);
 }
+
+opcache_reset();
 ?>
 
 <div class="ProductsWrapper">
