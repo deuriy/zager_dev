@@ -152,6 +152,12 @@ ins {
 	}
 }
 
+.ProductSectionImg {
+	.swiper-button-disabled:hover {
+		background: rgba(19,20,26,0.75);
+	}
+}
+
 .woocommerce-pagination {
 	ul.page-numbers {
 		display: flex;
