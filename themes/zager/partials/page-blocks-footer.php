@@ -51,6 +51,14 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
   <?php elseif ($layout_name == 'feedback_section'): ?>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+        function slideToggle(elem) {
+          if (elem.offsetHeight < elem.scrollHeight) {
+            elem.style.maxHeight = `${elem.scrollHeight}px`;
+          } else {
+            elem.style.maxHeight = '';
+          }
+        }
+        
         const players = Plyr.setup('audio', {
           controls: ['play-large', 'play', 'progress', 'duration', 'captions', 'pip', 'airplay']
         });
@@ -153,7 +161,7 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
         new Swiper('.ProductCardsSwiper', {
           slidesPerView: 'auto',
           spaceBetween: 20,
-          autoHeight: true,
+          // autoHeight: true,
         });
       });
     </script>

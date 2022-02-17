@@ -340,10 +340,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 (function($){
-  $( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
-    alert( variation.variation_id );
-    console.log( variation );
-  } );
+  // $( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
+  //   alert( variation.variation_id );
+  //   console.log( variation );
+  // } );
 
-  console.log('Yes!!!');
+  // console.log('Yes!!!');
 })(jQuery);

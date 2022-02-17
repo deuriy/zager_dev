@@ -49,14 +49,14 @@
         <div class="FilterTabsListSwiper swiper FilterTabsMenu FilterTabs_menu FilterTabs_menu-swiper hidden-smPlus">
           <div class="swiper-wrapper">
             <div class="swiper-slide FilterTabsListSwiper_slide">
-              <div class="FilterTabsMenu_item <?=(empty($_REQUEST['guitar']) || $_REQUEST['guitar'] === 'all') ? 'FilterTabsMenu_item-active' : ''?>" data-filter="all">All reviews</div>
+              <div class="FilterTabsMenu_item <?=(empty($_REQUEST['guitar']) || $_REQUEST['guitar'] === 'all') ? 'FilterTabsMenu_item-active' : ''?>" data-filter="all" href="?guitar=all">All reviews</div>
             </div>
 
             <?php foreach ($cats as $cat): ?>
 
               <div class="swiper-slide FilterTabsListSwiper_slide">
-                <div class="FilterTabsMenu_item <?=($_REQUEST['guitar'] === $cat->slug) ? 'FilterTabsMenu_item-active' : ''?>" data-filter="<?php echo $cat->slug ?>">
-                  <?php echo $cat->name ?>
+                <div class="FilterTabsMenu_item <?=($guitar === $cat->slug) ? 'FilterTabsMenu_item-active' : ''?>" data-filter="<?php echo $cat->slug ?>">
+                  <a class="reviews-filter reviews-filter-guitar" href="?guitar=<?php echo $cat->slug ?>"><?php echo $cat->name ?></a>
                 </div>
               </div>
             <?php endforeach ?>
