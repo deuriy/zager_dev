@@ -497,7 +497,8 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
             // tab.dataset.tabIndex = tabIndex;
 
             tab.onclick = () => {
-              let activeTab = tab.parentNode.querySelector('.Tabs_item-active');
+              let parent = tab.closest('.Tabs');
+              let activeTab = parent.querySelector('.Tabs_item-active');
 
               if (activeTab) {
                 activeTab.classList.remove('Tabs_item-active');
@@ -505,7 +506,6 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
 
               tab.classList.add('Tabs_item-active');
 
-              let parent = tab.closest('.Tabs');
               let tabsContent = parent.querySelectorAll('.Tabs_content');
 
               parent.querySelectorAll('.Tabs_list').forEach(tabsList => {
@@ -514,9 +514,11 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
 
               tabsContent.forEach(function (tabContent, tabContentIndex) {
                 tabContent.style.display = 'none';
+                tabContent.classList.remove('Tabs_content-active');
               });
 
               tabsContent[tabIndex].style.display = 'block';
+              tabsContent[tabIndex].classList.add('Tabs_content-active');
             }
           });
         });
@@ -558,7 +560,11 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
 
 
         window.addEventListener('resize', function () {
+          setTabsVisibility();
+
           expandedTables.forEach(expandTable => setMaxHeight(expandTable));
+
+          setTabsVisibility(false);
         });
 
         document.addEventListener('click', function (e) {

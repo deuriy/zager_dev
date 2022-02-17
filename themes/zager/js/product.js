@@ -338,3 +338,12 @@ document.addEventListener('DOMContentLoaded', function () {
     productOptionsPopups.forEach(popup => popup.remove());
   }
 });
+
+(function($){
+  $( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
+    alert( variation.variation_id );
+    console.log( variation );
+  } );
+
+  console.log('Yes!!!');
+})(jQuery);
