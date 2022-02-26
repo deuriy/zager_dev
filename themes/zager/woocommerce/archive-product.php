@@ -43,7 +43,7 @@ if (isset($page_settings['top_blocks'])) {
 	render_page_layouts($page_settings['top_blocks']['page_blocks']);
 }
 
-opcache_reset();
+// opcache_reset();
 ?>
 
 <div class="ProductsWrapper">

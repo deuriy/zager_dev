@@ -34,7 +34,12 @@ if (is_404()) {
   $page_blocks = get_field('page_blocks');
 }
 
-$acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
+if ($page_blocks) {
+  $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
+} else {
+  $acf_layouts_names = [];
+}
+
 ?>
 
 <?php foreach ($acf_layouts_names as $layout_name): ?>
@@ -158,7 +163,7 @@ $acf_layouts_names = array_unique(array_column($page_blocks, 'acf_fc_layout'));
   <?php elseif ($layout_name == 'product_cards' || $layout_name == 'products' || $layout_name == 'series' || $layout_name == 'product_cards_by_group'): ?>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        new Swiper('.ProductCardsSwiper', {
+        new Swiper('.SeriesSwiper, .ProductCardsSwiper', {
           slidesPerView: 'auto',
           spaceBetween: 20,
           // autoHeight: true,

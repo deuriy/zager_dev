@@ -6,26 +6,36 @@ $testimonials = $field['testimonials_type'] === 'default' ? get_field('default_p
 if ($field['product'] || $testimonials):
   $id = $field['product'];
   $product = wc_get_product($id);
-  $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
-  $product_images_ids = $product->get_gallery_image_ids();
-  $product_attributes = $product->get_attributes();
-  $product_url = get_permalink($id);
-  $additional_labels = get_field('additional_labels', $id);
 
-  $product_left_blocks = get_field('after_product_left', $id);
-  $reviews_count = 0;
+  if ($product):
+    $product_image = $product->get_image('full', array('class' => 'ProductCard_img'));
+    $product_images_ids = $product->get_gallery_image_ids();
+    $product_attributes = $product->get_attributes();
+    $product_url = get_permalink($id);
+    $additional_labels = get_field('additional_labels', $id);
 
-  if ($product_left_blocks) {
-    $product_layouts_names = array_column($product_left_blocks, 'customer_reviews');
+    $product_left_blocks = get_field('after_product_left', $id);
+    $reviews_count = 0;
 
-    if ($product_layouts_names) {
-      $reviews = array_column($product_layouts_names, 'customer_reviews');
+    if ($product_left_blocks) {
+      $product_layouts_names = array_column($product_left_blocks, 'customer_reviews');
 
-      if ($reviews) {
-        $reviews_count = count($reviews[0]);
+      if ($product_layouts_names) {
+        $reviews = array_column($product_layouts_names, 'customer_reviews');
+
+        if ($reviews) {
+          $reviews_count = count($reviews[0]);
+        }
       }
     }
-  }
+
+    if ($product->is_type( 'variable' )) {
+      $variations = $product->get_available_variations();
+      $variations_ids = wp_list_pluck( $variations, 'variation_id' );
+      $add_to_cart_id = $variations_ids[0];
+    } else {
+      $add_to_cart_id = $id;
+    }
 ?>
 
 <div class="ProductSection">
@@ -39,12 +49,17 @@ if ($field['product'] || $testimonials):
               <div class="swiper-wrapper">
                 <?php foreach ($product_images_ids as $product_image_id): ?>
                   <?php
-                    $image = wp_get_attachment_image( $product_image_id, 'full', false, array('class' => 'ProductSectionImgSwiper_img') );
+                    $image = wp_get_attachment_image( $product_image_id, 'full', false, array(
+                      'class' => 'ProductSectionImgSwiper_img'
+                    ) );
+
+                    // $image = wp_get_attachment_image( $product_image_id, 'full' );
+                    $image_array = wp_get_attachment_image_src( $product_image_id, 'full' );
                   ?>
                   <div class="swiper-slide ProductSectionImgSwiper_slide">
-                    <div class="ProductSectionImgSwiper_imgWrapper">
+                    <a href="<?php echo $image_array[0] ?>" class="ProductSectionImgSwiper_imgWrapper" data-fancybox="product-section-img-gallery">
                       <?php echo $image ?>
-                    </div>
+                    </a>
                   </div>
                 <?php endforeach ?>
               </div>
@@ -56,7 +71,7 @@ if ($field['product'] || $testimonials):
             <div class="Label ProductSectionImg_label">special edition</div>
             <div class="Tag Tag-stars ProductSectionImg_tag">On sale</div>
 
-            <a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen ProductSectionImg_fullScreenBtn" href="javascript:;" data-fancybox>full screen</a>
+            <a class="BtnBlack BtnBlack-transparent BtnBlack-fullScreen ProductSectionImg_fullScreenBtn" href="javascript:;">full screen</a>
           </div>
         </div>
       <?php endif ?>
@@ -112,7 +127,7 @@ if ($field['product'] || $testimonials):
             <a class="BtnOutline BtnOutline-product ProductSection_btn" href="<?php echo $product_url ?>">View options and features</a>
           </li>
           <li class="ProductSection_btnItem">
-            <a class="BtnYellow BtnYellow-product ProductSection_btn" href="<?php echo esc_url( wc_get_cart_url() ); ?>">View total with shipping and case</a>
+            <a class="BtnYellow BtnYellow-product ProductSection_btn" href="/cart/?add-to-cart=<?php echo $add_to_cart_id; ?>&quantity=1">View total with shipping and case</a>
           </li>
         </ul>
       </div>
@@ -189,4 +204,5 @@ if ($field['product'] || $testimonials):
     <?php endif ?>
   </div>
 </div>
+<?php endif ?>
 <?php endif ?>

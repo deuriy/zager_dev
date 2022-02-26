@@ -122,6 +122,20 @@
                 "operator": "==",
                 "value": "pa_body_size"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "pa_dimensions"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "pa_guitar-type"
+            }
         ]
     ],
     "menu_order": 0,
@@ -132,5 +146,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1637750258
+    "modified": 1645135160
 }
