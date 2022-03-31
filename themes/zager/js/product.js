@@ -326,17 +326,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Mobile Variations & add to cart popup
-  let wid = document.documentElement.clientWidth;
-  let productSidebar = document.querySelector('.Sidebar-product');
-  let productOptionsPopups = document.querySelectorAll('.MobilePopup-productOptions');
+  // let wid = document.documentElement.clientWidth;
+  // let productSidebar = document.querySelector('.Sidebar-product');
+  // let productOptionsPopups = document.querySelectorAll('.MobilePopup-productOptions');
 
-  if (wid < 1024) {
-    if (productSidebar) {
-      productSidebar.remove();
-    }
-  } else {
-    productOptionsPopups.forEach(popup => popup.remove());
-  }
+  // if (wid < 1024) {
+  //   if (productSidebar) {
+  //     productSidebar.remove();
+  //   }
+  // } else {
+  //   productOptionsPopups.forEach(popup => popup.remove());
+  // }
 });
 
 (function($){

@@ -36,13 +36,19 @@ global $product;
 	</div>
 
 	<div class="TotalPrice_buttons">
-		<button name="add-to-cart" type="submit" class="single_add_to_cart_button BtnYellow BtnYellow-totalPrice TotalPrice_btn">
-			Try this guitar now!
-		</button>
+		<?php if (wp_is_mobile()): ?>
+			<button name="add-to-cart" type="submit" class="single_add_to_cart_button BtnYellow BtnYellow-totalPrice TotalPrice_btn">Add to cart</button>
 
-		<button name="add-to-cart-checkout" type="submit" class="BtnOutline BtnOutline-totalPrice BtnOutline-darkText BtnOutline-lightBeigeBg TotalPrice_btn">
-			View total with shipping
-		</button>
+			<button name="add-to-cart-checkout" type="submit" class="BtnOutline BtnOutline-totalPrice BtnOutline-darkText BtnOutline-lightBeigeBg TotalPrice_btn">Checkout</button>
+		<?php else: ?>
+			<button name="add-to-cart" type="submit" class="single_add_to_cart_button BtnYellow BtnYellow-totalPrice TotalPrice_btn">
+				Try this guitar now!
+			</button>
+
+			<button name="add-to-cart-checkout" type="submit" class="BtnOutline BtnOutline-totalPrice BtnOutline-darkText BtnOutline-lightBeigeBg TotalPrice_btn">
+				View total with shipping
+			</button>
+		<?php endif ?>
 	</div>
 	
 

@@ -68,6 +68,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			multistageFormPrevBtn.classList.add('hidden');
 		}
 
+		if (currentStageIndex == 1) {
+		  let destination = $(multistageForm).offset().top;
+		  $('html, body').animate( { scrollTop: destination }, 2000 );
+		}
+
 		e.preventDefault();
 	});
 

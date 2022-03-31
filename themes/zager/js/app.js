@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  mobileNavigation.classList.remove('MobileNavigation-opened');
+  alert('Loaded!');
+
   menuHamburger.addEventListener('click', function (e) {
     menuHamburger.classList.toggle('MenuHamburger-active');
     mobileNavigation.classList.toggle('MobileNavigation-opened');

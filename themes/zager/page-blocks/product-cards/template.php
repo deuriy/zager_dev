@@ -21,7 +21,7 @@
               ?>
 
               <div class="swiper-slide ProductCardsSwiper_slide">
-                <div class="ProductCard<?php echo $additional_classes; ?>">
+                <div class="ProductCard ProductCard-slide<?php echo $additional_classes; ?>">
                   <div class="ProductCard_wrapper">
                     <?php if ($product_image || $additional_labels): ?>
                       <div class="ProductCard_imgWrapper">

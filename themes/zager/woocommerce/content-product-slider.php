@@ -41,7 +41,7 @@ if ($product->get_short_description()) {
 ?>
 
 <div class="swiper-slide ProductCardsSwiper_slide">
-  <div <?php wc_product_class( 'ProductCard ProductCard-slider', $product ); ?>>
+  <div <?php wc_product_class( 'ProductCard ProductCard-slide ProductCard-slider', $product ); ?>>
     <div class="ProductCard_wrapper">
       <div class="ProductCard_imgWrapper">
         <?php if ($product_image): ?>

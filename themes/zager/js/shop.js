@@ -167,9 +167,10 @@
 	  });
 	}
 
-  $('.Select').select2({
+  $('#product_sorting').select2({
   	minimumResultsForSearch: -1,
-  	width: ''
+  	width: '',
+  	placeholder: "Sort By",
   }).data('select2').$dropdown.addClass('select2-sorting');
 
   $('.Select').on('select2:select', function (e) {

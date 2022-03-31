@@ -12,7 +12,7 @@
         ?>
 
         <div class="swiper-slide ProductCardsSwiper_slide">
-          <div class="ProductCard">
+          <div class="ProductCard ProductCard-slide">
             <div class="ProductCard_wrapper">
             	<?php if ($product_image || $additional_labels): ?>
                 <div class="ProductCard_imgWrapper">

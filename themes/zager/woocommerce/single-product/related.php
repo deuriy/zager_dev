@@ -41,7 +41,7 @@ if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
 
 					<div class="swiper-slide ProductCardsSwiper_slide">
 
-						<div <?php wc_product_class( 'ProductCard', $related_product->get_id() ); ?>>
+						<div <?php wc_product_class( 'ProductCard ProductCard-slide', $related_product->get_id() ); ?>>
 
 							<?php
 							$post_object = get_post( $related_product->get_id() );
@@ -65,7 +65,7 @@ if ( $related_products && get_field('display_related_products') == 'yes' ) : ?>
 
 				<?php foreach ( $related_products as $related_product ) : ?>
 
-					<div <?php wc_product_class( 'ProductCard ProductCards_item', $related_product->get_id() ); ?>>
+					<div <?php wc_product_class( 'ProductCard ProductCard-related ProductCards_item', $related_product->get_id() ); ?>>
 
 						<?php
 						$post_object = get_post( $related_product->get_id() );

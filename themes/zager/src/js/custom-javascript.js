@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // mobileNavigation.classList.remove('MobileNavigation-opened');
+  // alert('Loaded!');
+
   menuHamburger.addEventListener('click', function (e) {
     menuHamburger.classList.toggle('MenuHamburger-active');
     mobileNavigation.classList.toggle('MobileNavigation-opened');
@@ -31,6 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   closeMobileNavigation.addEventListener('click', function (e) {
+    menuHamburger.classList.remove('MenuHamburger-active');
+    mobileNavigation.classList.remove('MobileNavigation-opened');
+    document.body.style.overflow = '';
+  });
+
+  document.addEventListener('click', function (e) {
+    let mainMenuLink = e.target.closest('.MainMenu_link');
+
+    if (!mainMenuLink || !mobileNavigation.contains(mainMenuLink) || mainMenuLink.parentNode.classList.contains('MainMenu_item-parent')) return;
+
     menuHamburger.classList.remove('MenuHamburger-active');
     mobileNavigation.classList.remove('MobileNavigation-opened');
     document.body.style.overflow = '';

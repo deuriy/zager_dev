@@ -7,6 +7,8 @@
 	      </h2>
     	<?php endif ?>
 
+      <?php opcache_reset(); ?>
+
     	<?php if ($field['tags']): ?>
     		<ul class="Tags Series_tags">
     			<?php foreach ($field['tags'] as $index => $tag): ?>
@@ -65,7 +67,7 @@
 	    		?>
 	    		
 	    		<div class="swiper-slide ProductCardsSwiper_slide">
-	    			<div class="ProductCard">
+	    			<div class="ProductCard ProductCard-slide">
 	    				<div class="ProductCard_wrapper">
 	    					<?php if ($product_image || $additional_labels): ?>
                   <div class="ProductCard_imgWrapper">
@@ -135,7 +137,7 @@
       </div>
     </div>
 
-    <div class="ProductCards hidden-xs">
+    <div class="ProductCards ProductCards-series hidden-xs">
       <div class="ProductCards_wrapper">
       	<?php foreach ($field['series_tiles'] as $id): ?>
       		<?php
@@ -147,7 +149,7 @@
             $additional_classes = $product->get_type() == 'variable' ? ' ProductCard-extended' : '';
       		?>
 
-      		<div class="ProductCard ProductCards_item">
+      		<div class="ProductCard ProductCard-series ProductCards_item">
 	          <div class="ProductCard_wrapper">
 	            <?php if ($product_image || $additional_labels): ?>
                 <div class="ProductCard_imgWrapper">

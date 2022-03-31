@@ -27,7 +27,7 @@
 			      				$yt_video_id = substr($video_url, strpos($video_url, '?v=') + 3);
 		        			?>
 			        		<div class="swiper-slide VideoTilesSwiper_slide">
-			        			<a class="VideoTile" href="#<?php echo $yt_video_id ?>">
+			        			<a class="VideoTile" href="#<?php echo $yt_video_id ?>" data-action="playVideo">
 			        				<div class="VideoTile_imgWrapper">
 			        					<img class="VideoTile_img" src="https://img.youtube.com/vi/<?php echo $yt_video_id ?>/default.jpg" alt="">
 			        					<div class="VideoTile_duration">03:12</div>
@@ -51,7 +51,7 @@
 		      				$yt_video_id = substr($video_url, strpos($video_url, '?v=') + 3);
 			        	?>
 
-			        	<a class="VideoTile VideoTiles_item" href="#<?php echo $yt_video_id ?>">
+			        	<a class="VideoTile VideoTiles_item" href="#<?php echo $yt_video_id ?>" data-action="playVideo">
 			        		<div class="VideoTile_imgWrapper">
 			        			<img class="VideoTile_img" src="https://img.youtube.com/vi/<?php echo $yt_video_id ?>/default.jpg" alt="">
 			        			<div class="VideoTile_duration">03:12</div>
@@ -94,7 +94,7 @@
 		          				$yt_video_id = substr($video_url, strpos($video_url, '?v=') + 3);
 		          			?>
 
-			          		<a class="VideoTile VideoTile-playlist VideoPlaylist_item<?php echo $index == 0 ? ' VideoTile-active' : '' ?>" href="#<?php echo $yt_video_id ?>">
+			          		<a class="VideoTile VideoTile-playlist VideoPlaylist_item<?php echo $index == 0 ? ' VideoTile-active' : '' ?>" href="#<?php echo $yt_video_id ?>" data-action="playVideo">
 			          			<div class="VideoTile_imgWrapper">
 			          				<img class="VideoTile_img" src="https://img.youtube.com/vi/<?php echo $yt_video_id ?>/default.jpg" alt="">
 			          				<div class="VideoTile_duration">03:12</div>

@@ -32,9 +32,7 @@ global $product;
 	$attribute_keys = array_keys( $attributes );
 	$attribute_count = count( $attribute_keys );
 	$sanitized_last_attribute = sanitize_title( $attribute_keys[$attribute_count - 1] );
-	?>	
-
-	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+	?>
 
 	<div class="MobilePopup MobilePopup-totalPrice" id="TotalPriceMobilePopup">
 		<div class="MobilePopup_overlay"></div>
@@ -62,6 +60,8 @@ global $product;
 	    </div>
 		</div>
 	</div>
+
+	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
 	<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
 	<input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />

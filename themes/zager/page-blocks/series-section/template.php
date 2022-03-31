@@ -28,7 +28,7 @@ $series_section_classes .= $is_extended_section ? ' SeriesSection-extended' : ''
               ?>
 
               <div class="swiper-slide SeriesSwiper_slide">
-                <div class="SeriesBlock<?php echo $series_block_classes ?>">
+                <div class="SeriesBlock SeriesBlock-slide<?php echo $series_block_classes ?>">
                   <?php if ($series_block['label']): ?>
                     <div class="Label Label-seriesBlock SeriesBlock_label">
                       <?php echo $series_block['label'] ?>
@@ -81,6 +81,9 @@ $series_section_classes .= $is_extended_section ? ' SeriesSection-extended' : ''
                         <?php endif ?>
                       <?php endif ?>
                     </div>
+                  <?php endif ?>
+                  <?php if ($series_block['block_as_url'] == 'yes'): ?>
+                    <a href="<?php echo $series_block['url'] ?>" class="SeriesBlock_link"></a>
                   <?php endif ?>
                 </div>
               </div>
@@ -149,6 +152,10 @@ $series_section_classes .= $is_extended_section ? ' SeriesSection-extended' : ''
                   <?php endif ?>
                 <?php endif ?>
               </div>
+            <?php endif ?>
+
+            <?php if ($series_block['block_as_url'] == 'yes'): ?>
+              <a href="<?php echo $series_block['url'] ?>" class="SeriesBlock_link"></a>
             <?php endif ?>
           </div>
         <?php endforeach ?>

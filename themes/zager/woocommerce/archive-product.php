@@ -42,8 +42,6 @@ else {
 if (isset($page_settings['top_blocks'])) {
 	render_page_layouts($page_settings['top_blocks']['page_blocks']);
 }
-
-// opcache_reset();
 ?>
 
 <div class="ProductsWrapper">
@@ -70,6 +68,9 @@ if (isset($page_settings['top_blocks'])) {
 						<div class="Sorting ProductsWrapper_sorting">
 			        <div class="Sorting_label hidden-xs">Sort by:</div>
 			        <select class="Select" name="product_sorting" id="product_sorting">
+                <?php if (wp_is_mobile()): ?>
+                  <option></option>
+                <?php endif ?>
 			          <option value="default">Default</option>
 			          <option value="alphabetical">Alphabetical</option>
 			          <option value="price_asc">Sort by price: low to high</option>

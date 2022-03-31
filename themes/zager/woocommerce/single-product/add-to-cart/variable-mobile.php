@@ -93,6 +93,9 @@ $attribute_keys = array_keys( $attributes ); ?>
 	                    ?>
 	                  </div>
 	                </div>
+	                <div class="MobilePopup_footer">
+	                	<a href="<?php echo ($index + 1) != $count ? '#MobilePopup-' . $attribute_keys[$index + 1] : '#TotalPriceMobilePopup' ?>" data-action="openMobilePopup" class="BtnYellow BtnYellow-mobilePopup">Next</a>
+	                </div>
                 </div>
               </div>
             </td>

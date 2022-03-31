@@ -74,7 +74,11 @@ get_header( 'shop' ); ?>
 <?php
 get_template_part('partials/compare-sizes-popup');
 get_template_part('partials/compare-electronics-popup');
-get_template_part('partials/product-mobile-popup');
+
+if (wp_is_mobile()) {
+	get_template_part('partials/product-mobile-popup');
+}
+
 get_footer( 'shop' );
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

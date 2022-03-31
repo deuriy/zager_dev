@@ -49,7 +49,6 @@ if ($page_blocks) {
         new Swiper('.IconsAndTextsSwiper', {
           slidesPerView: 'auto',
           spaceBetween: 20,
-          autoHeight: true,
         });
       });
     </script>
@@ -166,7 +165,6 @@ if ($page_blocks) {
         new Swiper('.SeriesSwiper, .ProductCardsSwiper', {
           slidesPerView: 'auto',
           spaceBetween: 20,
-          // autoHeight: true,
         });
       });
     </script>
