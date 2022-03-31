@@ -30,7 +30,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 ?>
 
 <div class="Container">
-	<div class="multistage-form woocommerce__multistage-form" id="multistage-form">
+	<div class="multistage-form woocommerce__multistage-form">
 		<ul class="stages__list multistage-form__stages-list">
 			<li class="stages__item">Cart</li>
 			<li class="stages__item stages__item--current" data-stage-index="0">Information</li>
